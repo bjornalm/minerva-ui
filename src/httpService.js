@@ -161,7 +161,7 @@ const test = {
             number: 0
           },
           {
-            number: 255
+            number: 1
           }
         ],
         [
@@ -169,7 +169,7 @@ const test = {
             atom: "8000000ae187e8ec9ea2883d"
           },
           {
-            number: 255
+            number: 1
           },
           {
             number: 0
@@ -186,7 +186,7 @@ const test = {
             number: 0
           },
           {
-            number: 255
+            number: 1
           },
           {
             number: 0

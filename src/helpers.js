@@ -22,6 +22,9 @@ export const MINERVA = {
     RED: "red",
     GREEN: "green",
     BLUE: "blue"
+  },
+  STROKE_PROP: {
+    WIDTH: "width"
   }
 };
 Object.freeze(MINERVA);

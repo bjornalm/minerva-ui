@@ -31,9 +31,19 @@ function determineFormPrimitive(form) {
     type = MINERVA.PRIMITIVES.OUTLINE;
   } else if (formIsColor(form)) {
     type = MINERVA.PRIMITIVES.COLOR;
+  } else if (formIsStroke(form)) {
+    type = MINERVA.PRIMITIVES.STROKE;
   }
 
   return type;
+}
+
+function formIsStroke(form) {
+  return (
+    form.includes(MINERVA.PRIMITIVES.STROKE) &&
+    form.includes(MINERVA.PRIMITIVES.COLOR) &&
+    form.includes(MINERVA.STROKE_PROP.WIDTH)
+  );
 }
 
 function formIsColor(form) {
