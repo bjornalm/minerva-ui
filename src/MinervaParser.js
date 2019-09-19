@@ -29,6 +29,8 @@ export default class MinervaParser {
     console.log(outlines);
     console.log(pointMap);
     console.log(shapes);
+
+    return shapes[0];
   }
 }
 

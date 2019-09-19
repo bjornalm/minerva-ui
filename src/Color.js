@@ -20,7 +20,7 @@ export default class Color {
     const r = rgbToHex(color.red);
     const g = rgbToHex(color.green);
     const b = rgbToHex(color.blue);
-    return `${r}${g}${b}`;
+    return `#${r}${g}${b}`;
   }
 }
 

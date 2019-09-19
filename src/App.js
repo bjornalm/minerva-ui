@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import httpService from "./httpService";
 import MinervaParser from "./MinervaParser";
+import Rect from "./components/Rect";
 
 class App extends Component {
-  render() {
+  state = {};
+
+  componentDidMount() {
     httpService
       .executeQuery({
         title: "foo",
@@ -13,25 +15,27 @@ class App extends Component {
         userId: 1
       })
       .then(data => {
-        MinervaParser.buildPrimitives(data);
+        this.setState({
+          rectangle: MinervaParser.buildPrimitives(data)
+        });
       });
+  }
 
+  render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Minerva</h1>
+        <svg
+          version="1.1"
+          baseProfile="full"
+          width="800"
+          height="800"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="100%" height="100%" fill="black" />
+          <Rect rectangle={this.state.rectangle}></Rect>
+        </svg>
       </div>
     );
   }
