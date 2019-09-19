@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm run proxy`
+
+Starts a proxy server used by the client to solve CORS.
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
