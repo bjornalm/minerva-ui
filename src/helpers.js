@@ -9,14 +9,17 @@ export const MINERVA = {
     POINT: "point",
     RECTANGLE: "rectangle",
     OUTLINE: "outline",
+    SOLID: "solid",
     STROKE: "stroke",
-    COLOR: "color"
+    COLOR: "color",
+    CIRCLE: "circle"
   },
   POSITIONS: {
     HORIZONTAL: "horizontal",
     VERTICAL: "vertical",
     BOTTOM_LEFT: "bottom-left",
-    TOP_RIGHT: "top-right"
+    TOP_RIGHT: "top-right",
+    CENTER: "center"
   },
   COLORS: {
     RED: "red",
@@ -25,6 +28,7 @@ export const MINERVA = {
   },
   STROKE_PROP: {
     WIDTH: "width"
-  }
+  },
+  RADIUS: "radius"
 };
 Object.freeze(MINERVA);

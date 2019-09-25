@@ -12,26 +12,37 @@ class HttpService {
 
   executeQuery(query) {
     return Promise.resolve(test).then();
-    // return axios
-    //   .request({
-    //     method: "post",
-    //     url: "/posts",
-    //     data: JSON.stringify(query),
-    //     headers: {
-    //       "Content-type": "application/json; charset=UTF-8"
-    //     }
-    //   })
-    //   .then(result => {
-    //     console.log(test);
-    //     return test;
-    //   })
-    //   .catch(function(error) {
-    //     // handle error
-    //     console.log(error);
-    //   })
-    //   .finally(function() {
-    //     // always executed
-    //   });
+
+    //   const exampleReq = {
+    //     requests: [
+    //       {
+    //         requestType: "QUERY",
+    //         form: ["molecule", "name"],
+    //         tuples: [{ variable: 1 }, { string: "glucose" }]
+    //       }
+    //     ]
+    //   };
+
+    //   return axios
+    //     .request({
+    //       method: "post",
+    //       url: "/posts",
+    //       data: JSON.stringify(exampleReq),
+    //       headers: {
+    //         "Content-type": "application/json; charset=UTF-8"
+    //       }
+    //     })
+    //     .then(result => {
+    //       console.log(test);
+    //       return test;
+    //     })
+    //     .catch(function(error) {
+    //       // handle error
+    //       console.log(error);
+    //     })
+    //     .finally(function() {
+    //       // always executed
+    //     });
   }
 }
 

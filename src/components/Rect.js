@@ -1,49 +1,34 @@
 import React, { Component } from "react";
+import withSVGPropsHOC from "./withSVGPropsHOC";
 
 class Rect extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  getStrokeWidth() {
-    const rectangle = this.props.rectangle;
-    return rectangle.hasOutlineStroke()
-      ? rectangle.getOutlineStrokeWidth()
-      : "";
-  }
-
-  getStroke() {
-    const rectangle = this.props.rectangle;
-    return rectangle.hasOutlineStroke()
-      ? rectangle.getOutlineStrokeColor()
-      : "";
-  }
-
   getHeight() {
-    const rectangle = this.props.rectangle;
+    const rectangle = this.props.shape;
     return rectangle.topRight.vertical - rectangle.bottomLeft.vertical;
   }
 
   getWidth() {
-    const rectangle = this.props.rectangle;
+    const rectangle = this.props.shape;
     return rectangle.topRight.horizontal - rectangle.bottomLeft.horizontal;
   }
 
   getX() {
-    const rectangle = this.props.rectangle;
+    const rectangle = this.props.shape;
     return rectangle.topRight.horizontal;
   }
 
   getY() {
-    const rectangle = this.props.rectangle;
+    const rectangle = this.props.shape;
     return rectangle.topRight.vertical;
   }
 
   render() {
-    const rectangle = this.props.rectangle;
+    const rectangle = this.props.shape;
     if (!rectangle) {
       return null;
     }
+
+    console.info(this.props);
 
     return (
       <rect
@@ -51,11 +36,12 @@ class Rect extends Component {
         height={this.getHeight()}
         x={this.getX()}
         y={this.getY()}
-        stroke={this.getStroke()}
-        strokeWidth={this.getStrokeWidth()}
+        stroke={this.props.stroke}
+        strokeWidth={this.props.strokeWidth}
+        fill={this.props.fill}
       />
     );
   }
 }
 
-export default Rect;
+export default withSVGPropsHOC(Rect);

@@ -3,9 +3,6 @@ import { MINERVA } from "./helpers";
 class Point {
   constructor(atomId, horizontal, vertical) {
     this.atomId = atomId;
-    // TODO: Remove x,y from here??
-    this.x = horizontal;
-    this.y = vertical;
     this.horizontal = horizontal;
     this.vertical = vertical;
   }

@@ -33,6 +33,10 @@ function determineFormPrimitive(form) {
     type = MINERVA.PRIMITIVES.COLOR;
   } else if (formIsStroke(form)) {
     type = MINERVA.PRIMITIVES.STROKE;
+  } else if (formIsCircle(form)) {
+    type = MINERVA.PRIMITIVES.CIRCLE;
+  } else if (formIsSolid(form)) {
+    type = MINERVA.PRIMITIVES.SOLID;
   }
 
   return type;
@@ -43,6 +47,13 @@ function formIsStroke(form) {
     form.includes(MINERVA.PRIMITIVES.STROKE) &&
     form.includes(MINERVA.PRIMITIVES.COLOR) &&
     form.includes(MINERVA.STROKE_PROP.WIDTH)
+  );
+}
+
+function formIsSolid(form) {
+  return (
+    form.includes(MINERVA.PRIMITIVES.SOLID) &&
+    form.includes(MINERVA.PRIMITIVES.COLOR)
   );
 }
 
@@ -63,6 +74,13 @@ function formIsPoint(form) {
   );
 }
 
+function formIsOutline(form) {
+  return (
+    form.includes(MINERVA.PRIMITIVES.OUTLINE) &&
+    form.includes(MINERVA.PRIMITIVES.STROKE)
+  );
+}
+
 function formIsRectangle(form) {
   return (
     form.includes(MINERVA.PRIMITIVES.RECTANGLE) &&
@@ -71,10 +89,11 @@ function formIsRectangle(form) {
   );
 }
 
-function formIsOutline(form) {
+function formIsCircle(form) {
   return (
-    form.includes(MINERVA.PRIMITIVES.OUTLINE) &&
-    form.includes(MINERVA.PRIMITIVES.STROKE)
+    form.includes(MINERVA.PRIMITIVES.CIRCLE) &&
+    form.includes(MINERVA.POSITIONS.CENTER) &&
+    form.includes(MINERVA.RADIUS)
   );
 }
 

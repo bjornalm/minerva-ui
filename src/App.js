@@ -3,6 +3,7 @@ import "./App.css";
 import httpService from "./httpService";
 import MinervaParser from "./MinervaParser";
 import Rect from "./components/Rect";
+import Circle from "./components/Circle";
 
 class App extends Component {
   state = {};
@@ -15,8 +16,10 @@ class App extends Component {
         userId: 1
       })
       .then(data => {
+        const primitives = MinervaParser.buildPrimitives(data);
         this.setState({
-          rectangle: MinervaParser.buildPrimitives(data)
+          rectangle: primitives[0],
+          circle: primitives[1]
         });
       });
   }
@@ -34,7 +37,8 @@ class App extends Component {
           xmlns="http://www.w3.org/2000/svg"
         >
           <rect width="100%" height="100%" fill="black" />
-          <Rect rectangle={this.state.rectangle}></Rect>
+          <Circle shape={this.state.circle}></Circle>
+          <Rect shape={this.state.rectangle}></Rect>
         </svg>
       </div>
     );
