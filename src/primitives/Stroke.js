@@ -1,10 +1,16 @@
-import { MINERVA } from "./helpers";
+import { MINERVA } from "../helpers";
+import Color from "./Color";
 
 class Stroke {
   constructor(atomId, color, width) {
     this.atomId = atomId;
     this.color = color;
     this.width = width;
+  }
+
+  static cloneStroke(stroke) {
+    const color = Color.cloneColor(stroke.color);
+    return new Stroke(stroke.atomId, color, stroke.width);
   }
 
   // form: ["stroke", "color", "width"],

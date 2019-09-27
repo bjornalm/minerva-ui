@@ -12,20 +12,18 @@ class MinervaTuple {
     const attributeObj = this.attributes[index];
     return attributeObj.value;
   }
-}
 
-// function findAtomAttributeValue(tuple, attributeName) {
-//   const attribute = tuple.find(attribute =>
-//     attribute.hasOwnProperty(attributeName)
-//   );
-//   if (!attribute) {
-//     console.error(
-//       `Expected to find an attribute ${attributeName} in tuple: `,
-//       tuple
-//     );
-//   } else {
-//     return attribute[attributeName];
-//   }
-// }
+  getAttributeValues(columnName, form) {
+    const values = [];
+    form.columns.forEach((col, index) => {
+      if (col === columnName) {
+        const attr = this.attributes[index];
+        values.push(attr.value);
+      }
+    });
+
+    return values;
+  }
+}
 
 export default MinervaTuple;

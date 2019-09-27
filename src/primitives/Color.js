@@ -1,4 +1,4 @@
-import { MINERVA } from "./helpers";
+import { MINERVA } from "../helpers";
 
 export default class Color {
   constructor(atomId, red, green, blue) {
@@ -6,6 +6,10 @@ export default class Color {
     this.red = red;
     this.green = green;
     this.blue = blue;
+  }
+
+  static cloneColor(color) {
+    return new Color(color.atomId, color.red, color.green, color.blue);
   }
 
   static createColor(form, tuple) {

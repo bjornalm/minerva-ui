@@ -4,9 +4,19 @@ import httpService from "./httpService";
 import MinervaParser from "./MinervaParser";
 import Rect from "./components/Rect";
 import Circle from "./components/Circle";
+import Line from "./components/Line";
 
 class App extends Component {
   state = {};
+
+  shapeDragDropped = move => {
+    console.info(move);
+    MinervaParser.buildDragDropQuery(move.original, move.modified);
+    this.setState({
+      ...this.state,
+      circle: move.modified
+    });
+  };
 
   componentDidMount() {
     httpService
@@ -19,7 +29,8 @@ class App extends Component {
         const primitives = MinervaParser.buildPrimitives(data);
         this.setState({
           rectangle: primitives[0],
-          circle: primitives[1]
+          line: primitives[1],
+          circle: primitives[2]
         });
       });
   }
@@ -37,8 +48,12 @@ class App extends Component {
           xmlns="http://www.w3.org/2000/svg"
         >
           <rect width="100%" height="100%" fill="black" />
-          <Circle shape={this.state.circle}></Circle>
+          <Circle
+            onDragDropped={this.shapeDragDropped}
+            shape={this.state.circle}
+          ></Circle>
           <Rect shape={this.state.rectangle}></Rect>
+          <Line shape={this.state.line}></Line>
         </svg>
       </div>
     );

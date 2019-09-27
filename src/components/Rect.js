@@ -22,6 +22,10 @@ class Rect extends Component {
     return rectangle.topRight.vertical;
   }
 
+  onClick() {
+    console.info("click rectangle");
+  }
+
   render() {
     const rectangle = this.props.shape;
     if (!rectangle) {
@@ -32,6 +36,7 @@ class Rect extends Component {
 
     return (
       <rect
+        onClick={this.onClick}
         width={this.getWidth()}
         height={this.getHeight()}
         x={this.getX()}

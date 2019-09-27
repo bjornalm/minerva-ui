@@ -12,7 +12,8 @@ export const MINERVA = {
     SOLID: "solid",
     STROKE: "stroke",
     COLOR: "color",
-    CIRCLE: "circle"
+    CIRCLE: "circle",
+    LINE: "line"
   },
   POSITIONS: {
     HORIZONTAL: "horizontal",

@@ -1,9 +1,15 @@
-import { MINERVA } from "./helpers";
+import { MINERVA } from "../helpers";
+import Stroke from "./Stroke";
 
 class Outline {
   constructor(shapeAtomId, stroke) {
     this.shape = shapeAtomId;
     this.stroke = stroke;
+  }
+
+  static cloneOutline(outline) {
+    const stroke = Stroke.cloneStroke(outline.stroke);
+    return new Outline(outline.shape, stroke);
   }
 
   static createOutline(form, tuple, strokes) {

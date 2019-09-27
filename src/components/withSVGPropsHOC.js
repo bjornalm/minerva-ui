@@ -14,7 +14,7 @@ const withSVGPropsHOC = function(WrappedComponent) {
 
     getSVGFill() {
       const shape = this.props.shape;
-      return shape.hasFill() ? shape.getFill() : "transparent";
+      return shape.hasFill() ? shape.getFill() : "none";
     }
 
     render() {

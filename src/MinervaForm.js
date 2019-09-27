@@ -6,7 +6,7 @@ import { MINERVA } from "./helpers";
  */
 class MinervaForm {
   constructor(rawForm) {
-    this.data = rawForm;
+    this.columns = rawForm;
     if (Array.isArray(rawForm)) {
       this.type = determineFormPrimitive(rawForm);
     } else {
@@ -15,8 +15,8 @@ class MinervaForm {
   }
 
   indexOf(column) {
-    if (Array.isArray(this.data)) {
-      return this.data.indexOf(column);
+    if (Array.isArray(this.columns)) {
+      return this.columns.indexOf(column);
     }
   }
 }
@@ -25,18 +25,20 @@ function determineFormPrimitive(form) {
   let type = "unknown";
   if (formIsPoint(form)) {
     type = MINERVA.PRIMITIVES.POINT;
-  } else if (formIsRectangle(form)) {
-    type = MINERVA.PRIMITIVES.RECTANGLE;
   } else if (formIsOutline(form)) {
     type = MINERVA.PRIMITIVES.OUTLINE;
   } else if (formIsColor(form)) {
     type = MINERVA.PRIMITIVES.COLOR;
   } else if (formIsStroke(form)) {
     type = MINERVA.PRIMITIVES.STROKE;
-  } else if (formIsCircle(form)) {
-    type = MINERVA.PRIMITIVES.CIRCLE;
   } else if (formIsSolid(form)) {
     type = MINERVA.PRIMITIVES.SOLID;
+  } else if (formIsCircle(form)) {
+    type = MINERVA.PRIMITIVES.CIRCLE;
+  } else if (formIsRectangle(form)) {
+    type = MINERVA.PRIMITIVES.RECTANGLE;
+  } else if (formIsLine(form)) {
+    type = MINERVA.PRIMITIVES.LINE;
   }
 
   return type;
@@ -94,6 +96,13 @@ function formIsCircle(form) {
     form.includes(MINERVA.PRIMITIVES.CIRCLE) &&
     form.includes(MINERVA.POSITIONS.CENTER) &&
     form.includes(MINERVA.RADIUS)
+  );
+}
+
+function formIsLine(form) {
+  return (
+    form.includes(MINERVA.PRIMITIVES.LINE) &&
+    form.filter(col => col === MINERVA.PRIMITIVES.POINT).length === 2
   );
 }
 

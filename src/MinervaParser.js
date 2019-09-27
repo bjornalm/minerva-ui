@@ -1,16 +1,21 @@
-import Point from "./Point";
-import Rectangle from "./Rectangle";
-import Circle from "./Circle";
-import Outline from "./Outline";
-import Color from "./Color";
-import Stroke from "./Stroke";
-import Solid from "./Solid";
+import Point from "./primitives/Point";
+import RectangleShape from "./primitives/RectangleShape";
+import CircleShape from "./primitives/CircleShape";
+import LineShape from "./primitives/LineShape";
+import Outline from "./primitives/Outline";
+import Color from "./primitives/Color";
+import Stroke from "./primitives/Stroke";
+import Solid from "./primitives/Solid";
 
 import { MINERVA } from "./helpers";
 import MinervaForm from "./MinervaForm";
 import MinervaTuple from "./MinervaTuple";
 
 export default class MinervaParser {
+  static buildDragDropQuery(original, modified) {
+    console.log(original instanceof CircleShape);
+  }
+
   static buildPrimitives(rawdata) {
     // console.log(rawdata);
     const parsed = rawdata.response.map(ft => ({
@@ -24,11 +29,8 @@ export default class MinervaParser {
     const strokes = createStrokesMap(parsed, colors);
     const solids = createSolidsMap(parsed, colors);
     const outlines = createOutlinesMap(parsed, strokes);
-    const pointMap = createPointsMap(parsed);
-    const rectangles = createRectangles(parsed, pointMap, outlines, solids);
-    const circles = createCircles(parsed, pointMap, outlines, solids);
-
-    const shapes = [...rectangles, ...circles];
+    const points = createPointsMap(parsed);
+    const shapes = createShapePrimitives(parsed, points, outlines, solids);
 
     // console.log(colors);
     // console.log(strokes);
@@ -43,19 +45,34 @@ export default class MinervaParser {
 function createShapePrimitives(rawPrimitives, pointMap, outlines, solids) {
   const shapes = [];
   rawPrimitives.forEach(ft => {
-    switch (ft.form.type) {
-      case MINERVA.PRIMITIVES.RECTANGLE:
-        ft.tuples.forEach(tuple => {
+    ft.tuples.forEach(tuple => {
+      switch (ft.form.type) {
+        case MINERVA.PRIMITIVES.RECTANGLE:
           shapes.push(
-            Rectangle.createRectangle(ft.form, tuple, pointMap, outlines)
+            RectangleShape.createRectangle(
+              ft.form,
+              tuple,
+              pointMap,
+              outlines,
+              solids
+            )
           );
-        });
-        break;
-
-      default:
-        break;
-    }
+          break;
+        case MINERVA.PRIMITIVES.CIRCLE:
+          shapes.push(
+            CircleShape.create(ft.form, tuple, pointMap, outlines, solids)
+          );
+          break;
+        case MINERVA.PRIMITIVES.LINE:
+          shapes.push(LineShape.createLine(ft.form, tuple, pointMap, outlines));
+          break;
+        default:
+          break;
+      }
+    });
   });
+
+  return shapes;
 }
 
 function createSolidsMap(primitives, colors) {
@@ -143,42 +160,4 @@ function createPointsMap(primitives) {
   });
 
   return points;
-}
-
-function createRectangles(primitives, pointMap, outlines, solids) {
-  const rectangles = [];
-  const rectangleFTs = primitives.filter(
-    ft => ft.form.type === MINERVA.PRIMITIVES.RECTANGLE
-  );
-  rectangleFTs.forEach(ft => {
-    const rectangle = Rectangle.createRectangle(
-      ft.form,
-      ft.tuples[0],
-      pointMap,
-      outlines
-    );
-    rectangles.push(rectangle);
-  });
-
-  return rectangles;
-}
-
-function createCircles(primitives, pointMap, outlines, solids) {
-  const circles = [];
-  const circleFTs = primitives.filter(
-    ft => ft.form.type === MINERVA.PRIMITIVES.CIRCLE
-  );
-
-  circleFTs.forEach(ft => {
-    const circle = Circle.createCircle(
-      ft.form,
-      ft.tuples[0],
-      pointMap,
-      outlines,
-      solids
-    );
-    circles.push(circle);
-  });
-
-  return circles;
 }

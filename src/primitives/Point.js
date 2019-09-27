@@ -1,10 +1,14 @@
-import { MINERVA } from "./helpers";
+import { MINERVA } from "../helpers";
 
 class Point {
   constructor(atomId, horizontal, vertical) {
     this.atomId = atomId;
     this.horizontal = horizontal;
     this.vertical = vertical;
+  }
+
+  static clonePoint(point) {
+    return new Point(point.atomId, point.horizontal, point.vertical);
   }
 
   static createPoint(form, tuple) {
