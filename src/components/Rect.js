@@ -32,8 +32,6 @@ class Rect extends Component {
       return null;
     }
 
-    console.info(this.props);
-
     return (
       <rect
         onClick={this.onClick}

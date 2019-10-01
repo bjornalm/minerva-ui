@@ -8,8 +8,6 @@ class PrimitiveShapeBase {
     this.solid = conf.solid;
     this.form = conf.form;
     this.tuple = conf.tuple;
-
-    console.log(this.tuple);
   }
 
   hasFill() {

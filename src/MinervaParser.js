@@ -51,13 +51,7 @@ function createShapePrimitives(rawPrimitives, pointMap, outlines, solids) {
       switch (ft.form.type) {
         case MINERVA.PRIMITIVES.RECTANGLE:
           shapes.push(
-            RectangleShape.createRectangle(
-              ft.form,
-              tuple,
-              pointMap,
-              outlines,
-              solids
-            )
+            RectangleShape.create(ft.form, tuple, pointMap, outlines, solids)
           );
           break;
         case MINERVA.PRIMITIVES.CIRCLE:

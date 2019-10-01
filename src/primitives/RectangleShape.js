@@ -11,7 +11,7 @@ class RectangleShape extends PrimitiveShapeBase {
     this.bottomLeft = bottomLeftPoint;
   }
 
-  static createRectangle(form, tuple, pointMap, outlines, solids) {
+  static create(form, tuple, pointMap, outlines, solids) {
     const rectangleId = tuple.getAttributeValue(
       MINERVA.PRIMITIVES.RECTANGLE,
       form
