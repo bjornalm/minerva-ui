@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import withSVGPropsHOC from "./withSVGPropsHOC";
+import RectangleShape from "../primitives/RectangleShape";
 
 class Rect extends Component {
   getHeight() {
@@ -13,17 +14,34 @@ class Rect extends Component {
   }
 
   getX() {
-    const rectangle = this.props.shape;
-    return rectangle.topRight.horizontal;
+    return Rect.getX(this.props.shape);
   }
 
   getY() {
-    const rectangle = this.props.shape;
-    return rectangle.topRight.vertical;
+    return Rect.getY(this.props.shape);
   }
 
-  onClick() {
-    console.info("click rectangle");
+  static getX(shape) {
+    return shape.topRight.horizontal;
+  }
+
+  static getY(shape) {
+    return shape.topRight.vertical;
+  }
+
+  static getShapeWithNewPosition(shape, newX, newY) {
+    const modifiedShape = RectangleShape.clone(shape);
+    const xDiff = modifiedShape.topRight.horizontal - newX;
+    const yDiff = modifiedShape.topRight.vertical - newY;
+    modifiedShape.topRight.horizontal = newX;
+    modifiedShape.topRight.vertical = newY;
+    modifiedShape.topRight.atomId = undefined;
+    modifiedShape.bottomLeft.horizontal =
+      modifiedShape.bottomLeft.horizontal - xDiff;
+    modifiedShape.bottomLeft.vertical =
+      modifiedShape.bottomLeft.vertical - yDiff;
+    modifiedShape.bottomLeft.atomId = undefined;
+    return modifiedShape;
   }
 
   render() {
@@ -34,14 +52,16 @@ class Rect extends Component {
 
     return (
       <rect
-        onClick={this.onClick}
         width={this.getWidth()}
         height={this.getHeight()}
-        x={this.getX()}
-        y={this.getY()}
+        x={this.props.dragX || this.getX()}
+        y={this.props.dragY || this.getY()}
         stroke={this.props.stroke}
         strokeWidth={this.props.strokeWidth}
         fill={this.props.fill}
+        onPointerUp={this.props.onPointerUp}
+        onPointerDown={this.props.onPointerDown}
+        onPointerMove={this.props.onPointerMove}
       />
     );
   }

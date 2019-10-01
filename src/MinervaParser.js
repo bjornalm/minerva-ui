@@ -13,8 +13,12 @@ import MinervaTuple from "./MinervaTuple";
 
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
-    if (original.form.type === MINERVA.PRIMITIVES.CIRCLE) {
-      console.info(original.form);
+    // TODO: generate the queris here
+    switch (original.form.type) {
+      case MINERVA.PRIMITIVES.CIRCLE:
+        return { circle: modified };
+      case MINERVA.PRIMITIVES.RECTANGLE:
+        return { rectangle: modified };
     }
   }
 

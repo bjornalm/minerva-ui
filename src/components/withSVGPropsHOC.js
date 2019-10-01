@@ -101,10 +101,6 @@ const withSVGPropsHOC = function(WrappedComponent) {
   return WithSVGProps;
 };
 
-function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || "Component";
-}
-
 export default withSVGPropsHOC;
 
 function getMousePosition(evt) {
@@ -123,4 +119,8 @@ function translateX(CTM, x) {
 
 function translateY(CTM, y) {
   return (y - CTM.f) / CTM.d;
+}
+
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || "Component";
 }

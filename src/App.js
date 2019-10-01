@@ -11,10 +11,13 @@ class App extends Component {
 
   shapeDragDropped = move => {
     console.info(move.modified);
-    MinervaParser.buildDragDropQuery(move.original, move.modified);
+    const update = MinervaParser.buildDragDropQuery(
+      move.original,
+      move.modified
+    );
     this.setState({
       ...this.state,
-      circle: move.modified
+      ...update
     });
   };
 
@@ -52,8 +55,14 @@ class App extends Component {
             onDragDropped={this.shapeDragDropped}
             shape={this.state.circle}
           ></Circle>
-          <Rect shape={this.state.rectangle}></Rect>
-          <Line shape={this.state.line}></Line>
+          <Rect
+            onDragDropped={this.shapeDragDropped}
+            shape={this.state.rectangle}
+          ></Rect>
+          <Line
+            onDragDropped={this.shapeDragDropped}
+            shape={this.state.line}
+          ></Line>
         </svg>
       </div>
     );
