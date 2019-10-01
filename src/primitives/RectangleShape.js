@@ -5,7 +5,7 @@ import PrimitiveShapeBase from "./PrimitiveShapeBase";
 // form: ["rectangle", "bottom-left", "top-right"]
 class RectangleShape extends PrimitiveShapeBase {
   constructor(atomId, topRightPoint, bottomLeftPoint, outline, solid) {
-    super(outline, solid);
+    super({ outline, solid });
     this.atomId = atomId;
     this.topRight = topRightPoint;
     this.bottomLeft = bottomLeftPoint;

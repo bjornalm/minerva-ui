@@ -7,8 +7,8 @@ class Solid {
     this.color = color;
   }
 
-  static cloneSolid(solid) {
-    const color = Color.cloneColor(solid.color);
+  static clone(solid) {
+    const color = Color.clone(solid.color);
     return new Solid(solid.atomId, color);
   }
 

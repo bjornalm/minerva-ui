@@ -8,7 +8,7 @@ export default class Color {
     this.blue = blue;
   }
 
-  static cloneColor(color) {
+  static clone(color) {
     return new Color(color.atomId, color.red, color.green, color.blue);
   }
 

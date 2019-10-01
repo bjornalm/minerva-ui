@@ -12,9 +12,8 @@ class Circle extends Component {
   }
 
   handlePointerDown = e => {
-    // Why is this needed?
-    // const el = e.target;
-    // el.setPointerCapture(e.pointerId);
+    const el = e.target;
+    el.setPointerCapture(e.pointerId);
 
     this.setState({
       ...this.state,
@@ -67,6 +66,7 @@ class Circle extends Component {
   }
 
   render() {
+    console.info(this.position);
     const circle = this.props.shape;
     if (!circle) {
       return null;

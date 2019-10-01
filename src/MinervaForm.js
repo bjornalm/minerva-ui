@@ -14,6 +14,15 @@ class MinervaForm {
     }
   }
 
+  clone() {
+    if (Array.isArray(this.columns)) {
+      return new MinervaForm(this.columns.slice());
+    } else {
+      console.error("CNF forms not yet supported");
+      // todo Parse CNF
+    }
+  }
+
   indexOf(column) {
     if (Array.isArray(this.columns)) {
       return this.columns.indexOf(column);
@@ -46,6 +55,7 @@ function determineFormPrimitive(form) {
 
 function formIsStroke(form) {
   return (
+    form.length === 3 &&
     form.includes(MINERVA.PRIMITIVES.STROKE) &&
     form.includes(MINERVA.PRIMITIVES.COLOR) &&
     form.includes(MINERVA.STROKE_PROP.WIDTH)
@@ -54,6 +64,7 @@ function formIsStroke(form) {
 
 function formIsSolid(form) {
   return (
+    form.length === 2 &&
     form.includes(MINERVA.PRIMITIVES.SOLID) &&
     form.includes(MINERVA.PRIMITIVES.COLOR)
   );
@@ -61,6 +72,7 @@ function formIsSolid(form) {
 
 function formIsColor(form) {
   return (
+    form.length === 4 &&
     form.includes(MINERVA.PRIMITIVES.COLOR) &&
     form.includes(MINERVA.COLORS.RED) &&
     form.includes(MINERVA.COLORS.GREEN) &&
@@ -70,6 +82,7 @@ function formIsColor(form) {
 
 function formIsPoint(form) {
   return (
+    form.length === 3 &&
     form.includes(MINERVA.PRIMITIVES.POINT) &&
     form.includes(MINERVA.POSITIONS.HORIZONTAL) &&
     form.includes(MINERVA.POSITIONS.VERTICAL)
@@ -78,6 +91,7 @@ function formIsPoint(form) {
 
 function formIsOutline(form) {
   return (
+    form.length === 2 &&
     form.includes(MINERVA.PRIMITIVES.OUTLINE) &&
     form.includes(MINERVA.PRIMITIVES.STROKE)
   );
@@ -85,6 +99,7 @@ function formIsOutline(form) {
 
 function formIsRectangle(form) {
   return (
+    form.length === 3 &&
     form.includes(MINERVA.PRIMITIVES.RECTANGLE) &&
     form.includes(MINERVA.POSITIONS.BOTTOM_LEFT) &&
     form.includes(MINERVA.POSITIONS.TOP_RIGHT)
@@ -93,6 +108,7 @@ function formIsRectangle(form) {
 
 function formIsCircle(form) {
   return (
+    form.length === 3 &&
     form.includes(MINERVA.PRIMITIVES.CIRCLE) &&
     form.includes(MINERVA.POSITIONS.CENTER) &&
     form.includes(MINERVA.RADIUS)
@@ -101,6 +117,7 @@ function formIsCircle(form) {
 
 function formIsLine(form) {
   return (
+    form.length === 3 &&
     form.includes(MINERVA.PRIMITIVES.LINE) &&
     form.filter(col => col === MINERVA.PRIMITIVES.POINT).length === 2
   );

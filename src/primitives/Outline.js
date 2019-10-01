@@ -7,7 +7,7 @@ class Outline {
     this.stroke = stroke;
   }
 
-  static cloneOutline(outline) {
+  static clone(outline) {
     const stroke = Stroke.cloneStroke(outline.stroke);
     return new Outline(outline.shape, stroke);
   }

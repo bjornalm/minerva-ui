@@ -10,7 +10,7 @@ class App extends Component {
   state = {};
 
   shapeDragDropped = move => {
-    console.info(move);
+    console.info(move.modified);
     MinervaParser.buildDragDropQuery(move.original, move.modified);
     this.setState({
       ...this.state,

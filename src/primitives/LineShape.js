@@ -3,7 +3,7 @@ import PrimitiveShapeBase from "./PrimitiveShapeBase";
 
 class LineShape extends PrimitiveShapeBase {
   constructor(atomId, point1, point2, outline) {
-    super(outline);
+    super({ outline });
     this.atomId = atomId;
     this.point1 = point1;
     this.point2 = point2;

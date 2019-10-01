@@ -7,6 +7,12 @@ class MinervaTuple {
     });
   }
 
+  clone() {
+    const tuple = new MinervaTuple([]);
+    tuple.attributes = JSON.parse(JSON.stringify(this.attributes));
+    return tuple;
+  }
+
   getAttributeValue(columnName, form) {
     const index = form.indexOf(columnName);
     const attributeObj = this.attributes[index];

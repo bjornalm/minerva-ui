@@ -1,12 +1,11 @@
 import { MINERVA } from "../helpers";
 import PrimitiveShapeBase from "./PrimitiveShapeBase";
 import Point from "./Point";
-import Solid from "./Solid";
-import Outline from "./Outline";
 
 class CircleShape extends PrimitiveShapeBase {
-  constructor(atomId, center, radius, outline, solid) {
-    super(outline, solid);
+  constructor(conf) {
+    const { form, tuple, atomId, center, radius, outline, solid } = conf;
+    super({ form, tuple, outline, solid });
     this.atomId = atomId;
     this.center = center;
     this.radius = radius;
@@ -14,27 +13,36 @@ class CircleShape extends PrimitiveShapeBase {
 
   static clone(circle) {
     const { atomId, radius } = circle;
-    const center = Point.clonePoint(circle.center);
-    const outline = circle.outline
-      ? Outline.cloneOutline(circle.outline)
-      : undefined;
-    const solid = circle.solid ? Solid.cloneSolid(circle.solid) : undefined;
-
-    return new CircleShape(atomId, center, radius, outline, solid);
+    const center = Point.clone(circle.center);
+    const baseProps = PrimitiveShapeBase.cloneBaseProperties(circle);
+    return new CircleShape({
+      ...baseProps,
+      atomId,
+      center,
+      radius
+    });
   }
 
   static create(form, tuple, pointMap, outlines, solids) {
-    const circleId = tuple.getAttributeValue(MINERVA.PRIMITIVES.CIRCLE, form);
+    const atomId = tuple.getAttributeValue(MINERVA.PRIMITIVES.CIRCLE, form);
     const centerPointId = tuple.getAttributeValue(
       MINERVA.POSITIONS.CENTER,
       form
     );
-    const centerPoint = pointMap[centerPointId];
+    const center = pointMap[centerPointId];
     const radius = tuple.getAttributeValue(MINERVA.RADIUS, form);
-    const outline = outlines[circleId];
-    const solid = solids[circleId];
+    const outline = outlines[atomId];
+    const solid = solids[atomId];
 
-    return new CircleShape(circleId, centerPoint, radius, outline, solid);
+    return new CircleShape({
+      form,
+      tuple,
+      atomId,
+      center,
+      radius,
+      outline,
+      solid
+    });
   }
 }
 

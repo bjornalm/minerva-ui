@@ -7,7 +7,7 @@ class Point {
     this.vertical = vertical;
   }
 
-  static clonePoint(point) {
+  static clone(point) {
     return new Point(point.atomId, point.horizontal, point.vertical);
   }
 

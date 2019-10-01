@@ -9,7 +9,7 @@ class Stroke {
   }
 
   static cloneStroke(stroke) {
-    const color = Color.cloneColor(stroke.color);
+    const color = Color.clone(stroke.color);
     return new Stroke(stroke.atomId, color, stroke.width);
   }
 

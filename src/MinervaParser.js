@@ -13,7 +13,9 @@ import MinervaTuple from "./MinervaTuple";
 
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
-    console.log(original instanceof CircleShape);
+    if (original.form.type === MINERVA.PRIMITIVES.CIRCLE) {
+      console.info(original.form);
+    }
   }
 
   static buildPrimitives(rawdata) {
