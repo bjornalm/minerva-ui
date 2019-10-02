@@ -19,6 +19,10 @@ export default class MinervaParser {
         return { circle: modified };
       case MINERVA.PRIMITIVES.RECTANGLE:
         return { rectangle: modified };
+      case MINERVA.PRIMITIVES.LINE:
+        return { line: modified };
+      default:
+        return;
     }
   }
 

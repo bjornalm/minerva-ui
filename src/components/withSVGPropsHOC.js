@@ -46,7 +46,10 @@ const withSVGPropsHOC = function(WrappedComponent) {
         );
         this.setState({
           ...this.state,
-          isDragged: false
+          isDragged: false,
+          dragX: undefined,
+          dragY: undefined,
+          dragOffset: undefined
         });
 
         const update = {

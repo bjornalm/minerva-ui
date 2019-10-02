@@ -39,6 +39,7 @@ class App extends Component {
   }
 
   render() {
+    console.info(this.state);
     return (
       <div className="App">
         <h1>Minerva</h1>
