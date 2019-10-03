@@ -35,9 +35,9 @@ class App extends Component {
         userId: 1
       })
       .then(data => {
-        const primitives = MinervaParser.buildPrimitives(data);
+        const shapes = MinervaParser.buildShapes(data);
         this.setState({
-          shapes: primitives
+          shapes: shapes
         });
       });
   }
@@ -89,7 +89,7 @@ class App extends Component {
   }
 
   render() {
-    console.info(this.state);
+    // console.info(this.state);
     const containerStyle = {
       boxShadow: "5px 5px 10px -2px rgba(0,0,0,0.22)"
     };

@@ -8,7 +8,7 @@ class MinervaForm {
   constructor(rawForm) {
     this.columns = rawForm;
     if (Array.isArray(rawForm)) {
-      this.type = determineFormPrimitive(rawForm);
+      this.type = determineRelationType(rawForm);
     } else {
       // todo Parse CNF
     }
@@ -30,7 +30,7 @@ class MinervaForm {
   }
 }
 
-function determineFormPrimitive(form) {
+function determineRelationType(form) {
   let type = "unknown";
   if (formIsPoint(form)) {
     type = MINERVA.PRIMITIVES.POINT;
@@ -48,9 +48,20 @@ function determineFormPrimitive(form) {
     type = MINERVA.PRIMITIVES.RECTANGLE;
   } else if (formIsLine(form)) {
     type = MINERVA.PRIMITIVES.LINE;
+  } else if (formIsShape(form)) {
+    type = MINERVA.SHAPES.SHAPE;
   }
 
   return type;
+}
+
+function formIsShape(form) {
+  return (
+    form.length === 3 &&
+    form.includes(MINERVA.SHAPES.SHAPE) &&
+    form.includes(MINERVA.SHAPES.COMPONENT) &&
+    form.includes(MINERVA.SHAPES.POSITION)
+  );
 }
 
 function formIsStroke(form) {

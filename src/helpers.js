@@ -2,8 +2,14 @@ export const MINERVA = {
   FORM: "form",
   TUPLE_ATTR_TYPE: {
     ATOM: "atom",
-    NUMBER: "atom",
-    STRING: "atom"
+    NUMBER: "number",
+    STRING: "string"
+  },
+  SHAPES: {
+    SHAPE: "shape",
+    COMPONENT: "component",
+    Z_INDEX: "z-index",
+    POSITION: "position"
   },
   PRIMITIVES: {
     POINT: "point",

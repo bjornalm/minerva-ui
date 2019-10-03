@@ -13,6 +13,9 @@ class MinervaTuple {
     return tuple;
   }
 
+  // Helper functions since we don't know the order of the "columns" in a relation
+  // described in Form-Tuples format. E.g. form: ["shape", "component", "position"] and
+  //  form: ["component", "shape", "position"] describe the same relations.
   getAttributeValue(columnName, form) {
     const index = form.indexOf(columnName);
     const attributeObj = this.attributes[index];

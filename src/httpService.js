@@ -48,315 +48,64 @@ class HttpService {
 
 export default new HttpService();
 
-const test = {
-  response: [
-    {
-      form: ["point", "horizontal", "vertical"],
-      tuples: [
-        [
-          {
-            atom: "8000000a9dba54e486cfd55f"
-          },
-          {
-            number: 30
-          },
-          {
-            number: 50
-          }
-        ],
-        [
-          {
-            atom: "8000000a20252f074abbacc4"
-          },
-          {
-            number: 60
-          },
-          {
-            number: 40
-          }
-        ],
-        [
-          {
-            atom: "8000000a28a27cbe260d6e36"
-          },
-          {
-            number: 20
-          },
-          {
-            number: 10
-          }
-        ],
-        [
-          {
-            atom: "8000000a4281c5902304de73"
-          },
-          {
-            number: 10
-          },
-          {
-            number: 20
-          }
-        ],
-        [
-          {
-            atom: "8000000a5eadd058631a78ac"
-          },
-          {
-            number: 40
-          },
-          {
-            number: 30
-          }
-        ]
-      ]
-    },
-    {
-      form: ["rectangle", "bottom-left", "top-right"],
-      tuples: [
-        [
-          {
-            atom: "8000000ac29ffa997d207e4c"
-          },
-          {
-            atom: "8000000a4281c5902304de73"
-          },
-          {
-            atom: "8000000a5eadd058631a78ac"
-          }
-        ]
-      ]
-    },
-    {
-      form: ["line", "point", "point"],
-      tuples: [
-        [
-          {
-            atom: "8000000a31cac3b1f557eb6e"
-          },
-          {
-            atom: "8000000a28a27cbe260d6e36"
-          },
-          {
-            atom: "8000000a9dba54e486cfd55f"
-          }
-        ]
-      ]
-    },
-    {
-      form: ["circle", "center", "radius"],
-      tuples: [
-        [
-          {
-            atom: "8000000ab17b150719e1a09a"
-          },
-          {
-            atom: "8000000a20252f074abbacc4"
-          },
-          {
-            number: 20
-          }
-        ]
-      ]
-    },
-    {
-      form: ["color", "red", "green", "blue"],
-      tuples: [
-        [
-          {
-            atom: "8000000aa7d689c22195a450"
-          },
-          {
-            number: 0
-          },
-          {
-            number: 0
-          },
-          {
-            number: 1
-          }
-        ],
-        [
-          {
-            atom: "8000000ae187e8ec9ea2883d"
-          },
-          {
-            number: 1
-          },
-          {
-            number: 0
-          },
-          {
-            number: 0
-          }
-        ],
-        [
-          {
-            atom: "8000000a3be93fc63df8a027"
-          },
-          {
-            number: 0
-          },
-          {
-            number: 1
-          },
-          {
-            number: 0
-          }
-        ]
-      ]
-    },
-    {
-      form: ["stroke", "color", "width"],
-      tuples: [
-        [
-          {
-            atom: "8000000a8ee4c9c9fb8496d3"
-          },
-          {
-            atom: "8000000ae187e8ec9ea2883d"
-          },
-          {
-            number: 1
-          }
-        ],
-        [
-          {
-            atom: "8000000a7a895888aa54f833"
-          },
-          {
-            atom: "8000000aa7d689c22195a450"
-          },
-          {
-            number: 2
-          }
-        ]
-      ]
-    },
-    {
-      form: ["outline", "stroke"],
-      tuples: [
-        [
-          {
-            atom: "8000000ac29ffa997d207e4c"
-          },
-          {
-            atom: "8000000a8ee4c9c9fb8496d3"
-          }
-        ],
-        [
-          {
-            atom: "8000000a31cac3b1f557eb6e"
-          },
-          {
-            atom: "8000000a7a895888aa54f833"
-          }
-        ]
-      ]
-    },
-    {
-      form: ["solid", "color"],
-      tuples: [
-        [
-          {
-            atom: "8000000ab17b150719e1a09a"
-          },
-          {
-            atom: "8000000a3be93fc63df8a027"
-          }
-        ]
-      ]
-    }
-  ]
-};
-
 // const test = {
 //   response: [
 //     {
-//       form: ["atom", "name"],
-//       tuples: [
-//         [
-//           {
-//             atom: "8000000a1f3e5467fcfd4f3c"
-//           },
-//           {
-//             string: "matrix"
-//           }
-//         ]
-//       ]
-//     },
-//     {
-//       form: ["atom", "icon"],
-//       tuples: [
-//         [
-//           {
-//             atom: "8000000a1f3e5467fcfd4f3c"
-//           },
-//           {
-//             atom: "8000000af0fffa56c17b42da"
-//           }
-//         ]
-//       ]
-//     },
-//     {
 //       form: ["point", "horizontal", "vertical"],
 //       tuples: [
 //         [
 //           {
-//             atom: "8000000a0808c9ff8701220f"
+//             atom: "8000000a9dba54e486cfd55f"
 //           },
 //           {
-//             number: 0
+//             number: 30
 //           },
 //           {
-//             number: 0
+//             number: 50
 //           }
-//         ]
-//       ]
-//     },
-//     {
-//       form: ["point", "horizontal", "vertical"],
-//       tuples: [
+//         ],
 //         [
 //           {
-//             atom: "8000000ae948ae610da17d9e"
+//             atom: "8000000a20252f074abbacc4"
 //           },
 //           {
-//             number: 100
+//             number: 60
 //           },
 //           {
-//             number: 0
+//             number: 40
 //           }
-//         ]
-//       ]
-//     },
-//     {
-//       form: ["point", "horizontal", "vertical"],
-//       tuples: [
+//         ],
 //         [
 //           {
-//             atom: "8000000ae3b4dfb15660de68"
+//             atom: "8000000a28a27cbe260d6e36"
 //           },
 //           {
-//             number: 0
+//             number: 20
 //           },
 //           {
-//             number: 100
+//             number: 10
 //           }
-//         ]
-//       ]
-//     },
-//     {
-//       form: ["point", "horizontal", "vertical"],
-//       tuples: [
+//         ],
 //         [
 //           {
-//             atom: "8000000ace399448063cf049"
+//             atom: "8000000a4281c5902304de73"
 //           },
 //           {
-//             number: 100
+//             number: 10
 //           },
 //           {
-//             number: 100
+//             number: 20
+//           }
+//         ],
+//         [
+//           {
+//             atom: "8000000a5eadd058631a78ac"
+//           },
+//           {
+//             number: 40
+//           },
+//           {
+//             number: 30
 //           }
 //         ]
 //       ]
@@ -366,62 +115,92 @@ const test = {
 //       tuples: [
 //         [
 //           {
-//             atom: "8000000a450fc8a61aad1bcb"
+//             atom: "8000000ac29ffa997d207e4c"
 //           },
 //           {
-//             atom: "8000000a0808c9ff8701220f"
+//             atom: "8000000a4281c5902304de73"
 //           },
 //           {
-//             atom: "8000000ace399448063cf049"
+//             atom: "8000000a5eadd058631a78ac"
 //           }
 //         ]
 //       ]
 //     },
 //     {
-//       form: ["shape", "component", "position"],
+//       form: ["line", "point", "point"],
 //       tuples: [
 //         [
 //           {
-//             atom: "8000000af0fffa56c17b42da"
+//             atom: "8000000a31cac3b1f557eb6e"
 //           },
 //           {
-//             atom: "8000000a450fc8a61aad1bcb"
+//             atom: "8000000a28a27cbe260d6e36"
 //           },
 //           {
-//             atom: "8000000ace399448063cf049"
+//             atom: "8000000a9dba54e486cfd55f"
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["circle", "center", "radius"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000ab17b150719e1a09a"
+//           },
+//           {
+//             atom: "8000000a20252f074abbacc4"
+//           },
+//           {
+//             number: 20
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["color", "red", "green", "blue"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000aa7d689c22195a450"
+//           },
+//           {
+//             number: 0
+//           },
+//           {
+//             number: 0
+//           },
+//           {
+//             number: 1
 //           }
 //         ],
 //         [
 //           {
-//             atom: "8000000af0fffa56c17b42da"
+//             atom: "8000000ae187e8ec9ea2883d"
 //           },
 //           {
-//             atom: "8000000a450fc8a61aad1bcb"
+//             number: 1
 //           },
 //           {
-//             atom: "8000000ae3b4dfb15660de68"
+//             number: 0
+//           },
+//           {
+//             number: 0
 //           }
 //         ],
 //         [
 //           {
-//             atom: "8000000af0fffa56c17b42da"
+//             atom: "8000000a3be93fc63df8a027"
 //           },
 //           {
-//             atom: "8000000a450fc8a61aad1bcb"
+//             number: 0
 //           },
 //           {
-//             atom: "8000000ae948ae610da17d9e"
-//           }
-//         ],
-//         [
-//           {
-//             atom: "8000000af0fffa56c17b42da"
+//             number: 1
 //           },
 //           {
-//             atom: "8000000a450fc8a61aad1bcb"
-//           },
-//           {
-//             atom: "8000000a0808c9ff8701220f"
+//             number: 0
 //           }
 //         ]
 //       ]
@@ -437,7 +216,18 @@ const test = {
 //             atom: "8000000ae187e8ec9ea2883d"
 //           },
 //           {
-//             number: 5
+//             number: 1
+//           }
+//         ],
+//         [
+//           {
+//             atom: "8000000a7a895888aa54f833"
+//           },
+//           {
+//             atom: "8000000aa7d689c22195a450"
+//           },
+//           {
+//             number: 2
 //           }
 //         ]
 //       ]
@@ -447,32 +237,242 @@ const test = {
 //       tuples: [
 //         [
 //           {
-//             atom: "8000000a450fc8a61aad1bcb"
+//             atom: "8000000ac29ffa997d207e4c"
 //           },
 //           {
 //             atom: "8000000a8ee4c9c9fb8496d3"
+//           }
+//         ],
+//         [
+//           {
+//             atom: "8000000a31cac3b1f557eb6e"
+//           },
+//           {
+//             atom: "8000000a7a895888aa54f833"
 //           }
 //         ]
 //       ]
 //     },
 //     {
-//       form: ["color", "red", "green", "blue"],
+//       form: ["solid", "color"],
 //       tuples: [
 //         [
 //           {
-//             atom: "8000000ae187e8ec9ea2883d"
+//             atom: "8000000ab17b150719e1a09a"
 //           },
 //           {
-//             number: 0
-//           },
-//           {
-//             number: 0
-//           },
-//           {
-//             number: 0
+//             atom: "8000000a3be93fc63df8a027"
 //           }
 //         ]
 //       ]
 //     }
 //   ]
 // };
+
+const test = {
+  response: [
+    {
+      form: ["atom", "name"],
+      tuples: [
+        [
+          {
+            atom: "8000000a1f3e5467fcfd4f3c"
+          },
+          {
+            string: "matrix"
+          }
+        ]
+      ]
+    },
+    {
+      form: ["atom", "icon"],
+      tuples: [
+        [
+          {
+            atom: "8000000a1f3e5467fcfd4f3c"
+          },
+          {
+            atom: "8000000af0fffa56c17b42da"
+          }
+        ]
+      ]
+    },
+    {
+      form: ["point", "horizontal", "vertical"],
+      tuples: [
+        [
+          {
+            atom: "8000000a0808c9ff8701220f"
+          },
+          {
+            number: 0
+          },
+          {
+            number: 0
+          }
+        ]
+      ]
+    },
+    {
+      form: ["point", "horizontal", "vertical"],
+      tuples: [
+        [
+          {
+            atom: "8000000ae948ae610da17d9e"
+          },
+          {
+            number: 100
+          },
+          {
+            number: 0
+          }
+        ]
+      ]
+    },
+    {
+      form: ["point", "horizontal", "vertical"],
+      tuples: [
+        [
+          {
+            atom: "8000000ae3b4dfb15660de68"
+          },
+          {
+            number: 0
+          },
+          {
+            number: 100
+          }
+        ]
+      ]
+    },
+    {
+      form: ["point", "horizontal", "vertical"],
+      tuples: [
+        [
+          {
+            atom: "8000000ace399448063cf049"
+          },
+          {
+            number: 100
+          },
+          {
+            number: 100
+          }
+        ]
+      ]
+    },
+    {
+      form: ["rectangle", "bottom-left", "top-right"],
+      tuples: [
+        [
+          {
+            atom: "8000000a450fc8a61aad1bcb"
+          },
+          {
+            atom: "8000000a0808c9ff8701220f"
+          },
+          {
+            atom: "8000000ace399448063cf049"
+          }
+        ]
+      ]
+    },
+    {
+      form: ["shape", "component", "position"],
+      tuples: [
+        [
+          {
+            atom: "8000000af0fffa56c17b42da"
+          },
+          {
+            atom: "8000000a450fc8a61aad1bcb"
+          },
+          {
+            atom: "8000000ace399448063cf049"
+          }
+        ],
+        [
+          {
+            atom: "8000000af0fffa56c17b42da"
+          },
+          {
+            atom: "8000000a450fc8a61aad1bcb"
+          },
+          {
+            atom: "8000000ae3b4dfb15660de68"
+          }
+        ],
+        [
+          {
+            atom: "8000000af0fffa56c17b42da"
+          },
+          {
+            atom: "8000000a450fc8a61aad1bcb"
+          },
+          {
+            atom: "8000000ae948ae610da17d9e"
+          }
+        ],
+        [
+          {
+            atom: "8000000af0fffa56c17b42da"
+          },
+          {
+            atom: "8000000a450fc8a61aad1bcb"
+          },
+          {
+            atom: "8000000a0808c9ff8701220f"
+          }
+        ]
+      ]
+    },
+    {
+      form: ["stroke", "color", "width"],
+      tuples: [
+        [
+          {
+            atom: "8000000a8ee4c9c9fb8496d3"
+          },
+          {
+            atom: "8000000ae187e8ec9ea2883d"
+          },
+          {
+            number: 5
+          }
+        ]
+      ]
+    },
+    {
+      form: ["outline", "stroke"],
+      tuples: [
+        [
+          {
+            atom: "8000000a450fc8a61aad1bcb"
+          },
+          {
+            atom: "8000000a8ee4c9c9fb8496d3"
+          }
+        ]
+      ]
+    },
+    {
+      form: ["color", "red", "green", "blue"],
+      tuples: [
+        [
+          {
+            atom: "8000000ae187e8ec9ea2883d"
+          },
+          {
+            number: 0
+          },
+          {
+            number: 0
+          },
+          {
+            number: 0
+          }
+        ]
+      ]
+    }
+  ]
+};

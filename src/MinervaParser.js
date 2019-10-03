@@ -10,6 +10,8 @@ import Solid from "./graphic-models/Solid";
 import { MINERVA } from "./helpers";
 import MinervaForm from "./MinervaForm";
 import MinervaTuple from "./MinervaTuple";
+import PositionedComponentPrimitive from "./graphic-models/PositionedComponentPrimitive";
+import PositionedComponentShape from "./graphic-models/PositionedComponentShape";
 
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
@@ -26,7 +28,7 @@ export default class MinervaParser {
     }
   }
 
-  static buildPrimitives(rawdata) {
+  static buildShapes(rawdata) {
     // console.log(rawdata);
     const parsed = rawdata.response.map(ft => ({
       form: new MinervaForm(ft.form),
@@ -41,24 +43,99 @@ export default class MinervaParser {
     const outlines = createOutlinesMap(parsed, strokes);
     const points = createPointsMap(parsed);
     const primitives = createPrimitives(parsed, points, outlines, solids);
+    const primitivesMap = {};
+    primitives.forEach(primitive => {
+      primitivesMap[primitive.atomId] = primitive;
+    });
 
-    // console.log(colors);
-    // console.log(strokes);
-    // console.log(outlines);
-    // console.log(pointMap);
-    console.log(primitives);
+    const psp = createPositionedComponentPrimitives(
+      parsed,
+      points,
+      primitivesMap
+    );
+
+    const pcs = createPositionedComponentShapes(parsed, points, primitivesMap);
+
+    const shapes = createShapes(parsed, points, primitivesMap);
+
+    console.info(shapes);
 
     return primitives;
   }
 }
 
-function createPrimitives(rawPrimitives, pointMap, outlines, solids) {
-  const shapes = [];
-  rawPrimitives.forEach(ft => {
+function createShapes(responseObjs, pointMap, primitivesMap) {
+  const shapeIds = {};
+  const componentIds = {};
+  const compositeShapeIds = [];
+
+  responseObjs.forEach(ft => {
+    if (ft.form.type === MINERVA.SHAPES.SHAPE) {
+      ft.tuples.forEach(tuple => {
+        const shapeId = tuple.getAttributeValue(MINERVA.SHAPES.SHAPE, ft.form);
+
+        shapeIds[shapeId] = true;
+        const componentId = tuple.getAttributeValue(
+          MINERVA.SHAPES.COMPONENT,
+          ft.form
+        );
+
+        console.info("shape tuple", tuple);
+      });
+    }
+  });
+}
+
+function createPositionedComponentShapes(responseObjs, points, primitives) {
+  const COMPONENT = MINERVA.SHAPES.COMPONENT;
+  const result = [];
+  responseObjs.forEach(ft => {
+    if (ft.form.type === MINERVA.SHAPES.SHAPE) {
+      ft.tuples.forEach(tuple => {
+        const componentID = tuple.getAttributeValue(COMPONENT, ft.form);
+        if (!primitives[componentID]) {
+          const pcp = PositionedComponentShape.create({
+            form: ft.form,
+            tuple,
+            points
+          });
+          result.push(pcp);
+        }
+      });
+    }
+  });
+  return result;
+}
+
+function createPositionedComponentPrimitives(responseObjs, points, primitives) {
+  const COMPONENT = MINERVA.SHAPES.COMPONENT;
+  const result = [];
+  responseObjs.forEach(ft => {
+    if (ft.form.type === MINERVA.SHAPES.SHAPE) {
+      ft.tuples.forEach(tuple => {
+        const componentID = tuple.getAttributeValue(COMPONENT, ft.form);
+        if (primitives[componentID]) {
+          const pcp = PositionedComponentPrimitive.create({
+            form: ft.form,
+            tuple,
+            points,
+            primitives
+          });
+          result.push(pcp);
+        }
+      });
+    }
+  });
+  return result;
+}
+
+function createPrimitives(responseObjs, pointMap, outlines, solids) {
+  const primitives = [];
+  responseObjs.forEach(ft => {
     ft.tuples.forEach(tuple => {
       switch (ft.form.type) {
         case MINERVA.PRIMITIVES.RECTANGLE:
-          shapes.push(
+          primitives.push(
             RectanglePrimitive.create(
               ft.form,
               tuple,
@@ -69,12 +146,12 @@ function createPrimitives(rawPrimitives, pointMap, outlines, solids) {
           );
           break;
         case MINERVA.PRIMITIVES.CIRCLE:
-          shapes.push(
+          primitives.push(
             CirclePrimitive.create(ft.form, tuple, pointMap, outlines, solids)
           );
           break;
         case MINERVA.PRIMITIVES.LINE:
-          shapes.push(
+          primitives.push(
             LinePrimitive.createLine(ft.form, tuple, pointMap, outlines)
           );
           break;
@@ -84,12 +161,12 @@ function createPrimitives(rawPrimitives, pointMap, outlines, solids) {
     });
   });
 
-  return shapes;
+  return primitives;
 }
 
-function createSolidsMap(primitives, colors) {
+function createSolidsMap(responseObjs, colors) {
   const solids = Object.create(null);
-  primitives.forEach(ft => {
+  responseObjs.forEach(ft => {
     if (ft.form.type === MINERVA.PRIMITIVES.SOLID) {
       ft.tuples.forEach(tuple => {
         const solidId = tuple.getAttributeValue(
@@ -105,9 +182,9 @@ function createSolidsMap(primitives, colors) {
   return solids;
 }
 
-function createStrokesMap(primitives, colors) {
+function createStrokesMap(responseObjs, colors) {
   const strokes = Object.create(null);
-  primitives.forEach(ft => {
+  responseObjs.forEach(ft => {
     if (ft.form.type === MINERVA.PRIMITIVES.STROKE) {
       ft.tuples.forEach(tuple => {
         const strokeId = tuple.getAttributeValue(
@@ -123,9 +200,9 @@ function createStrokesMap(primitives, colors) {
   return strokes;
 }
 
-function createColorsMap(primitives) {
+function createColorsMap(responseObjs) {
   const colors = Object.create(null);
-  primitives.forEach(ft => {
+  responseObjs.forEach(ft => {
     if (ft.form.type === MINERVA.PRIMITIVES.COLOR) {
       ft.tuples.forEach(tuple => {
         const colorId = tuple.getAttributeValue(
@@ -140,9 +217,9 @@ function createColorsMap(primitives) {
   return colors;
 }
 
-function createOutlinesMap(primitives, strokes) {
+function createOutlinesMap(responseObjs, strokes) {
   const outlines = Object.create(null);
-  primitives.forEach(ft => {
+  responseObjs.forEach(ft => {
     if (ft.form.type === MINERVA.PRIMITIVES.OUTLINE) {
       ft.tuples.forEach(tuple => {
         const shapeId = tuple.getAttributeValue(
@@ -157,9 +234,9 @@ function createOutlinesMap(primitives, strokes) {
   return outlines;
 }
 
-function createPointsMap(primitives) {
+function createPointsMap(responseObjs) {
   const points = Object.create(null);
-  primitives.forEach(ft => {
+  responseObjs.forEach(ft => {
     if (ft.form.type === MINERVA.PRIMITIVES.POINT) {
       ft.tuples.forEach(tuple => {
         const pointId = tuple.getAttributeValue(
