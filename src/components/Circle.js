@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withSVGPropsHOC from "./withSVGPropsHOC";
-import CircleShape from "../primitives/CircleShape";
+import CirclePrimitive from "../graphic-models/CirclePrimitive";
 
 class Circle extends Component {
   getX() {
@@ -20,7 +20,7 @@ class Circle extends Component {
   }
 
   static getShapeWithNewPosition(shape, newX, newY) {
-    const modifiedShape = CircleShape.clone(shape);
+    const modifiedShape = CirclePrimitive.clone(shape);
     modifiedShape.center.horizontal = newX;
     modifiedShape.center.vertical = newY;
     modifiedShape.center.atomId = undefined;
@@ -35,6 +35,7 @@ class Circle extends Component {
 
     return (
       <circle
+        style={this.props.style}
         cx={this.props.dragX || this.getX()}
         cy={this.props.dragY || this.getY()}
         r={circle.radius}

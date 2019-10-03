@@ -1,11 +1,11 @@
-import Point from "./primitives/Point";
-import RectangleShape from "./primitives/RectangleShape";
-import CircleShape from "./primitives/CircleShape";
-import LineShape from "./primitives/LineShape";
-import Outline from "./primitives/Outline";
-import Color from "./primitives/Color";
-import Stroke from "./primitives/Stroke";
-import Solid from "./primitives/Solid";
+import Point from "./graphic-models/Point";
+import RectanglePrimitive from "./graphic-models/RectanglePrimitive";
+import CirclePrimitive from "./graphic-models/CirclePrimitive";
+import LinePrimitive from "./graphic-models/LinePrimitive";
+import Outline from "./graphic-models/Outline";
+import Color from "./graphic-models/Color";
+import Stroke from "./graphic-models/Stroke";
+import Solid from "./graphic-models/Solid";
 
 import { MINERVA } from "./helpers";
 import MinervaForm from "./MinervaForm";
@@ -40,35 +40,43 @@ export default class MinervaParser {
     const solids = createSolidsMap(parsed, colors);
     const outlines = createOutlinesMap(parsed, strokes);
     const points = createPointsMap(parsed);
-    const shapes = createShapePrimitives(parsed, points, outlines, solids);
+    const primitives = createPrimitives(parsed, points, outlines, solids);
 
     // console.log(colors);
     // console.log(strokes);
     // console.log(outlines);
     // console.log(pointMap);
-    console.log(shapes);
+    console.log(primitives);
 
-    return shapes;
+    return primitives;
   }
 }
 
-function createShapePrimitives(rawPrimitives, pointMap, outlines, solids) {
+function createPrimitives(rawPrimitives, pointMap, outlines, solids) {
   const shapes = [];
   rawPrimitives.forEach(ft => {
     ft.tuples.forEach(tuple => {
       switch (ft.form.type) {
         case MINERVA.PRIMITIVES.RECTANGLE:
           shapes.push(
-            RectangleShape.create(ft.form, tuple, pointMap, outlines, solids)
+            RectanglePrimitive.create(
+              ft.form,
+              tuple,
+              pointMap,
+              outlines,
+              solids
+            )
           );
           break;
         case MINERVA.PRIMITIVES.CIRCLE:
           shapes.push(
-            CircleShape.create(ft.form, tuple, pointMap, outlines, solids)
+            CirclePrimitive.create(ft.form, tuple, pointMap, outlines, solids)
           );
           break;
         case MINERVA.PRIMITIVES.LINE:
-          shapes.push(LineShape.createLine(ft.form, tuple, pointMap, outlines));
+          shapes.push(
+            LinePrimitive.createLine(ft.form, tuple, pointMap, outlines)
+          );
           break;
         default:
           break;

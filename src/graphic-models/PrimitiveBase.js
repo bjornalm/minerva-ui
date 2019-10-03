@@ -2,7 +2,7 @@ import Color from "./Color";
 import Solid from "./Solid";
 import Outline from "./Outline";
 
-class PrimitiveShapeBase {
+class PrimitiveBase {
   constructor(conf) {
     this.outline = conf.outline;
     this.solid = conf.solid;
@@ -41,4 +41,4 @@ class PrimitiveShapeBase {
   }
 }
 
-export default PrimitiveShapeBase;
+export default PrimitiveBase;

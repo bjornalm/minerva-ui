@@ -101,7 +101,7 @@ class App extends Component {
           baseProfile="full"
           width="800"
           height="800"
-          viewBox="0 0 100 100"
+          viewBox="0 0 400 400"
           xmlns="http://www.w3.org/2000/svg"
           style={containerStyle}
         >

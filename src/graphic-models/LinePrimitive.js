@@ -1,8 +1,8 @@
 import { MINERVA } from "../helpers";
-import PrimitiveShapeBase from "./PrimitiveShapeBase";
+import PrimitiveBase from "./PrimitiveBase";
 import Point from "./Point";
 
-class LineShape extends PrimitiveShapeBase {
+class LinePrimitive extends PrimitiveBase {
   constructor(conf) {
     const { form, tuple, atomId, point1, point2, outline } = conf;
     super({ form, tuple, outline });
@@ -15,8 +15,8 @@ class LineShape extends PrimitiveShapeBase {
     const { atomId } = line;
     const point1 = Point.clone(line.point1);
     const point2 = Point.clone(line.point2);
-    const baseProps = PrimitiveShapeBase.cloneBaseProperties(line);
-    return new LineShape({
+    const baseProps = PrimitiveBase.cloneBaseProperties(line);
+    return new LinePrimitive({
       ...baseProps,
       atomId,
       point1,
@@ -31,8 +31,8 @@ class LineShape extends PrimitiveShapeBase {
     const point2 = pointMap[pointIds[1]];
     const outline = outlines[atomId];
 
-    return new LineShape({ form, tuple, atomId, point1, point2, outline });
+    return new LinePrimitive({ form, tuple, atomId, point1, point2, outline });
   }
 }
 
-export default LineShape;
+export default LinePrimitive;

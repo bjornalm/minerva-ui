@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withSVGPropsHOC from "./withSVGPropsHOC";
-import RectangleShape from "../primitives/RectangleShape";
+import RectanglePrimitive from "../graphic-models/RectanglePrimitive";
 
 class Rect extends Component {
   getHeight() {
@@ -30,7 +30,7 @@ class Rect extends Component {
   }
 
   static getShapeWithNewPosition(shape, newX, newY) {
-    const modifiedShape = RectangleShape.clone(shape);
+    const modifiedShape = RectanglePrimitive.clone(shape);
     const xDiff = modifiedShape.topRight.horizontal - newX;
     const yDiff = modifiedShape.topRight.vertical - newY;
     modifiedShape.topRight.horizontal = newX;
@@ -52,6 +52,7 @@ class Rect extends Component {
 
     return (
       <rect
+        style={this.props.style}
         width={this.getWidth()}
         height={this.getHeight()}
         x={this.props.dragX || this.getX()}
@@ -62,7 +63,9 @@ class Rect extends Component {
         onPointerUp={this.props.onPointerUp}
         onPointerDown={this.props.onPointerDown}
         onPointerMove={this.props.onPointerMove}
-      />
+      >
+        <title>{this.props.shape.atomId}</title>
+      </rect>
     );
   }
 }

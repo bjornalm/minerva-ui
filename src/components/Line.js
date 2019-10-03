@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withSVGPropsHOC from "./withSVGPropsHOC";
-import LineShape from "../primitives/LineShape";
+import LinePrimitive from "../graphic-models/LinePrimitive";
 
 class Line extends Component {
   getX() {
@@ -49,7 +49,7 @@ class Line extends Component {
   }
 
   static getShapeWithNewPosition(shape, newX, newY) {
-    const modifiedShape = LineShape.clone(shape);
+    const modifiedShape = LinePrimitive.clone(shape);
     const xDiff = modifiedShape.point1.horizontal - newX;
     const yDiff = modifiedShape.point1.vertical - newY;
     modifiedShape.point1.horizontal = newX;
@@ -70,6 +70,7 @@ class Line extends Component {
     const { x1, y1, x2, y2 } = this.getAllCoordinates();
     return (
       <line
+        style={this.props.style}
         x1={x1}
         y1={y1}
         x2={x2}

@@ -35,7 +35,7 @@ const withSVGPropsHOC = function(WrappedComponent) {
       }
     };
 
-    handlePointerUp = () => {
+    handlePointerUp = e => {
       if (this.state.isDragged) {
         const x = this.state.dragX;
         const y = this.state.dragY;
@@ -80,8 +80,15 @@ const withSVGPropsHOC = function(WrappedComponent) {
       if (!this.props.shape) {
         return null;
       }
+
+      const dragStyles = {
+        cursor: this.state.isDragged ? "move" : "grab",
+        opacity: this.state.isDragged ? 0.3 : 1
+      };
+
       return (
         <WrappedComponent
+          style={dragStyles}
           {...this.props}
           stroke={this.getSVGStroke()}
           strokeWidth={this.getSVGStrokeWidth()}
