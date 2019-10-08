@@ -473,6 +473,51 @@ const test = {
           }
         ]
       ]
+    },
+    {
+      form: ["circle", "center", "radius"],
+      tuples: [
+        [
+          {
+            atom: "8000000ab17b150719e1a09a"
+          },
+          {
+            atom: "8000000a20252f074abbacc4"
+          },
+          {
+            number: 10
+          }
+        ]
+      ]
+    },
+    {
+      form: ["point", "horizontal", "vertical"],
+      tuples: [
+        [
+          {
+            atom: "8000000a20252f074abbacc4"
+          },
+          {
+            number: 150
+          },
+          {
+            number: 150
+          }
+        ]
+      ]
+    },
+    {
+      form: ["solid", "color"],
+      tuples: [
+        [
+          {
+            atom: "8000000ab17b150719e1a09a"
+          },
+          {
+            atom: "8000000ae187e8ec9ea2883d"
+          }
+        ]
+      ]
     }
   ]
 };

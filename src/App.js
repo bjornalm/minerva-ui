@@ -6,6 +6,7 @@ import Rect from "./components/Rect";
 import Circle from "./components/Circle";
 import Line from "./components/Line";
 import { MINERVA } from "./helpers";
+import Icon from "./components/Icon";
 
 class App extends Component {
   state = {};
@@ -17,13 +18,13 @@ class App extends Component {
     // );
 
     const { original, modified } = move;
-    const shapesCopy = [...this.state.shapes];
+    const shapesCopy = [...this.state.primitives];
     const shapeIndex = shapesCopy.indexOf(original);
     shapesCopy.splice(shapeIndex, 1, modified);
 
     this.setState({
       ...this.state,
-      shapes: shapesCopy
+      primitives: shapesCopy
     });
   };
 
@@ -35,18 +36,20 @@ class App extends Component {
         userId: 1
       })
       .then(data => {
-        const shapes = MinervaParser.buildShapes(data);
+        const graphics = MinervaParser.buildShapes(data);
         this.setState({
-          shapes: shapes
+          primitives: graphics.primitives,
+          icons: graphics.icons
         });
       });
   }
 
   renderShapes() {
-    if (!this.state.shapes) {
+    if (!this.state.primitives) {
       return null;
     }
-    const renderedShapes = this.state.shapes.map(shape => {
+
+    const primitives = this.state.primitives.map(shape => {
       const key = shape.atomId;
       let renderedShape;
       switch (shape.form.type) {
@@ -85,7 +88,25 @@ class App extends Component {
       return renderedShape;
     });
 
-    return renderedShapes;
+    return primitives;
+  }
+
+  renderIcons() {
+    if (!this.state.icons) {
+      return null;
+    }
+    const icons = this.state.icons.map(icon => {
+      return (
+        <Icon
+          key={icon.atomId}
+          onDragDropped={this.shapeDragDropped}
+          icon={icon}
+        ></Icon>
+      );
+    });
+
+    console.info(icons);
+    return icons;
   }
 
   render() {
@@ -106,6 +127,7 @@ class App extends Component {
           style={containerStyle}
         >
           <rect width="100%" height="100%" fill="#eeeeee" />
+          {this.renderIcons()}
           {this.renderShapes()}
         </svg>
       </div>

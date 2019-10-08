@@ -50,9 +50,29 @@ function determineRelationType(form) {
     type = MINERVA.PRIMITIVES.LINE;
   } else if (formIsShape(form)) {
     type = MINERVA.SHAPES.SHAPE;
+  } else if (formIsIcon(form)) {
+    type = MINERVA.SHAPES.ICON;
+  } else if (formIsNamedAtom(form)) {
+    type = MINERVA.NAMED_ATOM;
   }
 
   return type;
+}
+
+function formIsNamedAtom(form) {
+  return (
+    form.length === 2 &&
+    form.includes(MINERVA.NAME) &&
+    form.includes(MINERVA.ATOM)
+  );
+}
+
+function formIsIcon(form) {
+  return (
+    form.length === 2 &&
+    form.includes(MINERVA.SHAPES.ICON) &&
+    form.includes(MINERVA.ATOM)
+  );
 }
 
 function formIsShape(form) {

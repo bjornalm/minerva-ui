@@ -6,6 +6,7 @@ export const MINERVA = {
     STRING: "string"
   },
   SHAPES: {
+    ICON: "icon",
     SHAPE: "shape",
     COMPONENT: "component",
     Z_INDEX: "z-index",
@@ -36,6 +37,9 @@ export const MINERVA = {
   STROKE_PROP: {
     WIDTH: "width"
   },
-  RADIUS: "radius"
+  RADIUS: "radius",
+  NAMED_ATOM: "named-atom",
+  NAME: "name",
+  ATOM: "atom"
 };
 Object.freeze(MINERVA);

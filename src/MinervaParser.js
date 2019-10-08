@@ -12,6 +12,7 @@ import MinervaForm from "./MinervaForm";
 import MinervaTuple from "./MinervaTuple";
 import PositionedComponentPrimitive from "./graphic-models/PositionedComponentPrimitive";
 import PositionedComponentShape from "./graphic-models/PositionedComponentShape";
+import IconShape from "./graphic-models/IconShape";
 
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
@@ -48,42 +49,63 @@ export default class MinervaParser {
       primitivesMap[primitive.atomId] = primitive;
     });
 
-    const psp = createPositionedComponentPrimitives(
+    const positionedComponentPrimitives = createPositionedComponentPrimitives(
       parsed,
       points,
       primitivesMap
     );
 
-    const pcs = createPositionedComponentShapes(parsed, points, primitivesMap);
+    const positionedComponentShapes = createPositionedComponentShapes(
+      parsed,
+      points,
+      primitivesMap
+    );
+    const atomNames = createAtomNameMap(parsed);
+    const icons = createIcons({
+      responseObjs: parsed,
+      atomNames,
+      positionedComponentPrimitives,
+      positionedComponentShapes
+    });
 
-    const shapes = createShapes(parsed, points, primitivesMap);
+    // console.info(positionedComponentPrimitives);
+    // console.info(atomNames);
+    // console.info(icons);
+    // console.info(positionedComponentShapes);
 
-    console.info(shapes);
-
-    return primitives;
+    return { primitives, icons };
   }
 }
 
-function createShapes(responseObjs, pointMap, primitivesMap) {
-  const shapeIds = {};
-  const componentIds = {};
-  const compositeShapeIds = [];
-
-  responseObjs.forEach(ft => {
-    if (ft.form.type === MINERVA.SHAPES.SHAPE) {
+function createIcons(params) {
+  const result = [];
+  params.responseObjs.forEach(ft => {
+    if (ft.form.type === MINERVA.SHAPES.ICON) {
       ft.tuples.forEach(tuple => {
-        const shapeId = tuple.getAttributeValue(MINERVA.SHAPES.SHAPE, ft.form);
-
-        shapeIds[shapeId] = true;
-        const componentId = tuple.getAttributeValue(
-          MINERVA.SHAPES.COMPONENT,
-          ft.form
-        );
-
-        console.info("shape tuple", tuple);
+        const iconParams = { ...params };
+        iconParams.form = ft.form;
+        iconParams.tuple = tuple;
+        const icon = IconShape.create(iconParams);
+        result.push(icon);
       });
     }
   });
+  return result;
+}
+
+function createAtomNameMap(responseObjs) {
+  const ATOM = MINERVA.TUPLE_ATTR_TYPE.ATOM;
+  const map = {};
+  responseObjs.forEach(ft => {
+    if (ft.form.type === MINERVA.NAMED_ATOM) {
+      ft.tuples.forEach(tuple => {
+        const atomId = tuple.getAttributeValue(ATOM, ft.form);
+        const name = tuple.getAttributeValue(MINERVA.NAME, ft.form);
+        map[atomId] = name;
+      });
+    }
+  });
+  return map;
 }
 
 function createPositionedComponentShapes(responseObjs, points, primitives) {
