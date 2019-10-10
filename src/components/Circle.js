@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withSVGPropsHOC from "./withSVGPropsHOC";
-import CirclePrimitive from "../graphic-models/CirclePrimitive";
+import CirclePrimitive from "../graphic-models/CirclePrimitiveModel";
 
 class Circle extends Component {
   getX() {

@@ -1,23 +1,23 @@
 import { MINERVA } from "../helpers";
-import Stroke from "./Stroke";
+import StrokeModel from "./StrokeModel";
 
-class Outline {
+class OutlineModel {
   constructor(shapeAtomId, stroke) {
     this.shape = shapeAtomId;
     this.stroke = stroke;
   }
 
   static clone(outline) {
-    const stroke = Stroke.cloneStroke(outline.stroke);
-    return new Outline(outline.shape, stroke);
+    const stroke = StrokeModel.cloneStroke(outline.stroke);
+    return new OutlineModel(outline.shape, stroke);
   }
 
   static createOutline(form, tuple, strokes) {
     const shapeId = tuple.getAttributeValue(MINERVA.PRIMITIVES.OUTLINE, form);
     const strokeId = tuple.getAttributeValue(MINERVA.PRIMITIVES.STROKE, form);
     const stroke = strokes[strokeId];
-    return new Outline(shapeId, stroke);
+    return new OutlineModel(shapeId, stroke);
   }
 }
 
-export default Outline;
+export default OutlineModel;

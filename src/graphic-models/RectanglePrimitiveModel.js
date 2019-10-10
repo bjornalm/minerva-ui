@@ -1,10 +1,10 @@
 import { MINERVA } from "../helpers";
-import PrimitiveBase from "./PrimitiveBase";
-import Point from "./Point";
+import PrimitiveBase from "./PrimitiveModelBase";
+import PointModel from "./PointModel";
 
 // THIS SHOULD BE A MINERVA RECTANGLE REPRESENTATION, NOT A SVG RECTANGLE
 // form: ["rectangle", "bottom-left", "top-right"]
-class RectanglePrimitive extends PrimitiveBase {
+class RectanglePrimitiveModel extends PrimitiveBase {
   constructor(conf) {
     const { form, tuple, atomId, topRight, bottomLeft, outline, solid } = conf;
     super({ form, tuple, outline, solid });
@@ -15,10 +15,10 @@ class RectanglePrimitive extends PrimitiveBase {
 
   static clone(rectangle) {
     const { atomId } = rectangle;
-    const topRight = Point.clone(rectangle.topRight);
-    const bottomLeft = Point.clone(rectangle.bottomLeft);
+    const topRight = PointModel.clone(rectangle.topRight);
+    const bottomLeft = PointModel.clone(rectangle.bottomLeft);
     const baseProps = PrimitiveBase.cloneBaseProperties(rectangle);
-    return new RectanglePrimitive({
+    return new RectanglePrimitiveModel({
       ...baseProps,
       atomId,
       topRight,
@@ -42,7 +42,7 @@ class RectanglePrimitive extends PrimitiveBase {
     const outline = outlines ? outlines[atomId] : undefined;
     const solid = solids ? solids[atomId] : undefined;
 
-    return new RectanglePrimitive({
+    return new RectanglePrimitiveModel({
       form,
       tuple,
       atomId,
@@ -54,4 +54,4 @@ class RectanglePrimitive extends PrimitiveBase {
   }
 }
 
-export default RectanglePrimitive;
+export default RectanglePrimitiveModel;

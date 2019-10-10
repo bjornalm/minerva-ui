@@ -1,6 +1,6 @@
 import { MINERVA } from "../helpers";
 
-export default class Color {
+export default class ColorModel {
   constructor(atomId, red, green, blue) {
     this.atomId = atomId;
     this.red = red;
@@ -9,7 +9,7 @@ export default class Color {
   }
 
   static clone(color) {
-    return new Color(color.atomId, color.red, color.green, color.blue);
+    return new ColorModel(color.atomId, color.red, color.green, color.blue);
   }
 
   static createColor(form, tuple) {
@@ -17,7 +17,7 @@ export default class Color {
     const red = to8Bit(tuple.getAttributeValue(MINERVA.COLORS.RED, form));
     const green = to8Bit(tuple.getAttributeValue(MINERVA.COLORS.GREEN, form));
     const blue = to8Bit(tuple.getAttributeValue(MINERVA.COLORS.BLUE, form));
-    return new Color(colorId, red, green, blue);
+    return new ColorModel(colorId, red, green, blue);
   }
 
   static getHex(color) {

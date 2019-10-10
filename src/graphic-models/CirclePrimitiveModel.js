@@ -1,8 +1,8 @@
 import { MINERVA } from "../helpers";
-import PrimitiveBase from "./PrimitiveBase";
-import Point from "./Point";
+import PrimitiveBase from "./PrimitiveModelBase";
+import PointModel from "./PointModel";
 
-class CirclePrimitive extends PrimitiveBase {
+class CirclePrimitiveModel extends PrimitiveBase {
   constructor(conf) {
     const { form, tuple, atomId, center, radius, outline, solid } = conf;
     super({ form, tuple, outline, solid });
@@ -13,9 +13,9 @@ class CirclePrimitive extends PrimitiveBase {
 
   static clone(circle) {
     const { atomId, radius } = circle;
-    const center = Point.clone(circle.center);
+    const center = PointModel.clone(circle.center);
     const baseProps = PrimitiveBase.cloneBaseProperties(circle);
-    return new CirclePrimitive({
+    return new CirclePrimitiveModel({
       ...baseProps,
       atomId,
       center,
@@ -34,7 +34,7 @@ class CirclePrimitive extends PrimitiveBase {
     const outline = outlines[atomId];
     const solid = solids[atomId];
 
-    return new CirclePrimitive({
+    return new CirclePrimitiveModel({
       form,
       tuple,
       atomId,
@@ -46,4 +46,4 @@ class CirclePrimitive extends PrimitiveBase {
   }
 }
 
-export default CirclePrimitive;
+export default CirclePrimitiveModel;

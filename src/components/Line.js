@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withSVGPropsHOC from "./withSVGPropsHOC";
-import LinePrimitive from "../graphic-models/LinePrimitive";
+import LinePrimitiveModel from "../graphic-models/LinePrimitiveModel";
 
 class Line extends Component {
   getX() {
@@ -49,7 +49,7 @@ class Line extends Component {
   }
 
   static getShapeWithNewPosition(shape, newX, newY) {
-    const modifiedShape = LinePrimitive.clone(shape);
+    const modifiedShape = LinePrimitiveModel.clone(shape);
     const xDiff = modifiedShape.point1.horizontal - newX;
     const yDiff = modifiedShape.point1.vertical - newY;
     modifiedShape.point1.horizontal = newX;

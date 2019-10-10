@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withSVGPropsHOC from "./withSVGPropsHOC";
-import RectanglePrimitive from "../graphic-models/RectanglePrimitive";
+import RectanglePrimitiveModel from "../graphic-models/RectanglePrimitiveModel";
 
 class Rect extends Component {
   getHeight() {
@@ -30,7 +30,7 @@ class Rect extends Component {
   }
 
   static getShapeWithNewPosition(shape, newX, newY) {
-    const modifiedShape = RectanglePrimitive.clone(shape);
+    const modifiedShape = RectanglePrimitiveModel.clone(shape);
     const xDiff = modifiedShape.topRight.horizontal - newX;
     const yDiff = modifiedShape.topRight.vertical - newY;
     modifiedShape.topRight.horizontal = newX;

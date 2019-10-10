@@ -1,7 +1,7 @@
 import { MINERVA } from "../helpers";
-import Color from "./Color";
+import ColorModel from "./ColorModel";
 
-class Stroke {
+class StrokeModel {
   constructor(atomId, color, width) {
     this.atomId = atomId;
     this.color = color;
@@ -9,8 +9,8 @@ class Stroke {
   }
 
   static cloneStroke(stroke) {
-    const color = Color.clone(stroke.color);
-    return new Stroke(stroke.atomId, color, stroke.width);
+    const color = ColorModel.clone(stroke.color);
+    return new StrokeModel(stroke.atomId, color, stroke.width);
   }
 
   // form: ["stroke", "color", "width"],
@@ -19,8 +19,8 @@ class Stroke {
     const colorId = tuple.getAttributeValue(MINERVA.PRIMITIVES.COLOR, form);
     const color = colors[colorId];
     const width = tuple.getAttributeValue(MINERVA.STROKE_PROP.WIDTH, form);
-    return new Stroke(strokeId, color, width);
+    return new StrokeModel(strokeId, color, width);
   }
 }
 
-export default Stroke;
+export default StrokeModel;

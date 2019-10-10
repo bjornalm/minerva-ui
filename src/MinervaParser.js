@@ -1,18 +1,18 @@
-import Point from "./graphic-models/Point";
-import RectanglePrimitive from "./graphic-models/RectanglePrimitive";
-import CirclePrimitive from "./graphic-models/CirclePrimitive";
-import LinePrimitive from "./graphic-models/LinePrimitive";
-import Outline from "./graphic-models/Outline";
-import Color from "./graphic-models/Color";
-import Stroke from "./graphic-models/Stroke";
-import Solid from "./graphic-models/Solid";
+import PointModel from "./graphic-models/PointModel";
+import RectanglePrimitiveModel from "./graphic-models/RectanglePrimitiveModel";
+import CirclePrimitiveModel from "./graphic-models/CirclePrimitiveModel";
+import LinePrimitiveModel from "./graphic-models/LinePrimitiveModel";
+import OutlineModel from "./graphic-models/OutlineModel";
+import ColorModel from "./graphic-models/ColorModel";
+import StrokeModel from "./graphic-models/StrokeModel";
+import SolidModel from "./graphic-models/SolidModel";
 
 import { MINERVA } from "./helpers";
 import MinervaForm from "./MinervaForm";
 import MinervaTuple from "./MinervaTuple";
-import PositionedComponentPrimitive from "./graphic-models/PositionedComponentPrimitive";
-import PositionedComponentShape from "./graphic-models/PositionedComponentShape";
-import IconShape from "./graphic-models/IconShape";
+import PositionedShapeModel from "./graphic-models/PositionedShapeModel";
+import PositionedComponentShape from "./graphic-models/PositionedCompositeShapeModel";
+import IconModel from "./graphic-models/IconModel";
 
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
@@ -85,7 +85,7 @@ function createIcons(params) {
         const iconParams = { ...params };
         iconParams.form = ft.form;
         iconParams.tuple = tuple;
-        const icon = IconShape.create(iconParams);
+        const icon = IconModel.create(iconParams);
         result.push(icon);
       });
     }
@@ -137,7 +137,7 @@ function createPositionedComponentPrimitives(responseObjs, points, primitives) {
       ft.tuples.forEach(tuple => {
         const componentID = tuple.getAttributeValue(COMPONENT, ft.form);
         if (primitives[componentID]) {
-          const pcp = PositionedComponentPrimitive.create({
+          const pcp = PositionedShapeModel.create({
             form: ft.form,
             tuple,
             points,
@@ -158,7 +158,7 @@ function createPrimitives(responseObjs, pointMap, outlines, solids) {
       switch (ft.form.type) {
         case MINERVA.PRIMITIVES.RECTANGLE:
           primitives.push(
-            RectanglePrimitive.create(
+            RectanglePrimitiveModel.create(
               ft.form,
               tuple,
               pointMap,
@@ -169,12 +169,18 @@ function createPrimitives(responseObjs, pointMap, outlines, solids) {
           break;
         case MINERVA.PRIMITIVES.CIRCLE:
           primitives.push(
-            CirclePrimitive.create(ft.form, tuple, pointMap, outlines, solids)
+            CirclePrimitiveModel.create(
+              ft.form,
+              tuple,
+              pointMap,
+              outlines,
+              solids
+            )
           );
           break;
         case MINERVA.PRIMITIVES.LINE:
           primitives.push(
-            LinePrimitive.createLine(ft.form, tuple, pointMap, outlines)
+            LinePrimitiveModel.createLine(ft.form, tuple, pointMap, outlines)
           );
           break;
         default:
@@ -196,7 +202,7 @@ function createSolidsMap(responseObjs, colors) {
           ft.form
         );
 
-        solids[solidId] = Solid.createSolid(ft.form, tuple, colors);
+        solids[solidId] = SolidModel.createSolid(ft.form, tuple, colors);
       });
     }
   });
@@ -214,7 +220,7 @@ function createStrokesMap(responseObjs, colors) {
           ft.form
         );
 
-        strokes[strokeId] = Stroke.createStroke(ft.form, tuple, colors);
+        strokes[strokeId] = StrokeModel.createStroke(ft.form, tuple, colors);
       });
     }
   });
@@ -231,7 +237,7 @@ function createColorsMap(responseObjs) {
           MINERVA.PRIMITIVES.COLOR,
           ft.form
         );
-        colors[colorId] = Color.createColor(ft.form, tuple);
+        colors[colorId] = ColorModel.createColor(ft.form, tuple);
       });
     }
   });
@@ -248,7 +254,7 @@ function createOutlinesMap(responseObjs, strokes) {
           MINERVA.PRIMITIVES.OUTLINE,
           ft.form
         );
-        outlines[shapeId] = Outline.createOutline(ft.form, tuple, strokes);
+        outlines[shapeId] = OutlineModel.createOutline(ft.form, tuple, strokes);
       });
     }
   });
@@ -265,7 +271,7 @@ function createPointsMap(responseObjs) {
           MINERVA.PRIMITIVES.POINT,
           ft.form
         );
-        points[pointId] = Point.createPoint(ft.form, tuple);
+        points[pointId] = PointModel.createPoint(ft.form, tuple);
       });
     }
   });

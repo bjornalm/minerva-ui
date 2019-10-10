@@ -1,6 +1,6 @@
 import { MINERVA } from "../helpers";
 
-class IconShape {
+class IconModel {
   constructor(conf) {
     this.form = conf.form;
     this.tuple = conf.tuple;
@@ -21,8 +21,8 @@ class IconShape {
       pcp => pcp.shapeId === iconId
     );
 
-    return new IconShape({ form, tuple, atomId, name, shapes });
+    return new IconModel({ form, tuple, atomId, name, shapes });
   }
 }
 
-export default IconShape;
+export default IconModel;

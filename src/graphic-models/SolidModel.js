@@ -1,15 +1,15 @@
 import { MINERVA } from "../helpers";
-import Color from "./Color";
+import ColorModel from "./ColorModel";
 
-class Solid {
+class SolidModel {
   constructor(atomId, color) {
     this.atomId = atomId;
     this.color = color;
   }
 
   static clone(solid) {
-    const color = Color.clone(solid.color);
-    return new Solid(solid.atomId, color);
+    const color = ColorModel.clone(solid.color);
+    return new SolidModel(solid.atomId, color);
   }
 
   // form: ["solid", "color"],
@@ -17,8 +17,8 @@ class Solid {
     const solidId = tuple.getAttributeValue(MINERVA.PRIMITIVES.SOLID, form);
     const colorId = tuple.getAttributeValue(MINERVA.PRIMITIVES.COLOR, form);
     const color = colors[colorId];
-    return new Solid(solidId, color);
+    return new SolidModel(solidId, color);
   }
 }
 
-export default Solid;
+export default SolidModel;

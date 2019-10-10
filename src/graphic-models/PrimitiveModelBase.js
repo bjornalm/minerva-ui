@@ -1,6 +1,6 @@
-import Color from "./Color";
-import Solid from "./Solid";
-import Outline from "./Outline";
+import ColorModel from "./ColorModel";
+import SolidModel from "./SolidModel";
+import OutlineModel from "./OutlineModel";
 
 class PrimitiveBase {
   constructor(conf) {
@@ -15,7 +15,7 @@ class PrimitiveBase {
   }
 
   getFill() {
-    return Color.getHex(this.solid.color);
+    return ColorModel.getHex(this.solid.color);
   }
 
   hasOutlineStroke() {
@@ -24,7 +24,7 @@ class PrimitiveBase {
 
   getOutlineStrokeColor() {
     const stroke = this.outline.stroke;
-    return Color.getHex(stroke.color);
+    return ColorModel.getHex(stroke.color);
   }
 
   getOutlineStrokeWidth() {
@@ -33,8 +33,10 @@ class PrimitiveBase {
   }
 
   static cloneBaseProperties(shape) {
-    const outline = shape.outline ? Outline.clone(shape.outline) : undefined;
-    const solid = shape.solid ? Solid.clone(shape.solid) : undefined;
+    const outline = shape.outline
+      ? OutlineModel.clone(shape.outline)
+      : undefined;
+    const solid = shape.solid ? SolidModel.clone(shape.solid) : undefined;
     const form = shape.form.clone();
     const tuple = shape.tuple.clone();
     return { outline, solid, form, tuple };

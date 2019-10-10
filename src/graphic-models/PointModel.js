@@ -1,6 +1,6 @@
 import { MINERVA } from "../helpers";
 
-class Point {
+class PointModel {
   constructor(atomId, horizontal, vertical) {
     this.atomId = atomId;
     this.horizontal = horizontal;
@@ -8,7 +8,7 @@ class Point {
   }
 
   static clone(point) {
-    return new Point(point.atomId, point.horizontal, point.vertical);
+    return new PointModel(point.atomId, point.horizontal, point.vertical);
   }
 
   static createPoint(form, tuple) {
@@ -16,8 +16,8 @@ class Point {
     const x = tuple.getAttributeValue(MINERVA.POSITIONS.HORIZONTAL, form);
     const y = tuple.getAttributeValue(MINERVA.POSITIONS.VERTICAL, form);
 
-    return new Point(atomId, x, y);
+    return new PointModel(atomId, x, y);
   }
 }
 
-export default Point;
+export default PointModel;

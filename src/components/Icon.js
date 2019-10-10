@@ -3,7 +3,7 @@ import { MINERVA } from "../helpers";
 import Rect from "./Rect";
 import Circle from "./Circle";
 import Line from "./Line";
-import PositionedComponentPrimitive from "../graphic-models/PositionedComponentPrimitive";
+import PositionedShapeModel from "../graphic-models/PositionedShapeModel";
 
 class Icon extends Component {
   createSymbols() {
@@ -14,7 +14,11 @@ class Icon extends Component {
         this.props.shapeDragDropped
       );
 
-      return <symbol id={primitive.atomId}>{primitiveComponent}</symbol>;
+      return (
+        <symbol key={primitive.atomId} id={primitive.atomId}>
+          {primitiveComponent}
+        </symbol>
+      );
     });
     return svgSymbols;
   }
@@ -22,10 +26,17 @@ class Icon extends Component {
   createSymbolInstances() {
     const positionedShapes = this.props.icon.shapes;
     const positionedPrimitives = positionedShapes.map(shape => {
-      if (shape instanceof PositionedComponentPrimitive) {
+      if (shape instanceof PositionedShapeModel) {
         const x = shape.position.horizontal;
         const y = shape.position.vertical;
-        return <use href={`#${shape.componentId}`} x={x} y={y} />;
+        return (
+          <use
+            key={shape.uniqueKey}
+            href={`#${shape.componentId}`}
+            x={x}
+            y={y}
+          />
+        );
       }
     });
 
@@ -49,7 +60,7 @@ export default Icon;
 
 function getUniquePrimitives(iconModel) {
   const allPrimitives = iconModel.shapes
-    .filter(shape => shape instanceof PositionedComponentPrimitive)
+    .filter(shape => shape instanceof PositionedShapeModel)
     .map(shape => shape.primitive);
   return [...new Set(allPrimitives)];
 }

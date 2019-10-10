@@ -1,6 +1,6 @@
 import { MINERVA } from "../helpers";
 
-class PositionedComponentPrimitive {
+class PositionedShapeModel {
   constructor(conf) {
     this.form = conf.form;
     this.tuple = conf.tuple;
@@ -8,6 +8,7 @@ class PositionedComponentPrimitive {
     this.componentId = conf.componentId;
     this.position = conf.position;
     this.primitive = conf.primitive;
+    this.uniqueKey = this.componentId + this.shapeId + this.position.atomId;
   }
 
   static create(conf) {
@@ -21,7 +22,7 @@ class PositionedComponentPrimitive {
     const componentPositionId = tuple.getAttributeValue(POSITION, form);
     const position = points[componentPositionId];
 
-    return new PositionedComponentPrimitive({
+    return new PositionedShapeModel({
       form,
       tuple,
       shapeId,
@@ -32,4 +33,4 @@ class PositionedComponentPrimitive {
   }
 }
 
-export default PositionedComponentPrimitive;
+export default PositionedShapeModel;
