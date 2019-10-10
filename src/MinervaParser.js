@@ -49,13 +49,13 @@ export default class MinervaParser {
       primitivesMap[primitive.atomId] = primitive;
     });
 
-    const positionedComponentPrimitives = createPositionedComponentPrimitives(
+    const positionedShapes = createPositionedShapeModels(
       parsed,
       points,
       primitivesMap
     );
 
-    const positionedComponentShapes = createPositionedComponentShapes(
+    const positionedCompositeShapes = createPositionedCompositeShapes(
       parsed,
       points,
       primitivesMap
@@ -64,8 +64,8 @@ export default class MinervaParser {
     const icons = createIcons({
       responseObjs: parsed,
       atomNames,
-      positionedComponentPrimitives,
-      positionedComponentShapes
+      positionedShapes,
+      positionedCompositeShapes
     });
 
     // console.info(positionedComponentPrimitives);
@@ -108,7 +108,7 @@ function createAtomNameMap(responseObjs) {
   return map;
 }
 
-function createPositionedComponentShapes(responseObjs, points, primitives) {
+function createPositionedCompositeShapes(responseObjs, points, primitives) {
   const COMPONENT = MINERVA.SHAPES.COMPONENT;
   const result = [];
   responseObjs.forEach(ft => {
@@ -129,7 +129,7 @@ function createPositionedComponentShapes(responseObjs, points, primitives) {
   return result;
 }
 
-function createPositionedComponentPrimitives(responseObjs, points, primitives) {
+function createPositionedShapeModels(responseObjs, points, primitives) {
   const COMPONENT = MINERVA.SHAPES.COMPONENT;
   const result = [];
   responseObjs.forEach(ft => {

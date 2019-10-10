@@ -25,8 +25,9 @@ class Icon extends Component {
 
   createSymbolInstances() {
     const positionedShapes = this.props.icon.shapes;
-    const positionedPrimitives = positionedShapes.map(shape => {
-      if (shape instanceof PositionedShapeModel) {
+    const positionedPrimitives = positionedShapes
+      .filter(shape => shape instanceof PositionedShapeModel)
+      .map(shape => {
         const x = shape.position.horizontal;
         const y = shape.position.vertical;
         return (
@@ -37,8 +38,7 @@ class Icon extends Component {
             y={y}
           />
         );
-      }
-    });
+      });
 
     return positionedPrimitives;
   }

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import httpService from "./httpService";
 import MinervaParser from "./MinervaParser";
-import Rect from "./components/Rect";
-import Circle from "./components/Circle";
-import Line from "./components/Line";
-import { MINERVA } from "./helpers";
+// import Rect from "./components/Rect";
+// import Circle from "./components/Circle";
+// import Line from "./components/Line";
+// import { MINERVA } from "./helpers";
 import Icon from "./components/Icon";
 
 class App extends Component {
@@ -44,52 +44,52 @@ class App extends Component {
       });
   }
 
-  renderShapes() {
-    if (!this.state.primitives) {
-      return null;
-    }
+  // renderShapes() {
+  //   if (!this.state.primitives) {
+  //     return null;
+  //   }
 
-    const primitives = this.state.primitives.map(shape => {
-      const key = shape.atomId;
-      let renderedShape;
-      switch (shape.form.type) {
-        case MINERVA.PRIMITIVES.CIRCLE:
-          renderedShape = (
-            <Circle
-              key={key}
-              onDragDropped={this.shapeDragDropped}
-              shape={shape}
-            ></Circle>
-          );
-          break;
-        case MINERVA.PRIMITIVES.RECTANGLE:
-          renderedShape = (
-            <Rect
-              key={key}
-              onDragDropped={this.shapeDragDropped}
-              shape={shape}
-            ></Rect>
-          );
-          break;
-        case MINERVA.PRIMITIVES.LINE:
-          renderedShape = (
-            <Line
-              key={key}
-              onDragDropped={this.shapeDragDropped}
-              shape={shape}
-            ></Line>
-          );
-          break;
-        default:
-          console.error("Shape could not be rendered", shape);
-          break;
-      }
+  //   const primitives = this.state.primitives.map(shape => {
+  //     const key = shape.atomId;
+  //     let renderedShape;
+  //     switch (shape.form.type) {
+  //       case MINERVA.PRIMITIVES.CIRCLE:
+  //         renderedShape = (
+  //           <Circle
+  //             key={key}
+  //             onDragDropped={this.shapeDragDropped}
+  //             shape={shape}
+  //           ></Circle>
+  //         );
+  //         break;
+  //       case MINERVA.PRIMITIVES.RECTANGLE:
+  //         renderedShape = (
+  //           <Rect
+  //             key={key}
+  //             onDragDropped={this.shapeDragDropped}
+  //             shape={shape}
+  //           ></Rect>
+  //         );
+  //         break;
+  //       case MINERVA.PRIMITIVES.LINE:
+  //         renderedShape = (
+  //           <Line
+  //             key={key}
+  //             onDragDropped={this.shapeDragDropped}
+  //             shape={shape}
+  //           ></Line>
+  //         );
+  //         break;
+  //       default:
+  //         console.error("Shape could not be rendered", shape);
+  //         break;
+  //     }
 
-      return renderedShape;
-    });
+  //     return renderedShape;
+  //   });
 
-    return primitives;
-  }
+  //   return primitives;
+  // }
 
   renderIcons() {
     if (!this.state.icons) {
@@ -128,7 +128,6 @@ class App extends Component {
         >
           <rect width="100%" height="100%" fill="#eeeeee" />
           {this.renderIcons()}
-          {this.renderShapes()}
         </svg>
       </div>
     );
