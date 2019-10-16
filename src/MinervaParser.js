@@ -11,7 +11,7 @@ import { MINERVA } from "./helpers";
 import MinervaForm from "./MinervaForm";
 import MinervaTuple from "./MinervaTuple";
 import PositionedShapeModel from "./graphic-models/PositionedShapeModel";
-import PositionedComponentShape from "./graphic-models/PositionedCompositeShapeModel";
+import PositionedCompositeShapeModel from "./graphic-models/PositionedCompositeShapeModel";
 import IconModel from "./graphic-models/IconModel";
 
 export default class MinervaParser {
@@ -55,10 +55,19 @@ export default class MinervaParser {
       primitivesMap
     );
 
-    const positionedCompositeShapes = createPositionedCompositeShapes(
+    const positionedShapesMap = {};
+    positionedShapes.forEach(positionedShape => {
+      if (!positionedShapesMap[positionedShape.shapeId]) {
+        positionedShapesMap[positionedShape.shapeId] = [];
+      }
+      positionedShapesMap[positionedShape.shapeId].push(positionedShape);
+    });
+
+    const positionedCompositeShapes = getPositionedCompositeShapesTree(
       parsed,
       points,
-      primitivesMap
+      primitivesMap,
+      positionedShapesMap
     );
     const atomNames = createAtomNameMap(parsed);
     const icons = createIcons({
@@ -71,7 +80,7 @@ export default class MinervaParser {
     // console.info(positionedComponentPrimitives);
     // console.info(atomNames);
     // console.info(icons);
-    // console.info(positionedComponentShapes);
+    // console.info(positionedCompositeShapes);
 
     return { primitives, icons };
   }
@@ -108,15 +117,59 @@ function createAtomNameMap(responseObjs) {
   return map;
 }
 
+function getPositionedCompositeShapesTree(
+  responseObjs,
+  points,
+  primitives,
+  positionedShapesMap
+) {
+  const posCompShapes = createPositionedCompositeShapes(
+    responseObjs,
+    points,
+    primitives
+  );
+
+  addShapesToComposites(posCompShapes, positionedShapesMap);
+
+  // 1. Add positionedShapes belonging to this composite
+  const posCompShapesMap = {};
+  posCompShapes.forEach(posCompShape => {
+    posCompShapesMap[posCompShape.shapeId] = posCompShape;
+  });
+
+  const childShapes = [];
+  posCompShapes.forEach(posCompShape => {
+    const nestedChildShape = posCompShapesMap[posCompShape.componentId];
+    if (nestedChildShape) {
+      posCompShape.addChildShape(nestedChildShape);
+      childShapes.push(nestedChildShape);
+    }
+  });
+
+  const rootShapes = posCompShapes.filter(
+    shape => !childShapes.includes(shape)
+  );
+
+  console.info(rootShapes);
+  return rootShapes;
+}
+
+function addShapesToComposites(composites, shapesMap) {
+  composites.forEach(composite => {
+    const childShapeId = composite.componentId;
+    if (shapesMap[childShapeId]) {
+      composite.addChildShapes(shapesMap[childShapeId]);
+    }
+  });
+}
+
 function createPositionedCompositeShapes(responseObjs, points, primitives) {
-  const COMPONENT = MINERVA.SHAPES.COMPONENT;
   const result = [];
   responseObjs.forEach(ft => {
     if (ft.form.type === MINERVA.SHAPES.SHAPE) {
       ft.tuples.forEach(tuple => {
-        const componentID = tuple.getAttributeValue(COMPONENT, ft.form);
-        if (!primitives[componentID]) {
-          const pcp = PositionedComponentShape.create({
+        if (!tupleHasPrimitive(tuple, ft.form, primitives)) {
+          const pcp = PositionedCompositeShapeModel.create({
             form: ft.form,
             tuple,
             points
@@ -126,17 +179,16 @@ function createPositionedCompositeShapes(responseObjs, points, primitives) {
       });
     }
   });
+
   return result;
 }
 
 function createPositionedShapeModels(responseObjs, points, primitives) {
-  const COMPONENT = MINERVA.SHAPES.COMPONENT;
   const result = [];
   responseObjs.forEach(ft => {
     if (ft.form.type === MINERVA.SHAPES.SHAPE) {
       ft.tuples.forEach(tuple => {
-        const componentID = tuple.getAttributeValue(COMPONENT, ft.form);
-        if (primitives[componentID]) {
+        if (tupleHasPrimitive(tuple, ft.form, primitives)) {
           const pcp = PositionedShapeModel.create({
             form: ft.form,
             tuple,
@@ -149,6 +201,11 @@ function createPositionedShapeModels(responseObjs, points, primitives) {
     }
   });
   return result;
+}
+
+function tupleHasPrimitive(tuple, form, primitives) {
+  const componentID = tuple.getAttributeValue(MINERVA.SHAPES.COMPONENT, form);
+  return !!primitives[componentID];
 }
 
 function createPrimitives(responseObjs, pointMap, outlines, solids) {

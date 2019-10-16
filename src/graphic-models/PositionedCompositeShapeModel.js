@@ -1,17 +1,22 @@
 import { MINERVA } from "../helpers";
 
-class PositionedComponentShape {
+class PositionedCompositeShapeModel {
   constructor(conf) {
     this.form = conf.form;
     this.tuple = conf.tuple;
     this.shapeId = conf.shapeId;
     this.componentId = conf.componentId;
     this.position = conf.position;
-    this.shape = undefined;
+    this.shapes = [];
+    this.uniqueKey = this.componentId + this.shapeId + this.position.atomId;
   }
 
-  setShape(shape) {
-    this.shape = shape;
+  addChildShapes(childShapes) {
+    this.shapes.push(...childShapes);
+  }
+
+  addChildShape(childShape) {
+    this.shapes.push(childShape);
   }
 
   static create(conf) {
@@ -24,7 +29,7 @@ class PositionedComponentShape {
     const componentPositionId = tuple.getAttributeValue(POSITION, form);
     const position = points[componentPositionId];
 
-    return new PositionedComponentShape({
+    return new PositionedCompositeShapeModel({
       form,
       tuple,
       shapeId,
@@ -34,4 +39,4 @@ class PositionedComponentShape {
   }
 }
 
-export default PositionedComponentShape;
+export default PositionedCompositeShapeModel;

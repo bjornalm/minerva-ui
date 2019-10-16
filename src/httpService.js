@@ -1,3 +1,4 @@
+import testdata from "./testdata.json";
 const axios = require("axios");
 const LOCAL_PROXY_URL = "http://localhost:8010/proxy";
 
@@ -11,7 +12,8 @@ class HttpService {
   }
 
   executeQuery(query) {
-    return Promise.resolve(test).then();
+    // console.info(testdata);
+    return Promise.resolve(testdata).then();
 
     //   const exampleReq = {
     //     requests: [
@@ -269,255 +271,331 @@ export default new HttpService();
 //   ]
 // };
 
-const test = {
-  response: [
-    {
-      form: ["atom", "name"],
-      tuples: [
-        [
-          {
-            atom: "8000000a1f3e5467fcfd4f3c"
-          },
-          {
-            string: "matrix"
-          }
-        ]
-      ]
-    },
-    {
-      form: ["atom", "icon"],
-      tuples: [
-        [
-          {
-            atom: "8000000a1f3e5467fcfd4f3c"
-          },
-          {
-            atom: "8000000af0fffa56c17b42da"
-          }
-        ]
-      ]
-    },
-    {
-      form: ["point", "horizontal", "vertical"],
-      tuples: [
-        [
-          {
-            atom: "8000000a0808c9ff8701220f"
-          },
-          {
-            number: 0
-          },
-          {
-            number: 0
-          }
-        ]
-      ]
-    },
-    {
-      form: ["point", "horizontal", "vertical"],
-      tuples: [
-        [
-          {
-            atom: "8000000ae948ae610da17d9e"
-          },
-          {
-            number: 100
-          },
-          {
-            number: 0
-          }
-        ]
-      ]
-    },
-    {
-      form: ["point", "horizontal", "vertical"],
-      tuples: [
-        [
-          {
-            atom: "8000000ae3b4dfb15660de68"
-          },
-          {
-            number: 0
-          },
-          {
-            number: 100
-          }
-        ]
-      ]
-    },
-    {
-      form: ["point", "horizontal", "vertical"],
-      tuples: [
-        [
-          {
-            atom: "8000000ace399448063cf049"
-          },
-          {
-            number: 100
-          },
-          {
-            number: 100
-          }
-        ]
-      ]
-    },
-    {
-      form: ["rectangle", "bottom-left", "top-right"],
-      tuples: [
-        [
-          {
-            atom: "8000000a450fc8a61aad1bcb"
-          },
-          {
-            atom: "8000000a0808c9ff8701220f"
-          },
-          {
-            atom: "8000000ace399448063cf049"
-          }
-        ]
-      ]
-    },
-    {
-      form: ["shape", "component", "position"],
-      tuples: [
-        [
-          {
-            atom: "8000000af0fffa56c17b42da"
-          },
-          {
-            atom: "8000000a450fc8a61aad1bcb"
-          },
-          {
-            atom: "8000000ace399448063cf049"
-          }
-        ],
-        [
-          {
-            atom: "8000000af0fffa56c17b42da"
-          },
-          {
-            atom: "8000000a450fc8a61aad1bcb"
-          },
-          {
-            atom: "8000000ae3b4dfb15660de68"
-          }
-        ],
-        [
-          {
-            atom: "8000000af0fffa56c17b42da"
-          },
-          {
-            atom: "8000000a450fc8a61aad1bcb"
-          },
-          {
-            atom: "8000000ae948ae610da17d9e"
-          }
-        ],
-        [
-          {
-            atom: "8000000af0fffa56c17b42da"
-          },
-          {
-            atom: "8000000a450fc8a61aad1bcb"
-          },
-          {
-            atom: "8000000a0808c9ff8701220f"
-          }
-        ]
-      ]
-    },
-    {
-      form: ["stroke", "color", "width"],
-      tuples: [
-        [
-          {
-            atom: "8000000a8ee4c9c9fb8496d3"
-          },
-          {
-            atom: "8000000ae187e8ec9ea2883d"
-          },
-          {
-            number: 5
-          }
-        ]
-      ]
-    },
-    {
-      form: ["outline", "stroke"],
-      tuples: [
-        [
-          {
-            atom: "8000000a450fc8a61aad1bcb"
-          },
-          {
-            atom: "8000000a8ee4c9c9fb8496d3"
-          }
-        ]
-      ]
-    },
-    {
-      form: ["color", "red", "green", "blue"],
-      tuples: [
-        [
-          {
-            atom: "8000000ae187e8ec9ea2883d"
-          },
-          {
-            number: 0
-          },
-          {
-            number: 0
-          },
-          {
-            number: 0
-          }
-        ]
-      ]
-    },
-    {
-      form: ["circle", "center", "radius"],
-      tuples: [
-        [
-          {
-            atom: "8000000ab17b150719e1a09a"
-          },
-          {
-            atom: "8000000a20252f074abbacc4"
-          },
-          {
-            number: 10
-          }
-        ]
-      ]
-    },
-    {
-      form: ["point", "horizontal", "vertical"],
-      tuples: [
-        [
-          {
-            atom: "8000000a20252f074abbacc4"
-          },
-          {
-            number: 150
-          },
-          {
-            number: 150
-          }
-        ]
-      ]
-    },
-    {
-      form: ["solid", "color"],
-      tuples: [
-        [
-          {
-            atom: "8000000ab17b150719e1a09a"
-          },
-          {
-            atom: "8000000ae187e8ec9ea2883d"
-          }
-        ]
-      ]
-    }
-  ]
-};
+// const test = {
+//   response: [
+//     {
+//       form: ["atom", "name"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000a1f3e5467fcfd4f3c"
+//           },
+//           {
+//             string: "matrix"
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["atom", "icon"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000a1f3e5467fcfd4f3c"
+//           },
+//           {
+//             atom: "myIconId"
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["point", "horizontal", "vertical"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000a0808c9ff8701220f"
+//           },
+//           {
+//             number: 0
+//           },
+//           {
+//             number: 0
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["point", "horizontal", "vertical"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000ae948ae610da17d9e"
+//           },
+//           {
+//             number: 100
+//           },
+//           {
+//             number: 0
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["point", "horizontal", "vertical"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000ae3b4dfb15660de68"
+//           },
+//           {
+//             number: 0
+//           },
+//           {
+//             number: 100
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["point", "horizontal", "vertical"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000ace399448063cf049"
+//           },
+//           {
+//             number: 100
+//           },
+//           {
+//             number: 100
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["rectangle", "bottom-left", "top-right"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000a450fc8a61aad1bcb"
+//           },
+//           {
+//             atom: "8000000a0808c9ff8701220f"
+//           },
+//           {
+//             atom: "8000000ace399448063cf049"
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["shape", "component", "position"],
+//       tuples: [
+//         [
+//           {
+//             atom: "myIconId"
+//           },
+//           {
+//             atom: "8000000a450fc8a61aad1bcb"
+//           },
+//           {
+//             atom: "8000000ace399448063cf049"
+//           }
+//         ],
+//         [
+//           {
+//             atom: "myIconId"
+//           },
+//           {
+//             atom: "compositeshapeID1"
+//           },
+//           {
+//             atom: "8000000ace399448063cf049"
+//           }
+//         ],
+//         [
+//           {
+//             atom: "compositeshapeID1"
+//           },
+//           {
+//             atom: "circleID1"
+//           },
+//           {
+//             atom: "8000000ace399448063cf049"
+//           }
+//         ],
+//         [
+//           {
+//             atom: "compositeshapeID1"
+//           },
+//           {
+//             atom: "circleID2"
+//           },
+//           {
+//             atom: "8000000ace399448063cf049"
+//           }
+//         ],
+//         [
+//           {
+//             atom: "myIconId"
+//           },
+//           {
+//             atom: "8000000a450fc8a61aad1bcb"
+//           },
+//           {
+//             atom: "8000000ae3b4dfb15660de68"
+//           }
+//         ],
+//         [
+//           {
+//             atom: "myIconId"
+//           },
+//           {
+//             atom: "8000000a450fc8a61aad1bcb"
+//           },
+//           {
+//             atom: "8000000ae948ae610da17d9e"
+//           }
+//         ],
+//         [
+//           {
+//             atom: "myIconId"
+//           },
+//           {
+//             atom: "8000000a450fc8a61aad1bcb"
+//           },
+//           {
+//             atom: "8000000a0808c9ff8701220f"
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["stroke", "color", "width"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000a8ee4c9c9fb8496d3"
+//           },
+//           {
+//             atom: "8000000ae187e8ec9ea2883d"
+//           },
+//           {
+//             number: 5
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["outline", "stroke"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000a450fc8a61aad1bcb"
+//           },
+//           {
+//             atom: "8000000a8ee4c9c9fb8496d3"
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["color", "red", "green", "blue"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000ae187e8ec9ea2883d"
+//           },
+//           {
+//             number: 0
+//           },
+//           {
+//             number: 0
+//           },
+//           {
+//             number: 0
+//           }
+//         ],
+//         [
+//           {
+//             atom: "greenId"
+//           },
+//           {
+//             number: 0
+//           },
+//           {
+//             number: 1
+//           },
+//           {
+//             number: 0
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["circle", "center", "radius"],
+//       tuples: [
+//         [
+//           {
+//             atom: "circleID1"
+//           },
+//           {
+//             atom: "8000000a20252f074abbacc4"
+//           },
+//           {
+//             number: 10
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["circle", "center", "radius"],
+//       tuples: [
+//         [
+//           {
+//             atom: "circleID2"
+//           },
+//           {
+//             atom: "8000000a20252f074abbacc4"
+//           },
+//           {
+//             number: 5
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["point", "horizontal", "vertical"],
+//       tuples: [
+//         [
+//           {
+//             atom: "8000000a20252f074abbacc4"
+//           },
+//           {
+//             number: 150
+//           },
+//           {
+//             number: 150
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["solid", "color"],
+//       tuples: [
+//         [
+//           {
+//             atom: "circleID1"
+//           },
+//           {
+//             atom: "8000000ae187e8ec9ea2883d"
+//           }
+//         ]
+//       ]
+//     },
+//     {
+//       form: ["solid", "color"],
+//       tuples: [
+//         [
+//           {
+//             atom: "circleID2"
+//           },
+//           {
+//             atom: "greenId"
+//           }
+//         ]
+//       ]
+//     }
+//   ]
+// };

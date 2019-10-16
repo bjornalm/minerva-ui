@@ -1,0 +1,336 @@
+{
+  "response": [
+    {
+      "form": ["atom", "name"],
+      "tuples": [
+        [
+          {
+            "atom": "8000000a1f3e5467fcfd4f3c"
+          },
+          {
+            "string": "matrix"
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["atom", "icon"],
+      "tuples": [
+        [
+          {
+            "atom": "8000000a1f3e5467fcfd4f3c"
+          },
+          {
+            "atom": "myIconId"
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["point", "horizontal", "vertical"],
+      "tuples": [
+        [
+          {
+            "atom": "pointId1"
+          },
+          {
+            "number": 0
+          },
+          {
+            "number": 0
+          }
+        ],
+        [
+          {
+            "atom": "pointId2"
+          },
+          {
+            "number": 100
+          },
+          {
+            "number": 0
+          }
+        ],
+        [
+          {
+            "atom": "pointId3"
+          },
+          {
+            "number": 0
+          },
+          {
+            "number": 100
+          }
+        ],
+        [
+          {
+            "atom": "pointId4"
+          },
+          {
+            "number": 100
+          },
+          {
+            "number": 100
+          }
+        ]
+      ]
+    },
+
+    {
+      "form": ["rectangle", "bottom-left", "top-right"],
+      "tuples": [
+        [
+          {
+            "atom": "rectangleId1"
+          },
+          {
+            "atom": "pointId1"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["shape", "component", "position"],
+      "tuples": [
+        [
+          {
+            "atom": "myIconId"
+          },
+          {
+            "atom": "rectangleId1"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "myIconId"
+          },
+          {
+            "atom": "compositeshapeID1"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "compositeshapeID1"
+          },
+          {
+            "atom": "circleID1"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "compositeshapeID1"
+          },
+          {
+            "atom": "circleID2"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "compositeshapeID1"
+          },
+          {
+            "atom": "nestedShapeID"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "nestedShapeID"
+          },
+          {
+            "atom": "circleID2"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "myIconId"
+          },
+          {
+            "atom": "rectangleId1"
+          },
+          {
+            "atom": "pointId3"
+          }
+        ],
+        [
+          {
+            "atom": "myIconId"
+          },
+          {
+            "atom": "rectangleId1"
+          },
+          {
+            "atom": "pointId2"
+          }
+        ],
+        [
+          {
+            "atom": "myIconId"
+          },
+          {
+            "atom": "rectangleId1"
+          },
+          {
+            "atom": "pointId1"
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["stroke", "color", "width"],
+      "tuples": [
+        [
+          {
+            "atom": "8000000a8ee4c9c9fb8496d3"
+          },
+          {
+            "atom": "8000000ae187e8ec9ea2883d"
+          },
+          {
+            "number": 5
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["outline", "stroke"],
+      "tuples": [
+        [
+          {
+            "atom": "rectangleId1"
+          },
+          {
+            "atom": "8000000a8ee4c9c9fb8496d3"
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["color", "red", "green", "blue"],
+      "tuples": [
+        [
+          {
+            "atom": "8000000ae187e8ec9ea2883d"
+          },
+          {
+            "number": 0
+          },
+          {
+            "number": 0
+          },
+          {
+            "number": 0
+          }
+        ],
+        [
+          {
+            "atom": "greenId"
+          },
+          {
+            "number": 0
+          },
+          {
+            "number": 1
+          },
+          {
+            "number": 0
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["circle", "center", "radius"],
+      "tuples": [
+        [
+          {
+            "atom": "circleID1"
+          },
+          {
+            "atom": "8000000a20252f074abbacc4"
+          },
+          {
+            "number": 10
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["circle", "center", "radius"],
+      "tuples": [
+        [
+          {
+            "atom": "circleID2"
+          },
+          {
+            "atom": "8000000a20252f074abbacc4"
+          },
+          {
+            "number": 5
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["point", "horizontal", "vertical"],
+      "tuples": [
+        [
+          {
+            "atom": "8000000a20252f074abbacc4"
+          },
+          {
+            "number": 150
+          },
+          {
+            "number": 150
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["solid", "color"],
+      "tuples": [
+        [
+          {
+            "atom": "circleID1"
+          },
+          {
+            "atom": "8000000ae187e8ec9ea2883d"
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["solid", "color"],
+      "tuples": [
+        [
+          {
+            "atom": "circleID2"
+          },
+          {
+            "atom": "greenId"
+          }
+        ]
+      ]
+    }
+  ]
+}

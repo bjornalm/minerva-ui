@@ -105,7 +105,7 @@ class App extends Component {
       );
     });
 
-    console.info(icons);
+    // console.info(icons);
     return icons;
   }
 
@@ -119,10 +119,8 @@ class App extends Component {
         <h1>Minerva</h1>
         <svg
           version="1.1"
-          baseProfile="full"
           width="800"
           height="800"
-          viewBox="0 0 400 400"
           xmlns="http://www.w3.org/2000/svg"
           style={containerStyle}
         >

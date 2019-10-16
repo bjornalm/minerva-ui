@@ -10,14 +10,25 @@ class IconModel {
   }
 
   static create(conf) {
-    const { form, tuple, atomNames, positionedShapes } = conf;
+    const {
+      form,
+      tuple,
+      atomNames,
+      positionedShapes,
+      positionedCompositeShapes
+    } = conf;
 
     const atomId = tuple.getAttributeValue(MINERVA.ATOM, form);
     const iconId = tuple.getAttributeValue(MINERVA.SHAPES.ICON, form);
     const name = atomNames[atomId];
 
-    // TODO: handle positionedCompositeShapes
     const shapes = positionedShapes.filter(pcp => pcp.shapeId === iconId);
+    const compositeShapes = positionedCompositeShapes.filter(
+      pcp => pcp.shapeId === iconId
+    );
+
+    shapes.push(...compositeShapes);
+    // console.info(compositeShapes);
 
     return new IconModel({ form, tuple, atomId, name, shapes });
   }
