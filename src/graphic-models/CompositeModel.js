@@ -1,36 +1,46 @@
+/**
+ * CompositeModel consist of one or more shapes.
+ * A CompositeModel always has a position.
+ */
 import { MINERVA } from "../helpers";
 
-class PositionedShapeModel {
+class CompositeModel {
   constructor(conf) {
     this.form = conf.form;
     this.tuple = conf.tuple;
     this.shapeId = conf.shapeId;
     this.componentId = conf.componentId;
     this.position = conf.position;
-    this.primitive = conf.primitive;
+    this.shapes = [];
     this.uniqueKey = this.componentId + this.shapeId + this.position.atomId;
   }
 
+  addChildShapes(childShapes) {
+    this.shapes.push(...childShapes);
+  }
+
+  addChildShape(childShape) {
+    this.shapes.push(childShape);
+  }
+
   static create(conf) {
-    const { form, tuple, points, primitives } = conf;
+    const { form, tuple, points } = conf;
 
     const shapeId = tuple.getAttributeValue(MINERVA.SHAPES.SHAPE, form);
     const componentId = tuple.getAttributeValue(MINERVA.SHAPES.COMPONENT, form);
-    const primitive = primitives[componentId];
 
     const POSITION = MINERVA.SHAPES.POSITION;
     const componentPositionId = tuple.getAttributeValue(POSITION, form);
     const position = points[componentPositionId];
 
-    return new PositionedShapeModel({
+    return new CompositeModel({
       form,
       tuple,
       shapeId,
       position,
-      componentId,
-      primitive
+      componentId
     });
   }
 }
 
-export default PositionedShapeModel;
+export default CompositeModel;

@@ -10,8 +10,8 @@ import SolidModel from "./graphic-models/SolidModel";
 import { MINERVA } from "./helpers";
 import MinervaForm from "./MinervaForm";
 import MinervaTuple from "./MinervaTuple";
-import PositionedShapeModel from "./graphic-models/PositionedShapeModel";
-import PositionedCompositeShapeModel from "./graphic-models/PositionedCompositeShapeModel";
+import ShapeModel from "./graphic-models/ShapeModel";
+import CompositeModel from "./graphic-models/CompositeModel";
 import IconModel from "./graphic-models/IconModel";
 
 export default class MinervaParser {
@@ -29,61 +29,57 @@ export default class MinervaParser {
     }
   }
 
-  static buildShapes(rawdata) {
-    // console.log(rawdata);
-    const parsed = rawdata.response.map(ft => ({
-      form: new MinervaForm(ft.form),
-      tuples: ft.tuples.map(rawTuple => new MinervaTuple(rawTuple))
-    }));
-
-    // console.info(parsed);
+  static buildIcons(rawdata) {
+    const parsed = parseRawData(rawdata);
 
     const colors = createColorsMap(parsed);
     const strokes = createStrokesMap(parsed, colors);
     const solids = createSolidsMap(parsed, colors);
     const outlines = createOutlinesMap(parsed, strokes);
     const points = createPointsMap(parsed);
+
     const primitives = createPrimitives(parsed, points, outlines, solids);
-    const primitivesMap = {};
-    primitives.forEach(primitive => {
-      primitivesMap[primitive.atomId] = primitive;
-    });
+    const primitivesMap = generateMapUsingKey(primitives, "atomId");
 
-    const positionedShapes = createPositionedShapeModels(
-      parsed,
-      points,
-      primitivesMap
-    );
+    const shapes = createShapes(parsed, points, primitivesMap);
+    const shapesMap = generateMapUsingKey(shapes, "shapeId", true);
 
-    const positionedShapesMap = {};
-    positionedShapes.forEach(positionedShape => {
-      if (!positionedShapesMap[positionedShape.shapeId]) {
-        positionedShapesMap[positionedShape.shapeId] = [];
-      }
-      positionedShapesMap[positionedShape.shapeId].push(positionedShape);
-    });
+    const compositesData = { parsed, points, primitivesMap, shapesMap };
+    const composites = getCompositesTrees(compositesData);
 
-    const positionedCompositeShapes = getPositionedCompositeShapesTree(
-      parsed,
-      points,
-      primitivesMap,
-      positionedShapesMap
-    );
     const atomNames = createAtomNameMap(parsed);
-    const icons = createIcons({
-      responseObjs: parsed,
-      atomNames,
-      positionedShapes,
-      positionedCompositeShapes
-    });
+    const iconsData = { responseObjs: parsed, atomNames, shapes, composites };
+    const icons = createIcons(iconsData);
 
-    // console.info(positionedComponentPrimitives);
     // console.info(atomNames);
     // console.info(icons);
-    // console.info(positionedCompositeShapes);
+    // console.info(composites);
 
     return { primitives, icons };
   }
+}
+
+function parseRawData(rawdata) {
+  return rawdata.response.map(ft => ({
+    form: new MinervaForm(ft.form),
+    tuples: ft.tuples.map(rawTuple => new MinervaTuple(rawTuple))
+  }));
+}
+
+function generateMapUsingKey(arr, mapKey, placeValuesInArray) {
+  const myMap = Object.create(null);
+  arr.forEach(item => {
+    const key = item[mapKey];
+    if (placeValuesInArray) {
+      if (!myMap[key]) {
+        myMap[key] = [];
+      }
+      myMap[key].push(item);
+    } else {
+      myMap[key] = item;
+    }
+  });
+  return myMap;
 }
 
 function createIcons(params) {
@@ -117,38 +113,23 @@ function createAtomNameMap(responseObjs) {
   return map;
 }
 
-function getPositionedCompositeShapesTree(
-  responseObjs,
-  points,
-  primitives,
-  positionedShapesMap
-) {
-  const posCompShapes = createPositionedCompositeShapes(
-    responseObjs,
-    points,
-    primitives
-  );
+function getCompositesTrees(conf) {
+  const { parsed, points, primitivesMap, shapesMap } = conf;
+  const composites = createComposites(parsed, points, primitivesMap);
+  const compositesMap = generateMapUsingKey(composites, "shapeId", true);
 
-  addShapesToComposites(posCompShapes, positionedShapesMap);
-
-  // 1. Add positionedShapes belonging to this composite
-  const posCompShapesMap = {};
-  posCompShapes.forEach(posCompShape => {
-    posCompShapesMap[posCompShape.shapeId] = posCompShape;
-  });
+  addShapesToComposites(composites, shapesMap);
 
   const childShapes = [];
-  posCompShapes.forEach(posCompShape => {
-    const nestedChildShape = posCompShapesMap[posCompShape.componentId];
-    if (nestedChildShape) {
-      posCompShape.addChildShape(nestedChildShape);
-      childShapes.push(nestedChildShape);
+  composites.forEach(composite => {
+    const nestedChildShapes = compositesMap[composite.componentId];
+    if (Array.isArray(nestedChildShapes) && nestedChildShapes.length) {
+      composite.addChildShapes(nestedChildShapes);
+      childShapes.push(...nestedChildShapes);
     }
   });
 
-  const rootShapes = posCompShapes.filter(
-    shape => !childShapes.includes(shape)
-  );
+  const rootShapes = composites.filter(shape => !childShapes.includes(shape));
 
   console.info(rootShapes);
   return rootShapes;
@@ -163,13 +144,13 @@ function addShapesToComposites(composites, shapesMap) {
   });
 }
 
-function createPositionedCompositeShapes(responseObjs, points, primitives) {
+function createComposites(responseObjs, points, primitives) {
   const result = [];
   responseObjs.forEach(ft => {
     if (ft.form.type === MINERVA.SHAPES.SHAPE) {
       ft.tuples.forEach(tuple => {
         if (!tupleHasPrimitive(tuple, ft.form, primitives)) {
-          const pcp = PositionedCompositeShapeModel.create({
+          const pcp = CompositeModel.create({
             form: ft.form,
             tuple,
             points
@@ -183,13 +164,13 @@ function createPositionedCompositeShapes(responseObjs, points, primitives) {
   return result;
 }
 
-function createPositionedShapeModels(responseObjs, points, primitives) {
+function createShapes(responseObjs, points, primitives) {
   const result = [];
   responseObjs.forEach(ft => {
     if (ft.form.type === MINERVA.SHAPES.SHAPE) {
       ft.tuples.forEach(tuple => {
         if (tupleHasPrimitive(tuple, ft.form, primitives)) {
-          const pcp = PositionedShapeModel.create({
+          const pcp = ShapeModel.create({
             form: ft.form,
             tuple,
             points,

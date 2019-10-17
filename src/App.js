@@ -36,7 +36,7 @@ class App extends Component {
         userId: 1
       })
       .then(data => {
-        const graphics = MinervaParser.buildShapes(data);
+        const graphics = MinervaParser.buildIcons(data);
         this.setState({
           primitives: graphics.primitives,
           icons: graphics.icons

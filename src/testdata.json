@@ -81,7 +81,7 @@
       "tuples": [
         [
           {
-            "atom": "rectangleId1"
+            "atom": "rectangle1"
           },
           {
             "atom": "pointId1"
@@ -100,7 +100,7 @@
             "atom": "myIconId"
           },
           {
-            "atom": "rectangleId1"
+            "atom": "rectangle1"
           },
           {
             "atom": "pointId4"
@@ -111,7 +111,7 @@
             "atom": "myIconId"
           },
           {
-            "atom": "compositeshapeID1"
+            "atom": "compositeshape1"
           },
           {
             "atom": "pointId4"
@@ -119,21 +119,10 @@
         ],
         [
           {
-            "atom": "compositeshapeID1"
+            "atom": "compositeshape1"
           },
           {
-            "atom": "circleID1"
-          },
-          {
-            "atom": "pointId4"
-          }
-        ],
-        [
-          {
-            "atom": "compositeshapeID1"
-          },
-          {
-            "atom": "circleID2"
+            "atom": "bigCircle"
           },
           {
             "atom": "pointId4"
@@ -141,10 +130,10 @@
         ],
         [
           {
-            "atom": "compositeshapeID1"
+            "atom": "compositeshape1"
           },
           {
-            "atom": "nestedShapeID"
+            "atom": "smallCircle"
           },
           {
             "atom": "pointId4"
@@ -152,10 +141,54 @@
         ],
         [
           {
-            "atom": "nestedShapeID"
+            "atom": "compositeshape1"
           },
           {
-            "atom": "circleID2"
+            "atom": "compositeshape2"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "compositeshape2"
+          },
+          {
+            "atom": "nestedShape1"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "compositeshape2"
+          },
+          {
+            "atom": "nestedShape2"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "nestedShape1"
+          },
+          {
+            "atom": "smallCircle"
+          },
+          {
+            "atom": "pointId4"
+          }
+        ],
+        [
+          {
+            "atom": "nestedShape2"
+          },
+          {
+            "atom": "rectangle1"
           },
           {
             "atom": "pointId4"
@@ -166,7 +199,7 @@
             "atom": "myIconId"
           },
           {
-            "atom": "rectangleId1"
+            "atom": "rectangle1"
           },
           {
             "atom": "pointId3"
@@ -177,7 +210,7 @@
             "atom": "myIconId"
           },
           {
-            "atom": "rectangleId1"
+            "atom": "rectangle1"
           },
           {
             "atom": "pointId2"
@@ -188,7 +221,7 @@
             "atom": "myIconId"
           },
           {
-            "atom": "rectangleId1"
+            "atom": "rectangle1"
           },
           {
             "atom": "pointId1"
@@ -217,7 +250,7 @@
       "tuples": [
         [
           {
-            "atom": "rectangleId1"
+            "atom": "rectangle1"
           },
           {
             "atom": "8000000a8ee4c9c9fb8496d3"
@@ -263,7 +296,7 @@
       "tuples": [
         [
           {
-            "atom": "circleID1"
+            "atom": "bigCircle"
           },
           {
             "atom": "8000000a20252f074abbacc4"
@@ -279,7 +312,7 @@
       "tuples": [
         [
           {
-            "atom": "circleID2"
+            "atom": "smallCircle"
           },
           {
             "atom": "8000000a20252f074abbacc4"
@@ -311,7 +344,7 @@
       "tuples": [
         [
           {
-            "atom": "circleID1"
+            "atom": "bigCircle"
           },
           {
             "atom": "8000000ae187e8ec9ea2883d"
@@ -324,7 +357,7 @@
       "tuples": [
         [
           {
-            "atom": "circleID2"
+            "atom": "smallCircle"
           },
           {
             "atom": "greenId"

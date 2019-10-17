@@ -3,15 +3,77 @@ import { MINERVA } from "../helpers";
 import Rect from "./Rect";
 import Circle from "./Circle";
 import Line from "./Line";
-import PositionedShapeModel from "../graphic-models/PositionedShapeModel";
-import PositionedCompositeShapeModel from "../graphic-models/PositionedCompositeShapeModel";
+import ShapeModel from "../graphic-models/ShapeModel";
+import CompositeModel from "../graphic-models/CompositeModel";
 
 class Icon extends Component {
   createSymbols() {
+    const primitiveSymbols = this.createPrimitivesInSymbols();
+    const composites = getUniqueComposites(this.props.icon.shapes);
+
+    const test = [];
+    composites.forEach(composite => {
+      const symbolContent = this.createCompositeSymbols(composite);
+      const symbol = (
+        <symbol
+          key={composite.componentId}
+          id={composite.componentId}
+          overflow="visible"
+        >
+          {symbolContent}
+        </symbol>
+      );
+      test.push(symbol);
+    });
+
+    return [...primitiveSymbols, ...test];
+  }
+
+  createCompositeSymbols(cShape) {
+    const symbolContents = [];
+    if (cShape.shapes) {
+      cShape.shapes.forEach(shape => {
+        if (shape instanceof CompositeModel) {
+          // Recursive get childshapes
+          symbolContents.push(
+            <use
+              key={shape.componentId}
+              href={`#${shape.componentId}`}
+              x={shape.position.horizontal}
+              y={shape.position.vertical}
+              overflow="visible"
+            />
+          );
+          // const childComposites = this.createCompositeSymbols(shape);
+          // symbolContents.push(childComposites);
+        } else if (shape instanceof ShapeModel) {
+          symbolContents.push(
+            <use
+              key={shape.componentId}
+              href={`#${shape.primitive.atomId}`}
+              x={shape.position.horizontal}
+              y={shape.position.vertical}
+              overflow="visible"
+            />
+          );
+        }
+      });
+    }
+    return symbolContents;
+    // return (
+    //   <symbol
+    //     key={cShape.componentId}
+    //     id={cShape.componentId}
+    //     overflow="visible"
+    //   >
+    //     {symbolContents}
+    //   </symbol>
+    // );
+  }
+
+  createPrimitivesInSymbols() {
     const primitives = getUniquePrimitives(this.props.icon.shapes);
-    // console.info(this.props.icon.shapes);
-    // console.info(primitives);
-    const primtiveSymbols = primitives.map(primitive => {
+    const primitiveSymbols = primitives.map(primitive => {
       const primitiveComponent = renderPrimitive(
         primitive,
         this.props.shapeDragDropped
@@ -24,60 +86,20 @@ class Icon extends Component {
       );
     });
 
-    const compositeShapes = getUniqueCompositeShapes(this.props.icon.shapes);
-    const compositeShapesSymbols = compositeShapes.map(cshape => {
-      const positionedShapes = cshape.shapes
-        .filter(shape => shape.primitive)
-        .map(shape => {
-          return (
-            <use
-              key={shape.componentId}
-              href={`#${shape.primitive.atomId}`}
-              x={shape.position.horizontal}
-              y={shape.position.vertical}
-              overflow="visible"
-            />
-          );
-        });
+    return primitiveSymbols;
+  }
 
+  createRootSymbolInstances() {
+    const shapes = this.props.icon.shapes;
+    const rootInstances = shapes.map(shape => {
+      const x = shape.position.horizontal;
+      const y = shape.position.vertical;
       return (
-        <symbol
-          key={cshape.componentId}
-          id={cshape.componentId}
-          overflow="visible"
-        >
-          {positionedShapes}
-        </symbol>
+        <use key={shape.uniqueKey} href={`#${shape.componentId}`} x={x} y={y} />
       );
     });
 
-    // console.info(compositeShapes);
-
-    return [...primtiveSymbols, ...compositeShapesSymbols];
-  }
-
-  createSymbolInstances() {
-    const positionedShapes = this.props.icon.shapes;
-    const positionedPrimitives = positionedShapes
-      .filter(
-        shape =>
-          shape instanceof PositionedShapeModel ||
-          shape instanceof PositionedCompositeShapeModel
-      )
-      .map(shape => {
-        const x = shape.position.horizontal;
-        const y = shape.position.vertical;
-        return (
-          <use
-            key={shape.uniqueKey}
-            href={`#${shape.componentId}`}
-            x={x}
-            y={y}
-          />
-        );
-      });
-
-    return positionedPrimitives;
+    return rootInstances;
   }
 
   render() {
@@ -87,7 +109,7 @@ class Icon extends Component {
 
     return (
       <>
-        {this.createSymbols()} {this.createSymbolInstances()}
+        {this.createSymbols()} {this.createRootSymbolInstances()}
       </>
     );
   }
@@ -95,27 +117,27 @@ class Icon extends Component {
 
 export default Icon;
 
-function getUniqueCompositeShapes(shapes) {
-  const allCompositeShapes = [];
+function getUniqueComposites(shapes) {
+  const allComposites = [];
 
   shapes.forEach(shape => {
-    if (shape instanceof PositionedCompositeShapeModel) {
-      allCompositeShapes.push(shape);
-      const childShapes = getUniqueCompositeShapes(shape.shapes);
-      allCompositeShapes.push(...childShapes);
+    if (shape instanceof CompositeModel) {
+      allComposites.push(shape);
+      const childShapes = getUniqueComposites(shape.shapes);
+      allComposites.push(...childShapes);
     }
   });
 
-  return [...new Set(allCompositeShapes)];
+  return [...new Set(allComposites)];
 }
 
 function getUniquePrimitives(shapes) {
   const allPrimitives = [];
 
   shapes.forEach(shape => {
-    if (shape instanceof PositionedShapeModel) {
+    if (shape instanceof ShapeModel) {
       allPrimitives.push(shape.primitive);
-    } else if (shape instanceof PositionedCompositeShapeModel) {
+    } else if (shape instanceof CompositeModel) {
       const childShapes = getUniquePrimitives(shape.shapes);
       allPrimitives.push(...childShapes);
     }
