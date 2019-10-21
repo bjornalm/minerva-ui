@@ -31,6 +31,83 @@
       "tuples": [
         [
           {
+            "atom": "pointZeroZero"
+          },
+          {
+            "number": 0
+          },
+          {
+            "number": 0
+          }
+        ],
+        [
+          {
+            "atom": "point0810"
+          },
+          {
+            "number": 8
+          },
+          {
+            "number": 10
+          }
+        ],
+        [
+          {
+            "atom": "point2020"
+          },
+          {
+            "number": 20
+          },
+          {
+            "number": 20
+          }
+        ],
+        [
+          {
+            "atom": "point0505"
+          },
+          {
+            "number": 5
+          },
+          {
+            "number": 5
+          }
+        ],
+        [
+          {
+            "atom": "point2005"
+          },
+          {
+            "number": 20
+          },
+          {
+            "number": 5
+          }
+        ],
+        [
+          {
+            "atom": "point0020"
+          },
+          {
+            "number": 0
+          },
+          {
+            "number": 20
+          }
+        ],
+        [
+          {
+            "atom": "point2500"
+          },
+          {
+            "number": 25
+          },
+          {
+            "number": 0
+          }
+        ],
+        [
+          {
             "atom": "pointId1"
           },
           {
@@ -93,8 +170,91 @@
       ]
     },
     {
+      "form": ["line", "point", "point"],
+      "tuples": [
+        [
+          {
+            "atom": "mouthLine"
+          },
+          {
+            "atom": "pointZeroZero"
+          },
+          {
+            "atom": "point2500"
+          }
+        ]
+      ]
+    },
+
+    {
       "form": ["shape", "component", "position"],
       "tuples": [
+        [
+          {
+            "atom": "myIconId"
+          },
+          {
+            "atom": "smiley"
+          },
+          {
+            "atom": "point2020"
+          }
+        ],
+        [
+          {
+            "atom": "smiley"
+          },
+          {
+            "atom": "yellowCircle"
+          },
+          {
+            "atom": "point2020"
+          }
+        ],
+        [
+          {
+            "atom": "smiley"
+          },
+          {
+            "atom": "facialFeatures"
+          },
+          {
+            "atom": "point0810"
+          }
+        ],
+        [
+          {
+            "atom": "facialFeatures"
+          },
+          {
+            "atom": "eyeCircle"
+          },
+          {
+            "atom": "point0505"
+          }
+        ],
+        [
+          {
+            "atom": "facialFeatures"
+          },
+          {
+            "atom": "eyeCircle"
+          },
+          {
+            "atom": "point2005"
+          }
+        ],
+        [
+          {
+            "atom": "facialFeatures"
+          },
+          {
+            "atom": "mouthLine"
+          },
+          {
+            "atom": "point0020"
+          }
+        ],
         [
           {
             "atom": "myIconId"
@@ -237,10 +397,21 @@
             "atom": "8000000a8ee4c9c9fb8496d3"
           },
           {
-            "atom": "8000000ae187e8ec9ea2883d"
+            "atom": "black"
           },
           {
             "number": 5
+          }
+        ],
+        [
+          {
+            "atom": "thinBlackStroke"
+          },
+          {
+            "atom": "black"
+          },
+          {
+            "number": 2
           }
         ]
       ]
@@ -255,6 +426,22 @@
           {
             "atom": "8000000a8ee4c9c9fb8496d3"
           }
+        ],
+        [
+          {
+            "atom": "yellowCircle"
+          },
+          {
+            "atom": "thinBlackStroke"
+          }
+        ],
+        [
+          {
+            "atom": "mouthLine"
+          },
+          {
+            "atom": "thinBlackStroke"
+          }
         ]
       ]
     },
@@ -263,7 +450,7 @@
       "tuples": [
         [
           {
-            "atom": "8000000ae187e8ec9ea2883d"
+            "atom": "black"
           },
           {
             "number": 0
@@ -288,6 +475,20 @@
           {
             "number": 0
           }
+        ],
+        [
+          {
+            "atom": "yellow"
+          },
+          {
+            "number": 1
+          },
+          {
+            "number": 1
+          },
+          {
+            "number": 0
+          }
         ]
       ]
     },
@@ -304,12 +505,7 @@
           {
             "number": 10
           }
-        ]
-      ]
-    },
-    {
-      "form": ["circle", "center", "radius"],
-      "tuples": [
+        ],
         [
           {
             "atom": "smallCircle"
@@ -320,9 +516,32 @@
           {
             "number": 5
           }
+        ],
+        [
+          {
+            "atom": "yellowCircle"
+          },
+          {
+            "atom": "pointZeroZero"
+          },
+          {
+            "number": 20
+          }
+        ],
+        [
+          {
+            "atom": "eyeCircle"
+          },
+          {
+            "atom": "pointZeroZero"
+          },
+          {
+            "number": 5
+          }
         ]
       ]
     },
+
     {
       "form": ["point", "horizontal", "vertical"],
       "tuples": [
@@ -347,7 +566,7 @@
             "atom": "bigCircle"
           },
           {
-            "atom": "8000000ae187e8ec9ea2883d"
+            "atom": "black"
           }
         ]
       ]
@@ -361,6 +580,27 @@
           },
           {
             "atom": "greenId"
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["solid", "color"],
+      "tuples": [
+        [
+          {
+            "atom": "yellowCircle"
+          },
+          {
+            "atom": "yellow"
+          }
+        ],
+        [
+          {
+            "atom": "eyeCircle"
+          },
+          {
+            "atom": "black"
           }
         ]
       ]

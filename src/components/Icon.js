@@ -11,64 +11,23 @@ class Icon extends Component {
     const primitiveSymbols = this.createPrimitivesInSymbols();
     const composites = getUniqueComposites(this.props.icon.shapes);
 
-    const test = [];
+    const compositeSymbols = [];
     composites.forEach(composite => {
-      const symbolContent = this.createCompositeSymbols(composite);
+      const symbolContent = createCompositeIntances(composite);
+      console.info(symbolContent);
       const symbol = (
         <symbol
-          key={composite.componentId}
+          key={composite.uniqueKey}
           id={composite.componentId}
           overflow="visible"
         >
           {symbolContent}
         </symbol>
       );
-      test.push(symbol);
+      compositeSymbols.push(symbol);
     });
 
-    return [...primitiveSymbols, ...test];
-  }
-
-  createCompositeSymbols(cShape) {
-    const symbolContents = [];
-    if (cShape.shapes) {
-      cShape.shapes.forEach(shape => {
-        if (shape instanceof CompositeModel) {
-          // Recursive get childshapes
-          symbolContents.push(
-            <use
-              key={shape.componentId}
-              href={`#${shape.componentId}`}
-              x={shape.position.horizontal}
-              y={shape.position.vertical}
-              overflow="visible"
-            />
-          );
-          // const childComposites = this.createCompositeSymbols(shape);
-          // symbolContents.push(childComposites);
-        } else if (shape instanceof ShapeModel) {
-          symbolContents.push(
-            <use
-              key={shape.componentId}
-              href={`#${shape.primitive.atomId}`}
-              x={shape.position.horizontal}
-              y={shape.position.vertical}
-              overflow="visible"
-            />
-          );
-        }
-      });
-    }
-    return symbolContents;
-    // return (
-    //   <symbol
-    //     key={cShape.componentId}
-    //     id={cShape.componentId}
-    //     overflow="visible"
-    //   >
-    //     {symbolContents}
-    //   </symbol>
-    // );
+    return [...primitiveSymbols, ...compositeSymbols];
   }
 
   createPrimitivesInSymbols() {
@@ -116,6 +75,32 @@ class Icon extends Component {
 }
 
 export default Icon;
+
+function createCompositeIntances(cShape) {
+  let symbolContents = [];
+  if (cShape.shapes) {
+    symbolContents = cShape.shapes.map(shape => {
+      const href =
+        shape instanceof CompositeModel
+          ? `#${shape.componentId}`
+          : `#${shape.primitive.atomId}`;
+      return renderInstanceRef(shape, href);
+    });
+  }
+  return symbolContents;
+}
+
+function renderInstanceRef(shape, href) {
+  return (
+    <use
+      key={shape.uniqueKey}
+      href={href}
+      x={shape.position.horizontal}
+      y={shape.position.vertical}
+      overflow="visible"
+    />
+  );
+}
 
 function getUniqueComposites(shapes) {
   const allComposites = [];

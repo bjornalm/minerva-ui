@@ -44,53 +44,6 @@ class App extends Component {
       });
   }
 
-  // renderShapes() {
-  //   if (!this.state.primitives) {
-  //     return null;
-  //   }
-
-  //   const primitives = this.state.primitives.map(shape => {
-  //     const key = shape.atomId;
-  //     let renderedShape;
-  //     switch (shape.form.type) {
-  //       case MINERVA.PRIMITIVES.CIRCLE:
-  //         renderedShape = (
-  //           <Circle
-  //             key={key}
-  //             onDragDropped={this.shapeDragDropped}
-  //             shape={shape}
-  //           ></Circle>
-  //         );
-  //         break;
-  //       case MINERVA.PRIMITIVES.RECTANGLE:
-  //         renderedShape = (
-  //           <Rect
-  //             key={key}
-  //             onDragDropped={this.shapeDragDropped}
-  //             shape={shape}
-  //           ></Rect>
-  //         );
-  //         break;
-  //       case MINERVA.PRIMITIVES.LINE:
-  //         renderedShape = (
-  //           <Line
-  //             key={key}
-  //             onDragDropped={this.shapeDragDropped}
-  //             shape={shape}
-  //           ></Line>
-  //         );
-  //         break;
-  //       default:
-  //         console.error("Shape could not be rendered", shape);
-  //         break;
-  //     }
-
-  //     return renderedShape;
-  //   });
-
-  //   return primitives;
-  // }
-
   renderIcons() {
     if (!this.state.icons) {
       return null;
