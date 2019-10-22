@@ -24,7 +24,7 @@ class LinePrimitiveModel extends PrimitiveBase {
     });
   }
 
-  static createLine(form, tuple, pointMap, outlines) {
+  static create(form, tuple, pointMap, outlines) {
     const atomId = tuple.getAttributeValue(MINERVA.PRIMITIVES.LINE, form);
     const pointIds = tuple.getAttributeValues(MINERVA.PRIMITIVES.POINT, form);
     const point1 = pointMap[pointIds[0]];

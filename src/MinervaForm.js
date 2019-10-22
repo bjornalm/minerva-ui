@@ -48,6 +48,8 @@ function determineRelationType(form) {
     type = MINERVA.PRIMITIVES.RECTANGLE;
   } else if (formIsLine(form)) {
     type = MINERVA.PRIMITIVES.LINE;
+  } else if (formIsPolygon(form)) {
+    type = MINERVA.PRIMITIVES.POLYGON;
   } else if (formIsShape(form)) {
     type = MINERVA.SHAPES.SHAPE;
   } else if (formIsIcon(form)) {
@@ -151,6 +153,14 @@ function formIsLine(form) {
     form.length === 3 &&
     form.includes(MINERVA.PRIMITIVES.LINE) &&
     form.filter(col => col === MINERVA.PRIMITIVES.POINT).length === 2
+  );
+}
+
+function formIsPolygon(form) {
+  return (
+    form.length === 2 &&
+    form.includes(MINERVA.PRIMITIVES.POLYGON) &&
+    form.includes(MINERVA.PRIMITIVES_COLLECTIONS.POINTS)
   );
 }
 

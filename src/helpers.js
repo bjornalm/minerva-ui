@@ -2,6 +2,7 @@ export const MINERVA = {
   FORM: "form",
   TUPLE_ATTR_TYPE: {
     ATOM: "atom",
+    ATOMS: "atoms",
     NUMBER: "number",
     STRING: "string"
   },
@@ -20,7 +21,11 @@ export const MINERVA = {
     STROKE: "stroke",
     COLOR: "color",
     CIRCLE: "circle",
-    LINE: "line"
+    LINE: "line",
+    POLYGON: "polygon"
+  },
+  PRIMITIVES_COLLECTIONS: {
+    POINTS: "points"
   },
   POSITIONS: {
     HORIZONTAL: "horizontal",

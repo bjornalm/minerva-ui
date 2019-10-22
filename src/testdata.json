@@ -163,7 +163,19 @@
         ]
       ]
     },
-
+    {
+      "form": ["polygon", "points"],
+      "tuples": [
+        [
+          {
+            "atom": "triangle"
+          },
+          {
+            "atoms": ["point0000", "point2020", "point0020"]
+          }
+        ]
+      ]
+    },
     {
       "form": ["rectangle", "top-left", "bottom-right"],
       "tuples": [
@@ -299,6 +311,17 @@
           },
           {
             "atom": "testPolygon"
+          },
+          {
+            "atom": "point0000"
+          }
+        ],
+        [
+          {
+            "atom": "testPolygon"
+          },
+          {
+            "atom": "triangle"
           },
           {
             "atom": "point0000"

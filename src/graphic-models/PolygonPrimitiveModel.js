@@ -4,7 +4,7 @@ import PointModel from "./PointModel";
 
 class PolygonPrimitiveModel extends PrimitiveBase {
   constructor(conf) {
-    const { form, tuple, atomId, points } = conf;
+    const { form, tuple, atomId, points, outline, solid } = conf;
     super({ form, tuple, outline, solid });
     this.atomId = atomId;
     this.points = points;
@@ -23,13 +23,13 @@ class PolygonPrimitiveModel extends PrimitiveBase {
   }
 
   static create(form, tuple, pointMap, outlines, solids) {
-    const atomId = tuple.getAttributeValue(MINERVA.PRIMITIVES.CIRCLE, form);
-    const centerPointId = tuple.getAttributeValue(
-      MINERVA.POSITIONS.CENTER,
+    const atomId = tuple.getAttributeValue(MINERVA.PRIMITIVES.POLYGON, form);
+    const pointIds = tuple.getAttributeValue(
+      MINERVA.PRIMITIVES_COLLECTIONS.POINTS,
       form
     );
-    const center = pointMap[centerPointId];
-    const radius = tuple.getAttributeValue(MINERVA.RADIUS, form);
+
+    const points = pointIds.map(id => pointMap[id]);
     const outline = outlines[atomId];
     const solid = solids[atomId];
 
@@ -37,8 +37,7 @@ class PolygonPrimitiveModel extends PrimitiveBase {
       form,
       tuple,
       atomId,
-      center,
-      radius,
+      points,
       outline,
       solid
     });

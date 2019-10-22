@@ -13,6 +13,7 @@ import MinervaTuple from "./MinervaTuple";
 import ShapeModel from "./graphic-models/ShapeModel";
 import CompositeModel from "./graphic-models/CompositeModel";
 import IconModel from "./graphic-models/IconModel";
+import PolygonPrimitiveModel from "./graphic-models/PolygonPrimitiveModel";
 
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
@@ -195,33 +196,19 @@ function createPrimitives(responseObjs, pointMap, outlines, solids) {
   const primitives = [];
   responseObjs.forEach(ft => {
     ft.tuples.forEach(tuple => {
+      const args = [ft.form, tuple, pointMap, outlines, solids];
       switch (ft.form.type) {
         case MINERVA.PRIMITIVES.RECTANGLE:
-          primitives.push(
-            RectanglePrimitiveModel.create(
-              ft.form,
-              tuple,
-              pointMap,
-              outlines,
-              solids
-            )
-          );
+          primitives.push(RectanglePrimitiveModel.create(...args));
           break;
         case MINERVA.PRIMITIVES.CIRCLE:
-          primitives.push(
-            CirclePrimitiveModel.create(
-              ft.form,
-              tuple,
-              pointMap,
-              outlines,
-              solids
-            )
-          );
+          primitives.push(CirclePrimitiveModel.create(...args));
           break;
         case MINERVA.PRIMITIVES.LINE:
-          primitives.push(
-            LinePrimitiveModel.createLine(ft.form, tuple, pointMap, outlines)
-          );
+          primitives.push(LinePrimitiveModel.create(...args));
+          break;
+        case MINERVA.PRIMITIVES.POLYGON:
+          primitives.push(PolygonPrimitiveModel.create(...args));
           break;
         default:
           break;
