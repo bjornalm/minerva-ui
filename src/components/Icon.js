@@ -4,6 +4,7 @@ import Rect from "./Rect";
 import Circle from "./Circle";
 import Line from "./Line";
 import Polygon from "./Polygon";
+import Polyline from "./Polyline";
 import ShapeModel from "../graphic-models/ShapeModel";
 import CompositeModel from "../graphic-models/CompositeModel";
 
@@ -161,6 +162,15 @@ function renderPrimitive(primitive, dragDropped) {
           onDragDropped={dragDropped}
           shape={primitive}
         ></Polygon>
+      );
+      break;
+    case MINERVA.PRIMITIVES.POLYLINE:
+      renderedPrimitive = (
+        <Polyline
+          key={key}
+          onDragDropped={dragDropped}
+          shape={primitive}
+        ></Polyline>
       );
       break;
     default:

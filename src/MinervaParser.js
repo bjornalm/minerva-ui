@@ -14,6 +14,7 @@ import ShapeModel from "./graphic-models/ShapeModel";
 import CompositeModel from "./graphic-models/CompositeModel";
 import IconModel from "./graphic-models/IconModel";
 import PolygonPrimitiveModel from "./graphic-models/PolygonPrimitiveModel";
+import PolylinePrimitiveModel from "./graphic-models/PolylinePrimitiveModel";
 
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
@@ -209,6 +210,9 @@ function createPrimitives(responseObjs, pointMap, outlines, solids) {
           break;
         case MINERVA.PRIMITIVES.POLYGON:
           primitives.push(PolygonPrimitiveModel.create(...args));
+          break;
+        case MINERVA.PRIMITIVES.POLYLINE:
+          primitives.push(PolylinePrimitiveModel.create(...args));
           break;
         default:
           break;

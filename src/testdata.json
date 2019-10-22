@@ -177,6 +177,19 @@
       ]
     },
     {
+      "form": ["polyline", "points"],
+      "tuples": [
+        [
+          {
+            "atom": "polyline1"
+          },
+          {
+            "atoms": ["point0000", "point2005", "pointId4", "pointId3"]
+          }
+        ]
+      ]
+    },
+    {
       "form": ["rectangle", "top-left", "bottom-right"],
       "tuples": [
         [
@@ -329,6 +342,28 @@
         ],
         [
           {
+            "atom": "myIcon"
+          },
+          {
+            "atom": "testPolyline"
+          },
+          {
+            "atom": "point0000"
+          }
+        ],
+        [
+          {
+            "atom": "testPolyline"
+          },
+          {
+            "atom": "polyline1"
+          },
+          {
+            "atom": "point0000"
+          }
+        ],
+        [
+          {
             "atom": "quadrant"
           },
           {
@@ -419,6 +454,17 @@
           {
             "number": 2
           }
+        ],
+        [
+          {
+            "atom": "thinRedStroke"
+          },
+          {
+            "atom": "red"
+          },
+          {
+            "number": 2
+          }
         ]
       ]
     },
@@ -448,6 +494,14 @@
           {
             "atom": "thinBlackStroke"
           }
+        ],
+        [
+          {
+            "atom": "polyline1"
+          },
+          {
+            "atom": "thinRedStroke"
+          }
         ]
       ]
     },
@@ -470,7 +524,7 @@
         ],
         [
           {
-            "atom": "greenId"
+            "atom": "green"
           },
           {
             "number": 0
@@ -495,6 +549,20 @@
           {
             "number": 0
           }
+        ],
+        [
+          {
+            "atom": "red"
+          },
+          {
+            "number": 1
+          },
+          {
+            "number": 0
+          },
+          {
+            "number": 0
+          }
         ]
       ]
     },
@@ -504,18 +572,10 @@
       "tuples": [
         [
           {
-            "atom": "bigCircle"
+            "atom": "triangle"
           },
           {
-            "atom": "black"
-          }
-        ],
-        [
-          {
-            "atom": "smallCircle"
-          },
-          {
-            "atom": "greenId"
+            "atom": "green"
           }
         ],
         [

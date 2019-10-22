@@ -22,7 +22,8 @@ export const MINERVA = {
     COLOR: "color",
     CIRCLE: "circle",
     LINE: "line",
-    POLYGON: "polygon"
+    POLYGON: "polygon",
+    POLYLINE: "polyline"
   },
   PRIMITIVES_COLLECTIONS: {
     POINTS: "points"

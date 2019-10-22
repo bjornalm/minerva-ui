@@ -1,27 +1,27 @@
 import React, { Component } from "react";
 import withSVGPropsHOC from "./withSVGPropsHOC";
 
-class Polygon extends Component {
+class Polyline extends Component {
   getPointsString() {
-    const polygonPrimtive = this.props.shape;
-    return polygonPrimtive.points
+    const polylinePrimtive = this.props.shape;
+    return polylinePrimtive.points
       .map(point => `${point.horizontal},${point.vertical}`)
       .join(" ");
   }
 
   render() {
-    const polygon = this.props.shape;
-    if (!polygon) {
+    const polyline = this.props.shape;
+    if (!polyline) {
       return null;
     }
 
     return (
-      <polygon
+      <polyline
         style={this.props.style}
         points={this.getPointsString()}
         stroke={this.props.stroke}
-        strokeWidth={this.props.strokeWidth}
         fill={this.props.fill}
+        strokeWidth={this.props.strokeWidth}
         onPointerUp={this.props.onPointerUp}
         onPointerDown={this.props.onPointerDown}
         onPointerMove={this.props.onPointerMove}
@@ -30,4 +30,4 @@ class Polygon extends Component {
   }
 }
 
-export default withSVGPropsHOC(Polygon);
+export default withSVGPropsHOC(Polyline);
