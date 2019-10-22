@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import httpService from "./httpService";
 import MinervaParser from "./MinervaParser";
-// import Rect from "./components/Rect";
-// import Circle from "./components/Circle";
-// import Line from "./components/Line";
-// import { MINERVA } from "./helpers";
+import testdata from "./testdata.json";
 import Icon from "./components/Icon";
 
 class App extends Component {
@@ -80,6 +77,9 @@ class App extends Component {
           <rect width="100%" height="100%" fill="#eeeeee" />
           {this.renderIcons()}
         </svg>
+        <div className="json">
+          <textarea defaultValue={JSON.stringify(testdata)}></textarea>
+        </div>
       </div>
     );
   }

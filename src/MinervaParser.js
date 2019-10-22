@@ -39,6 +39,8 @@ export default class MinervaParser {
     const points = createPointsMap(parsed);
 
     const primitives = createPrimitives(parsed, points, outlines, solids);
+
+    console.info(primitives);
     const primitivesMap = generateMapUsingKey(primitives, "atomId");
 
     const shapes = createShapes(parsed, points, primitivesMap);

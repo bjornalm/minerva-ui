@@ -5,12 +5,12 @@ import RectanglePrimitiveModel from "../graphic-models/RectanglePrimitiveModel";
 class Rect extends Component {
   getHeight() {
     const rectangle = this.props.shape;
-    return rectangle.topRight.vertical - rectangle.bottomLeft.vertical;
+    return rectangle.bottomRight.vertical - rectangle.topLeft.vertical;
   }
 
   getWidth() {
     const rectangle = this.props.shape;
-    return rectangle.topRight.horizontal - rectangle.bottomLeft.horizontal;
+    return rectangle.bottomRight.horizontal - rectangle.topLeft.horizontal;
   }
 
   getX() {
@@ -22,25 +22,25 @@ class Rect extends Component {
   }
 
   static getX(shape) {
-    return shape.topRight.horizontal;
+    return shape.topLeft.horizontal;
   }
 
   static getY(shape) {
-    return shape.topRight.vertical;
+    return shape.topLeft.vertical;
   }
 
   static getShapeWithNewPosition(shape, newX, newY) {
     const modifiedShape = RectanglePrimitiveModel.clone(shape);
-    const xDiff = modifiedShape.topRight.horizontal - newX;
-    const yDiff = modifiedShape.topRight.vertical - newY;
-    modifiedShape.topRight.horizontal = newX;
-    modifiedShape.topRight.vertical = newY;
-    modifiedShape.topRight.atomId = undefined;
-    modifiedShape.bottomLeft.horizontal =
-      modifiedShape.bottomLeft.horizontal - xDiff;
-    modifiedShape.bottomLeft.vertical =
-      modifiedShape.bottomLeft.vertical - yDiff;
-    modifiedShape.bottomLeft.atomId = undefined;
+    const xDiff = modifiedShape.topLeft.horizontal - newX;
+    const yDiff = modifiedShape.topLeft.vertical - newY;
+    modifiedShape.topLeft.horizontal = newX;
+    modifiedShape.topLeft.vertical = newY;
+    modifiedShape.topLeft.atomId = undefined;
+    modifiedShape.bottomRight.horizontal =
+      modifiedShape.bottomRight.horizontal - xDiff;
+    modifiedShape.bottomRight.vertical =
+      modifiedShape.bottomRight.vertical - yDiff;
+    modifiedShape.bottomRight.atomId = undefined;
     return modifiedShape;
   }
 

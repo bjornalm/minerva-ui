@@ -25,8 +25,8 @@ export const MINERVA = {
   POSITIONS: {
     HORIZONTAL: "horizontal",
     VERTICAL: "vertical",
-    BOTTOM_LEFT: "bottom-left",
-    TOP_RIGHT: "top-right",
+    BOTTOM_RIGHT: "bottom-right",
+    TOP_LEFT: "top-left",
     CENTER: "center"
   },
   COLORS: {

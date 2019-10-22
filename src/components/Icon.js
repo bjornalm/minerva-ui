@@ -14,7 +14,6 @@ class Icon extends Component {
     const compositeSymbols = [];
     composites.forEach(composite => {
       const symbolContent = createCompositeIntances(composite);
-      console.info(symbolContent);
       const symbol = (
         <symbol
           key={composite.uniqueKey}

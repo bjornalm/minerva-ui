@@ -31,3 +31,15 @@
     transform: rotate(360deg);
   }
 }
+
+.json {
+  width: 800px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.json textarea {
+  width: 100%;
+  height: 800px;
+}

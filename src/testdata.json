@@ -21,7 +21,7 @@
             "atom": "8000000a1f3e5467fcfd4f3c"
           },
           {
-            "atom": "myIconId"
+            "atom": "myIcon"
           }
         ]
       ]
@@ -31,13 +31,24 @@
       "tuples": [
         [
           {
-            "atom": "pointZeroZero"
+            "atom": "point0000"
           },
           {
             "number": 0
           },
           {
             "number": 0
+          }
+        ],
+        [
+          {
+            "atom": "point0303"
+          },
+          {
+            "number": 3
+          },
+          {
+            "number": 3
           }
         ],
         [
@@ -60,6 +71,17 @@
           },
           {
             "number": 20
+          }
+        ],
+        [
+          {
+            "atom": "point3030"
+          },
+          {
+            "number": 30
+          },
+          {
+            "number": 30
           }
         ],
         [
@@ -108,17 +130,6 @@
         ],
         [
           {
-            "atom": "pointId1"
-          },
-          {
-            "number": 0
-          },
-          {
-            "number": 0
-          }
-        ],
-        [
-          {
             "atom": "pointId2"
           },
           {
@@ -154,14 +165,14 @@
     },
 
     {
-      "form": ["rectangle", "bottom-left", "top-right"],
+      "form": ["rectangle", "top-left", "bottom-right"],
       "tuples": [
         [
           {
-            "atom": "rectangle1"
+            "atom": "square"
           },
           {
-            "atom": "pointId1"
+            "atom": "point0000"
           },
           {
             "atom": "pointId4"
@@ -177,10 +188,37 @@
             "atom": "mouthLine"
           },
           {
-            "atom": "pointZeroZero"
+            "atom": "point0000"
           },
           {
             "atom": "point2500"
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["circle", "center", "radius"],
+      "tuples": [
+        [
+          {
+            "atom": "yellowCircle"
+          },
+          {
+            "atom": "point0000"
+          },
+          {
+            "number": 20
+          }
+        ],
+        [
+          {
+            "atom": "eyeCircle"
+          },
+          {
+            "atom": "point0000"
+          },
+          {
+            "number": 5
           }
         ]
       ]
@@ -189,17 +227,6 @@
     {
       "form": ["shape", "component", "position"],
       "tuples": [
-        [
-          {
-            "atom": "myIconId"
-          },
-          {
-            "atom": "smiley"
-          },
-          {
-            "atom": "point2020"
-          }
-        ],
         [
           {
             "atom": "smiley"
@@ -257,10 +284,32 @@
         ],
         [
           {
-            "atom": "myIconId"
+            "atom": "myIcon"
           },
           {
-            "atom": "rectangle1"
+            "atom": "quadrant"
+          },
+          {
+            "atom": "point0303"
+          }
+        ],
+        [
+          {
+            "atom": "myIcon"
+          },
+          {
+            "atom": "testPolygon"
+          },
+          {
+            "atom": "point0000"
+          }
+        ],
+        [
+          {
+            "atom": "quadrant"
+          },
+          {
+            "atom": "squareWithSmiley"
           },
           {
             "atom": "pointId4"
@@ -268,98 +317,32 @@
         ],
         [
           {
-            "atom": "myIconId"
+            "atom": "squareWithSmiley"
           },
           {
-            "atom": "compositeshape1"
+            "atom": "square"
           },
           {
-            "atom": "pointId4"
+            "atom": "point0000"
           }
         ],
         [
           {
-            "atom": "compositeshape1"
+            "atom": "squareWithSmiley"
           },
           {
-            "atom": "bigCircle"
+            "atom": "smiley"
           },
           {
-            "atom": "pointId4"
+            "atom": "point3030"
           }
         ],
         [
           {
-            "atom": "compositeshape1"
+            "atom": "quadrant"
           },
           {
-            "atom": "smallCircle"
-          },
-          {
-            "atom": "pointId4"
-          }
-        ],
-        [
-          {
-            "atom": "compositeshape1"
-          },
-          {
-            "atom": "compositeshape2"
-          },
-          {
-            "atom": "pointId4"
-          }
-        ],
-        [
-          {
-            "atom": "compositeshape2"
-          },
-          {
-            "atom": "nestedShape1"
-          },
-          {
-            "atom": "pointId4"
-          }
-        ],
-        [
-          {
-            "atom": "compositeshape2"
-          },
-          {
-            "atom": "nestedShape2"
-          },
-          {
-            "atom": "pointId4"
-          }
-        ],
-        [
-          {
-            "atom": "nestedShape1"
-          },
-          {
-            "atom": "smallCircle"
-          },
-          {
-            "atom": "pointId4"
-          }
-        ],
-        [
-          {
-            "atom": "nestedShape2"
-          },
-          {
-            "atom": "rectangle1"
-          },
-          {
-            "atom": "pointId4"
-          }
-        ],
-        [
-          {
-            "atom": "myIconId"
-          },
-          {
-            "atom": "rectangle1"
+            "atom": "square"
           },
           {
             "atom": "pointId3"
@@ -367,10 +350,10 @@
         ],
         [
           {
-            "atom": "myIconId"
+            "atom": "quadrant"
           },
           {
-            "atom": "rectangle1"
+            "atom": "square"
           },
           {
             "atom": "pointId2"
@@ -378,13 +361,13 @@
         ],
         [
           {
-            "atom": "myIconId"
+            "atom": "quadrant"
           },
           {
-            "atom": "rectangle1"
+            "atom": "square"
           },
           {
-            "atom": "pointId1"
+            "atom": "point0000"
           }
         ]
       ]
@@ -394,7 +377,7 @@
       "tuples": [
         [
           {
-            "atom": "8000000a8ee4c9c9fb8496d3"
+            "atom": "thickBlackStroke"
           },
           {
             "atom": "black"
@@ -421,10 +404,10 @@
       "tuples": [
         [
           {
-            "atom": "rectangle1"
+            "atom": "square"
           },
           {
-            "atom": "8000000a8ee4c9c9fb8496d3"
+            "atom": "thickBlackStroke"
           }
         ],
         [
@@ -492,72 +475,7 @@
         ]
       ]
     },
-    {
-      "form": ["circle", "center", "radius"],
-      "tuples": [
-        [
-          {
-            "atom": "bigCircle"
-          },
-          {
-            "atom": "8000000a20252f074abbacc4"
-          },
-          {
-            "number": 10
-          }
-        ],
-        [
-          {
-            "atom": "smallCircle"
-          },
-          {
-            "atom": "8000000a20252f074abbacc4"
-          },
-          {
-            "number": 5
-          }
-        ],
-        [
-          {
-            "atom": "yellowCircle"
-          },
-          {
-            "atom": "pointZeroZero"
-          },
-          {
-            "number": 20
-          }
-        ],
-        [
-          {
-            "atom": "eyeCircle"
-          },
-          {
-            "atom": "pointZeroZero"
-          },
-          {
-            "number": 5
-          }
-        ]
-      ]
-    },
 
-    {
-      "form": ["point", "horizontal", "vertical"],
-      "tuples": [
-        [
-          {
-            "atom": "8000000a20252f074abbacc4"
-          },
-          {
-            "number": 150
-          },
-          {
-            "number": 150
-          }
-        ]
-      ]
-    },
     {
       "form": ["solid", "color"],
       "tuples": [
@@ -568,12 +486,7 @@
           {
             "atom": "black"
           }
-        ]
-      ]
-    },
-    {
-      "form": ["solid", "color"],
-      "tuples": [
+        ],
         [
           {
             "atom": "smallCircle"
@@ -581,12 +494,7 @@
           {
             "atom": "greenId"
           }
-        ]
-      ]
-    },
-    {
-      "form": ["solid", "color"],
-      "tuples": [
+        ],
         [
           {
             "atom": "yellowCircle"

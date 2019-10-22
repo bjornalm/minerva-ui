@@ -132,8 +132,8 @@ function formIsRectangle(form) {
   return (
     form.length === 3 &&
     form.includes(MINERVA.PRIMITIVES.RECTANGLE) &&
-    form.includes(MINERVA.POSITIONS.BOTTOM_LEFT) &&
-    form.includes(MINERVA.POSITIONS.TOP_RIGHT)
+    form.includes(MINERVA.POSITIONS.TOP_LEFT) &&
+    form.includes(MINERVA.POSITIONS.BOTTOM_RIGHT)
   );
 }
 
