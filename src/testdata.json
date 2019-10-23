@@ -164,6 +164,88 @@
       ]
     },
     {
+      "form": ["list", "element", "position"],
+      "tuples": [
+        [
+          {
+            "atom": "trianglePoints"
+          },
+          {
+            "atoms": "point2020"
+          },
+          {
+            "atoms": 2
+          }
+        ],
+        [
+          {
+            "atom": "trianglePoints"
+          },
+          {
+            "atoms": "point0000"
+          },
+          {
+            "atoms": 1
+          }
+        ],
+        [
+          {
+            "atom": "trianglePoints"
+          },
+          {
+            "atoms": "point0020"
+          },
+          {
+            "atoms": 3
+          }
+        ],
+        [
+          {
+            "atom": "polyline1Points"
+          },
+          {
+            "atoms": "point0000"
+          },
+          {
+            "atoms": 1
+          }
+        ],
+        [
+          {
+            "atom": "polyline1Points"
+          },
+          {
+            "atoms": "point2005"
+          },
+          {
+            "atoms": 2
+          }
+        ],
+        [
+          {
+            "atom": "polyline1Points"
+          },
+          {
+            "atoms": "pointId4"
+          },
+          {
+            "atoms": 3
+          }
+        ],
+        [
+          {
+            "atom": "polyline1Points"
+          },
+          {
+            "atoms": "pointId3"
+          },
+          {
+            "atoms": 4
+          }
+        ]
+      ]
+    },
+    {
       "form": ["polygon", "points"],
       "tuples": [
         [
@@ -171,7 +253,7 @@
             "atom": "triangle"
           },
           {
-            "atoms": ["point0000", "point2020", "point0020"]
+            "atoms": "trianglePoints"
           }
         ]
       ]
@@ -184,7 +266,7 @@
             "atom": "polyline1"
           },
           {
-            "atoms": ["point0000", "point2005", "pointId4", "pointId3"]
+            "atoms": "polyline1Points"
           }
         ]
       ]

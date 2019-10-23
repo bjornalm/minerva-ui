@@ -39,10 +39,16 @@ export default class MinervaParser {
     const solids = createSolidsMap(parsed, colors);
     const outlines = createOutlinesMap(parsed, strokes);
     const points = createPointsMap(parsed);
+    const lists = createOrderedListsMap(parsed);
 
-    const primitives = createPrimitives(parsed, points, outlines, solids);
+    const primitives = createPrimitives(
+      parsed,
+      points,
+      outlines,
+      solids,
+      lists
+    );
 
-    console.info(primitives);
     const primitivesMap = generateMapUsingKey(primitives, "atomId");
 
     const shapes = createShapes(parsed, points, primitivesMap);
@@ -68,6 +74,42 @@ function parseRawData(rawdata) {
     form: new MinervaForm(ft.form),
     tuples: ft.tuples.map(rawTuple => new MinervaTuple(rawTuple))
   }));
+}
+
+function createOrderedListsMap(responseObjs) {
+  const listsMap = Object.create(null);
+  responseObjs.forEach(ft => {
+    if (ft.form.type === MINERVA.COLLECTIONS.LIST) {
+      ft.tuples.forEach(tuple => {
+        const listId = tuple.getAttributeValue(
+          MINERVA.COLLECTIONS.LIST,
+          ft.form
+        );
+        const value = tuple.getAttributeValue(
+          MINERVA.COLLECTIONS.ELEMENT,
+          ft.form
+        );
+        const index = tuple.getAttributeValue(
+          MINERVA.COLLECTIONS.POSITION,
+          ft.form
+        );
+
+        if (!listsMap[listId]) {
+          listsMap[listId] = [];
+        }
+
+        listsMap[listId].push({ index, value });
+      });
+    }
+  });
+
+  Object.keys(listsMap).forEach(listId => {
+    const list = listsMap[listId];
+    list.sort((a, b) => a.index - b.index);
+    listsMap[listId] = list.map(obj => obj.value);
+  });
+
+  return listsMap;
 }
 
 function generateMapUsingKey(arr, mapKey, placeValuesInArray) {
@@ -135,7 +177,6 @@ function getCompositesTrees(conf) {
 
   const rootShapes = composites.filter(shape => !childShapes.includes(shape));
 
-  console.info(rootShapes);
   return rootShapes;
 }
 
@@ -193,7 +234,7 @@ function tupleHasPrimitive(tuple, form, primitives) {
   return !!primitives[componentID];
 }
 
-function createPrimitives(responseObjs, pointMap, outlines, solids) {
+function createPrimitives(responseObjs, pointMap, outlines, solids, lists) {
   const primitives = [];
   responseObjs.forEach(ft => {
     ft.tuples.forEach(tuple => {
@@ -209,10 +250,10 @@ function createPrimitives(responseObjs, pointMap, outlines, solids) {
           primitives.push(LinePrimitiveModel.create(...args));
           break;
         case MINERVA.PRIMITIVES.POLYGON:
-          primitives.push(PolygonPrimitiveModel.create(...args));
+          primitives.push(PolygonPrimitiveModel.create(...args, lists));
           break;
         case MINERVA.PRIMITIVES.POLYLINE:
-          primitives.push(PolylinePrimitiveModel.create(...args));
+          primitives.push(PolylinePrimitiveModel.create(...args, lists));
           break;
         default:
           break;

@@ -28,6 +28,11 @@ export const MINERVA = {
   PRIMITIVES_COLLECTIONS: {
     POINTS: "points"
   },
+  COLLECTIONS: {
+    LIST: "list",
+    ELEMENT: "element",
+    POSITION: "position"
+  },
   POSITIONS: {
     HORIZONTAL: "horizontal",
     VERTICAL: "vertical",

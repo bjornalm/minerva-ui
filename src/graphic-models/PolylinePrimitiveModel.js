@@ -22,13 +22,13 @@ class PolylinePrimitiveModel extends PrimitiveBase {
     });
   }
 
-  static create(form, tuple, pointMap, outlines, solids) {
+  static create(form, tuple, pointMap, outlines, solids, lists) {
     const atomId = tuple.getAttributeValue(MINERVA.PRIMITIVES.POLYLINE, form);
-    const pointIds = tuple.getAttributeValue(
+    const pointListId = tuple.getAttributeValue(
       MINERVA.PRIMITIVES_COLLECTIONS.POINTS,
       form
     );
-
+    const pointIds = lists[pointListId];
     const points = pointIds.map(id => pointMap[id]);
     const outline = outlines ? outlines[atomId] : undefined;
     const solid = solids ? solids[atomId] : undefined;

@@ -58,9 +58,20 @@ function determineRelationType(form) {
     type = MINERVA.SHAPES.ICON;
   } else if (formIsNamedAtom(form)) {
     type = MINERVA.NAMED_ATOM;
+  } else if (formIsList(form)) {
+    type = MINERVA.COLLECTIONS.LIST;
   }
 
   return type;
+}
+
+function formIsList(form) {
+  return (
+    form.length === 3 &&
+    form.includes(MINERVA.COLLECTIONS.LIST) &&
+    form.includes(MINERVA.COLLECTIONS.ELEMENT) &&
+    form.includes(MINERVA.COLLECTIONS.POSITION)
+  );
 }
 
 function formIsNamedAtom(form) {
