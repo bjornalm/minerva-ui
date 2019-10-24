@@ -15,6 +15,7 @@ import CompositeModel from "./graphic-models/CompositeModel";
 import IconModel from "./graphic-models/IconModel";
 import PolygonPrimitiveModel from "./graphic-models/PolygonPrimitiveModel";
 import PolylinePrimitiveModel from "./graphic-models/PolylinePrimitiveModel";
+import EllipsePrimitiveModel from "./graphic-models/EllipsePrimitiveModel";
 
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
@@ -254,6 +255,9 @@ function createPrimitives(responseObjs, pointMap, outlines, solids, lists) {
           break;
         case MINERVA.PRIMITIVES.POLYLINE:
           primitives.push(PolylinePrimitiveModel.create(...args, lists));
+          break;
+        case MINERVA.PRIMITIVES.ELLIPSE:
+          primitives.push(EllipsePrimitiveModel.create(...args));
           break;
         default:
           break;

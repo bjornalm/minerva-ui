@@ -23,7 +23,8 @@ export const MINERVA = {
     CIRCLE: "circle",
     LINE: "line",
     POLYGON: "polygon",
-    POLYLINE: "polyline"
+    POLYLINE: "polyline",
+    ELLIPSE: "ellipse"
   },
   PRIMITIVES_COLLECTIONS: {
     POINTS: "points"
@@ -49,6 +50,8 @@ export const MINERVA = {
     WIDTH: "width"
   },
   RADIUS: "radius",
+  X_RADIUS: "x-radius",
+  Y_RADIUS: "y-radius",
   NAMED_ATOM: "named-atom",
   NAME: "name",
   ATOM: "atom"

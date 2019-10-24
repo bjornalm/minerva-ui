@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { MINERVA } from "../helpers";
 import Rect from "./Rect";
 import Circle from "./Circle";
+import Ellipse from "./Ellipse";
 import Line from "./Line";
 import Polygon from "./Polygon";
 import Polyline from "./Polyline";
@@ -143,6 +144,15 @@ function renderPrimitive(primitive, dragDropped) {
           onDragDropped={dragDropped}
           shape={primitive}
         ></Circle>
+      );
+      break;
+    case MINERVA.PRIMITIVES.ELLIPSE:
+      renderedPrimitive = (
+        <Ellipse
+          key={key}
+          onDragDropped={dragDropped}
+          shape={primitive}
+        ></Ellipse>
       );
       break;
     case MINERVA.PRIMITIVES.RECTANGLE:

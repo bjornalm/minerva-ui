@@ -330,6 +330,25 @@
         ]
       ]
     },
+    {
+      "form": ["ellipse", "center", "x-radius", "y-radius"],
+      "tuples": [
+        [
+          {
+            "atom": "myEllipse"
+          },
+          {
+            "atom": "point0000"
+          },
+          {
+            "number": 20
+          },
+          {
+            "number": 10
+          }
+        ]
+      ]
+    },
 
     {
       "form": ["shape", "component", "position"],
@@ -398,6 +417,28 @@
           },
           {
             "atom": "point0303"
+          }
+        ],
+        [
+          {
+            "atom": "myIcon"
+          },
+          {
+            "atom": "ellipseShape"
+          },
+          {
+            "atom": "point0000"
+          }
+        ],
+        [
+          {
+            "atom": "ellipseShape"
+          },
+          {
+            "atom": "myEllipse"
+          },
+          {
+            "atom": "pointId4"
           }
         ],
         [
@@ -674,6 +715,14 @@
           },
           {
             "atom": "black"
+          }
+        ],
+        [
+          {
+            "atom": "myEllipse"
+          },
+          {
+            "atom": "green"
           }
         ]
       ]
