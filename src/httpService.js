@@ -1,12 +1,16 @@
 import testdata from "./testdata.json";
 const axios = require("axios");
+const USE_PROXY = true;
+const URL = "/post-handler";
 const LOCAL_PROXY_URL = "http://localhost:8010/proxy";
 
 class HttpService {
   constructor() {
     // Add a request interceptor for the proxy
     axios.interceptors.request.use(config => {
-      config.url = `${LOCAL_PROXY_URL}${config.url}`;
+      if (USE_PROXY) {
+        config.url = `${LOCAL_PROXY_URL}${config.url}`;
+      }
       return config;
     });
   }
@@ -22,7 +26,7 @@ class HttpService {
     return axios
       .request({
         method: "post",
-        url: "/post-handler",
+        url: URL,
         data: JSON.stringify(exampleReq),
         headers: {
           "Content-type": "application/json; charset=UTF-8"

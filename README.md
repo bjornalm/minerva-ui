@@ -1,12 +1,22 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Getting started
 
-In the project directory, you can run:
+In the project directory, you can run the app in development mode. Make sure you have node.js and npm or yarn installed.
+
+### 1. Install the packages with `npm install`
+
+### 2. Start the proxy server needed for CORS with `npm run proxy`
+
+### 3. Start the app in development mode with `npm start`
+
+### Run`npm run proxy`
+
+## Available Scripts
 
 ### `npm run proxy`
 
-Starts a proxy server used by the client to solve CORS.
+Starts a proxy server used by the client to solve CORS. The proxy is then running on http://localhost:8010/proxy
 By default the proxy points to http://redmount.net:7681/post-handler
 To change the proxy URL you can modify the "proxy" script in package.json.
 
