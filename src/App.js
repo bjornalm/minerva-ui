@@ -2,18 +2,12 @@ import React, { Component } from "react";
 import "./App.css";
 import httpService from "./httpService";
 import MinervaParser from "./MinervaParser";
-import testdata from "./testdata.json";
 import Icon from "./components/Icon";
 
 class App extends Component {
   state = {};
 
   shapeDragDropped = move => {
-    // const update = MinervaParser.buildDragDropQuery(
-    //   move.original,
-    //   move.modified
-    // );
-
     const { original, modified } = move;
     const shapesCopy = [...this.state.primitives];
     const shapeIndex = shapesCopy.indexOf(original);
@@ -55,12 +49,10 @@ class App extends Component {
       );
     });
 
-    // console.info(icons);
     return icons;
   }
 
   render() {
-    // console.info(this.state);
     const containerStyle = {
       boxShadow: "5px 5px 10px -2px rgba(0,0,0,0.22)"
     };
@@ -77,9 +69,6 @@ class App extends Component {
           <rect width="100%" height="100%" fill="#eeeeee" />
           {this.renderIcons()}
         </svg>
-        <div className="json">
-          <textarea defaultValue={JSON.stringify(testdata)}></textarea>
-        </div>
       </div>
     );
   }

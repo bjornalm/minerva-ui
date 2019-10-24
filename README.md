@@ -7,6 +7,8 @@ In the project directory, you can run:
 ### `npm run proxy`
 
 Starts a proxy server used by the client to solve CORS.
+By default the proxy points to http://redmount.net:7681/post-handler
+To change the proxy URL you can modify the "proxy" script in package.json.
 
 ### `npm start`
 

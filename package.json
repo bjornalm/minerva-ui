@@ -10,7 +10,7 @@
     "react-scripts": "3.1.1"
   },
   "scripts": {
-    "proxy": "lcp --proxyUrl https://jsonplaceholder.typicode.com",
+    "proxy": "lcp --proxyUrl http://redmount.net:7681/",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
