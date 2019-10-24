@@ -1,4 +1,4 @@
-import testdata from "./testdata.json";
+import testdata from "./testdata2.json";
 const axios = require("axios");
 const LOCAL_PROXY_URL = "http://localhost:8010/proxy";
 
