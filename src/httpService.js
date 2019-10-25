@@ -21,7 +21,7 @@ class HttpService {
     };
 
     // ENABLE THIS TO SKIP THE API AND WORK DIRECTLY WITH THE TESTDATA
-    return Promise.resolve(testdata).then();
+    // return Promise.resolve(testdata).then();
 
     return axios
       .request({
