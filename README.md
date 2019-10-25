@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Minerva UI repo.
+This project was built with react.js to create reusable components that render shapes and graphic primitives on a SVG surface.
 
 ## Getting started with Development
 
@@ -18,11 +19,11 @@ If you deploy the app on the same machine that runs the API or if the API server
 
 2. Build the app using `npm run build`
 
-### `When you have a webserver`
+### When you have a web server
 
 3. Copy the content of your `build` folder to the folder of your web server where you serve static HTML. Make sure your server can serve Singe Page Applications from that folder.
 
-### `When you don't have a webserver`
+### When you don't have a web server
 
 3. We have included a small [HTTP-server](https://github.com/http-party/http-server) that can be used if needed. You can start it and point it to your build directory with the simple command `http-server ./build`. It will by default be available on http://127.0.0.1:8080 but can also be accessed using the IP your computer has on the network.
 
