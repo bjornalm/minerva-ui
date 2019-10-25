@@ -1,16 +1,30 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Getting started
+## Getting started with Development
 
 In the project directory, you can run the app in development mode. Make sure you have node.js and npm or yarn installed.
 
-### 1. Install the packages with `npm install`
+1. Install the packages with `npm install`
 
-### 2. Start the proxy server needed for CORS with `npm run proxy`
+2. Start the proxy server needed for CORS with `npm run proxy`
 
-### 3. Start the app in development mode with `npm start`
+3. Start the app in development mode with `npm start`
 
-### Run`npm run proxy`
+## Deploying and running a build.
+
+If you deploy the app on the same machine that runs the API or if the API server supports CORS you don't need the proxy server.
+
+1. Install the packages with `npm install`
+
+2. Build the app using `npm run build`
+
+### `When you have a webserver`
+
+3. Copy the content of your `build` folder to the folder of your web server where you serve static HTML. Make sure your server can serve Singe Page Applications from that folder.
+
+### `When you don't have a webserver`
+
+3. We have included a small [HTTP-server](https://github.com/http-party/http-server) that can be used if needed. You can start it and point it to your build directory with the simple command `http-server ./build`. It will by default be available on http://127.0.0.1:8080 but can also be accessed using the IP your computer has on the network.
 
 ## Available Scripts
 

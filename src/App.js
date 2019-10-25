@@ -58,11 +58,10 @@ class App extends Component {
     };
     return (
       <div className="App">
-        <h1>Minerva</h1>
         <svg
           version="1.1"
-          width="800"
-          height="800"
+          width="100%"
+          height="100%"
           xmlns="http://www.w3.org/2000/svg"
           style={containerStyle}
         >

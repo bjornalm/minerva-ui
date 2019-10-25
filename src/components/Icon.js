@@ -6,6 +6,7 @@ import Ellipse from "./Ellipse";
 import Line from "./Line";
 import Polygon from "./Polygon";
 import Polyline from "./Polyline";
+import Text from "./Text";
 import ShapeModel from "../graphic-models/ShapeModel";
 import CompositeModel from "../graphic-models/CompositeModel";
 
@@ -181,6 +182,11 @@ function renderPrimitive(primitive, dragDropped) {
           onDragDropped={dragDropped}
           shape={primitive}
         ></Polyline>
+      );
+      break;
+    case MINERVA.PRIMITIVES.TEXT:
+      renderedPrimitive = (
+        <Text key={key} onDragDropped={dragDropped} shape={primitive}></Text>
       );
       break;
     default:

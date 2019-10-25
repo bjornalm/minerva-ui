@@ -16,6 +16,7 @@ import IconModel from "./graphic-models/IconModel";
 import PolygonPrimitiveModel from "./graphic-models/PolygonPrimitiveModel";
 import PolylinePrimitiveModel from "./graphic-models/PolylinePrimitiveModel";
 import EllipsePrimitiveModel from "./graphic-models/EllipsePrimitiveModel";
+import TextPrimitiveModel from "./graphic-models/TextPrimitiveModel";
 
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
@@ -62,7 +63,7 @@ export default class MinervaParser {
     const iconsData = { responseObjs: parsed, atomNames, shapes, composites };
     const icons = createIcons(iconsData);
 
-    // console.info(atomNames);
+    console.info(primitives);
     // console.info(icons);
     // console.info(composites);
 
@@ -258,6 +259,9 @@ function createPrimitives(responseObjs, pointMap, outlines, solids, lists) {
           break;
         case MINERVA.PRIMITIVES.ELLIPSE:
           primitives.push(EllipsePrimitiveModel.create(...args));
+          break;
+        case MINERVA.PRIMITIVES.TEXT:
+          primitives.push(TextPrimitiveModel.create(ft.form, tuple, solids));
           break;
         default:
           break;

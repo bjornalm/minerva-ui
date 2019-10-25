@@ -171,10 +171,10 @@
             "atom": "trianglePoints"
           },
           {
-            "atoms": "point2020"
+            "atom": "point2020"
           },
           {
-            "atoms": 2
+            "atom": 2
           }
         ],
         [
@@ -182,10 +182,10 @@
             "atom": "trianglePoints"
           },
           {
-            "atoms": "point0000"
+            "atom": "point0000"
           },
           {
-            "atoms": 1
+            "atom": 1
           }
         ],
         [
@@ -193,10 +193,10 @@
             "atom": "trianglePoints"
           },
           {
-            "atoms": "point0020"
+            "atom": "point0020"
           },
           {
-            "atoms": 3
+            "atom": 3
           }
         ],
         [
@@ -204,10 +204,10 @@
             "atom": "polyline1Points"
           },
           {
-            "atoms": "point0000"
+            "atom": "point0000"
           },
           {
-            "atoms": 1
+            "atom": 1
           }
         ],
         [
@@ -215,10 +215,10 @@
             "atom": "polyline1Points"
           },
           {
-            "atoms": "point2005"
+            "atom": "point2005"
           },
           {
-            "atoms": 2
+            "atom": 2
           }
         ],
         [
@@ -226,10 +226,10 @@
             "atom": "polyline1Points"
           },
           {
-            "atoms": "pointId4"
+            "atom": "pointId4"
           },
           {
-            "atoms": 3
+            "atom": 3
           }
         ],
         [
@@ -237,10 +237,10 @@
             "atom": "polyline1Points"
           },
           {
-            "atoms": "pointId3"
+            "atom": "pointId3"
           },
           {
-            "atoms": 4
+            "atom": 4
           }
         ]
       ]
@@ -253,7 +253,7 @@
             "atom": "triangle"
           },
           {
-            "atoms": "trianglePoints"
+            "atom": "trianglePoints"
           }
         ]
       ]
@@ -266,7 +266,7 @@
             "atom": "polyline1"
           },
           {
-            "atoms": "polyline1Points"
+            "atom": "polyline1Points"
           }
         ]
       ]
@@ -299,6 +299,22 @@
           },
           {
             "atom": "point2500"
+          }
+        ]
+      ]
+    },
+    {
+      "form": ["text", "string", "font-size"],
+      "tuples": [
+        [
+          {
+            "atom": "helloWorld"
+          },
+          {
+            "string": "Hello World!"
+          },
+          {
+            "number": "40"
           }
         ]
       ]
@@ -550,6 +566,28 @@
           {
             "atom": "point0000"
           }
+        ],
+        [
+          {
+            "atom": "myIcon"
+          },
+          {
+            "atom": "myText"
+          },
+          {
+            "atom": "point2020"
+          }
+        ],
+        [
+          {
+            "atom": "myText"
+          },
+          {
+            "atom": "helloWorld"
+          },
+          {
+            "atom": "point0000"
+          }
         ]
       ]
     },
@@ -693,6 +731,14 @@
     {
       "form": ["solid", "color"],
       "tuples": [
+        [
+          {
+            "atom": "helloWorld"
+          },
+          {
+            "atom": "green"
+          }
+        ],
         [
           {
             "atom": "triangle"

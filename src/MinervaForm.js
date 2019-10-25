@@ -54,6 +54,8 @@ function determineRelationType(form) {
     type = MINERVA.PRIMITIVES.POLYLINE;
   } else if (formIsEllipse(form)) {
     type = MINERVA.PRIMITIVES.ELLIPSE;
+  } else if (formIsText(form)) {
+    type = MINERVA.PRIMITIVES.TEXT;
   } else if (formIsShape(form)) {
     type = MINERVA.SHAPES.SHAPE;
   } else if (formIsIcon(form)) {
@@ -65,6 +67,15 @@ function determineRelationType(form) {
   }
 
   return type;
+}
+
+function formIsText(form) {
+  return (
+    form.length === 3 &&
+    form.includes(MINERVA.PRIMITIVES.TEXT) &&
+    form.includes(MINERVA.TEXT.STRING) &&
+    form.includes(MINERVA.TEXT.FONT_SIZE)
+  );
 }
 
 function formIsEllipse(form) {
