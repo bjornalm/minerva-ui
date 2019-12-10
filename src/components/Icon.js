@@ -10,6 +10,14 @@ import Text from "./Text";
 import ShapeModel from "../graphic-models/ShapeModel";
 import CompositeModel from "../graphic-models/CompositeModel";
 
+/**
+ * In order to reuse graphics, the primitives, shapes and composites are
+ * only defined once in the SVG as symbols. They are then referenced one or
+ * multiple times by the tree structure of shapes and composite shapes that
+ * can be read from the root, which is the icon. Both the symbols and the
+ * references, called root symbol instances, are created and rendered by
+ * the this icon component.
+ */
 class Icon extends Component {
   createSymbols() {
     const primitiveSymbols = this.createPrimitivesInSymbols();

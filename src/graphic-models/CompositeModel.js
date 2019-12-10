@@ -1,6 +1,8 @@
 /**
- * CompositeModel consist of one or more shapes.
- * A CompositeModel always has a position.
+ * The composite model contains one or more shapes or other composites.
+ * The composite also has a position. If the composite is a direct child
+ * of the icon, the position is relative to the SVG drawing area, otherwise
+ * the position is relative to the parent composite model.
  */
 import { MINERVA } from "../helpers";
 

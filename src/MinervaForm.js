@@ -3,6 +3,13 @@ import { MINERVA } from "./helpers";
  * Wrapper around the raw "form element" that is part of the response
  * from the Minerva API. The raw form element can be an array of strings
  * or a complex object corresponding to a logical expression in CNF.
+ *
+ * Besides wrapping the raw parsed JSON form it’s main functionality is
+ * to classify the relationship type, i.e. to find out what kind of
+ * graphic model that should represent it. It does this by looking at the
+ * values of the form columns, making sure the length of columns and the
+ * values are an exact match, but does not require a specific order of
+ * the columns.
  */
 class MinervaForm {
   constructor(rawForm) {

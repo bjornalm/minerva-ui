@@ -1,6 +1,8 @@
 /**
  * A ShapeModel will contain a single primitive.
- * A ShapeModel always has a position.
+ * A shape model can be seen as a wrapper around a primitive model that adds a position.
+ * If the shape is a direct child of the icon, the position is relative to the SVG drawing area,
+ * otherwise the position is relative to the parent composite model.
  */
 import { MINERVA } from "../helpers";
 

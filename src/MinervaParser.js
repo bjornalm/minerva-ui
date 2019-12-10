@@ -18,6 +18,14 @@ import PolylinePrimitiveModel from "./graphic-models/PolylinePrimitiveModel";
 import EllipsePrimitiveModel from "./graphic-models/EllipsePrimitiveModel";
 import TextPrimitiveModel from "./graphic-models/TextPrimitiveModel";
 
+/**
+ * The MinervaParser is used to transform the minerva relations delivered as forms and tuples in JSON
+ * to object models that are easier to handle for the react components. It knows how to interpret the
+ * Minerva specific graphic keywords, i.e. what icon, shape, position, color and all the primitives etc
+ * means so when in the future these things change the parser must be updated or extended to reflect
+ * the change. The parser uses a “MinervaForm” class and “MinervaTuple” class to wrap the raw forms and
+ * tuples and make them easier to handle.
+ */
 export default class MinervaParser {
   static buildDragDropQuery(original, modified) {
     // TODO: generate the queris here
